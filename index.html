@@ -1,0 +1,3083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexaVerse - Digital Excellence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="templatemo-nexaverse.css">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
+
+<!-- 
+
+TemplateMo 603 Nexaverse
+
+https://templatemo.com/tm-603-nexaverse
+
+-->
+</head>
+<body>
+
+    <button id="logoutBtn" class="logout-btn">
+    Logout
+</button>
+
+<script>
+
+document.getElementById("logoutBtn").onclick = function(){
+
+    localStorage.removeItem("isLoggedIn");
+
+    window.location.href = "login.html";
+
+};
+
+</script>
+
+    <script>
+if(localStorage.getItem("isLoggedIn") !== "true"){
+    window.location.href = "login.html";
+}
+
+
+
+</script>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader-ring"></div>
+        <div class="loading-text">Initializing Experience...</div>
+    </div>
+
+    <!-- Ambient Background -->
+    <div class="ambient-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Grid Overlay -->
+    <div class="grid-overlay"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <div class="header" id="mainHeader">
+            <div class="logo">
+                <img src="images/icons/RWWWWWWW.svg" alt="ReyWalker Logo">
+
+                    <defs>
+                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#00f0ff"/>
+                            <stop offset="100%" style="stop-color:#ff00d4"/>
+                        </linearGradient>
+                    </defs>
+                    <polygon points="50,5 95,30 95,70 50,95 5,70 5,30" fill="none" stroke="url(#logoGradient)" stroke-width="2"/>
+                    <polygon points="50,20 80,37 80,63 50,80 20,63 20,37" fill="none" stroke="url(#logoGradient)" stroke-width="1.5" opacity="0.6"/>
+                    <circle cx="50" cy="50" r="12" fill="url(#logoGradient)" opacity="0.3"/>
+                    <circle cx="50" cy="50" r="6" fill="url(#logoGradient)"/>
+                </svg>
+            </div>
+            <h1 class="brand-name">REYWALKER</h1>
+            <p class="tagline">Stay Original</p>
+        </div>
+
+        <!-- Menu Grid -->
+        <div class="menu-grid" id="menuGrid">
+            <div class="menu-item initial-load" data-section="introduction">
+                <div class="menu-badge">IN</div>
+                <div class="menu-title">Introduction</div>
+            </div>
+            <div class="menu-item initial-load" data-section="services">
+                <div class="menu-badge">AC</div>
+                <div class="menu-title">Accounts</div>
+            </div>
+            <div class="menu-item initial-load" data-section="gallery">
+                <div class="menu-badge">GL</div>
+                <div class="menu-title">Gallery</div>
+            </div>
+            <div class="menu-item initial-load" data-section="testimonials">
+                <div class="menu-badge">GG</div>
+                <div class="menu-title">Games</div>
+            </div>
+            <div class="menu-item initial-load" data-section="about">
+                <div class="menu-badge">AB</div>
+                <div class="menu-title">About</div>
+            </div>
+            <div class="menu-item initial-load" data-section="contact">
+                <div class="menu-badge">NT</div>
+                <div class="menu-title">NMAX TRACKER</div>
+            </div>
+        </div>
+
+        <!-- Content Sections -->
+        <div id="contentArea">
+            <!-- Introduction Section -->
+            <div class="content-section" id="introduction">
+                <div class="section-header-small">
+                    <div class="small-logo">
+                        <img src="images/icons/RWWWWWWW.svg" alt="ReyWalker Logo">
+                            <defs>
+                                <linearGradient id="smallLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#00f0ff"/>
+                                    <stop offset="100%" style="stop-color:#ff00d4"/>
+                                </linearGradient>
+                            </defs>
+                            <polygon points="50,10 85,32 85,68 50,90 15,68 15,32" fill="none" stroke="url(#smallLogoGrad)" stroke-width="3"/>
+                            <circle cx="50" cy="50" r="10" fill="url(#smallLogoGrad)"/>
+                        </svg>
+                    </div>
+                    <div class="small-brand">
+                        <h3>REYWALKER</h3>
+                        <p>Introduction</p>
+                    </div>
+                </div>
+                <button class="back-btn" onclick="backToMenu()">← Back to Menu</button>
+                
+                <!-- Hero Banner -->
+                <div class="intro-hero">
+                    <div class="intro-hero-content">
+                        <span class="intro-badge">Est. 2026</span>
+                        <h1 class="intro-headline">We Build Digital<br><span>Experiences</span> That Matter</h1>
+                        <p class="intro-subtext">Transforming visionary ideas into powerful digital realities through cutting-edge technology and creative excellence.</p>
+                        <div class="intro-cta-group">
+                    <button class="intro-tab active"
+            onclick="switchIntroTab('work', this)">
+        Adobe Creative Cloud
+    </button>
+
+    <button class="intro-tab"
+            onclick="switchIntroTab('showreel', this)">
+        Web Development
+    </button>
+                </div>
+                    </div>
+                    <div class="intro-hero-wrapper">
+
+    <!-- WORK -->
+    <div class="intro-hero-visual intro-view active" id="workVisual">
+
+        <div class="intro-floating-card card-1">
+    <img src="images/icons/PS.svg" alt="Photoshop">
+    <span class="card-text">Adobe Photoshop</span>
+</div>
+
+<div class="intro-floating-card card-2">
+    <img src="images/icons/AI.svg" alt="Photoshop">
+    <span class="card-text">Adobe Illustrator</span>
+</div>
+
+<div class="intro-floating-card card-3">
+    <img src="images/icons/PP.png" alt="Photoshop">
+    <span class="card-text">Adobe Premiere</span>
+</div>
+
+        <div class="intro-orb"></div>
+
+    </div>
+
+    <!-- SHOWREEL -->
+    <div class="intro-hero-visual intro-view" id="showreelVisual">
+
+        <div class="intro-floating-card card-1">
+            <img src="images/icons/VSCODE.png" alt="Photoshop">
+            <span class="card-text">Visual Studio Code</span>
+        </div>
+
+        <div class="intro-floating-card card-2">
+            <img src="images/icons/wbb.png" alt="Photoshop">
+            <span class="card-text">Web Developer</span>
+        </div>
+
+        <div class="intro-floating-card card-3">
+            <img src="images/icons/wb.png" alt="Photoshop">
+            <span class="card-text">Gaming Passion</span>
+        </div>
+
+        <div class="intro-orb"></div>
+
+    </div>
+
+</div>
+                </div>
+
+                <!-- Metrics Strip -->
+                <div class="intro-metrics">
+                    <div class="metric-item">
+                        <span class="metric-value" data-target="500">0</span>
+                        <span class="metric-label">Projects Delivered</span>
+                    </div>
+                    <div class="metric-divider"></div>
+                    <div class="metric-item">
+                        <span class="metric-value" data-target="98">0</span>
+                        <span class="metric-suffix">%</span>
+                        <span class="metric-label">Client Retention</span>
+                    </div>
+                    <div class="metric-divider"></div>
+                    <div class="metric-item">
+                        <span class="metric-value" data-target="12">0</span>
+                        <span class="metric-label">Industry Awards</span>
+                    </div>
+                    <div class="metric-divider"></div>
+                    <div class="metric-item">
+                        <span class="metric-value">24/7</span>
+                        <span class="metric-label">Global Support</span>
+                    </div>
+                </div>
+
+                <!-- Core Values -->
+                <div class="intro-values-wrapper">
+
+    <!-- WORK -->
+    <div class="intro-values intro-values-view active" id="workValues">
+
+        <div class="value-card">
+            <div class="value-number">01</div>
+            <h3>Adobe Photoshop</h3>
+            <p>Adobe Photoshop is my primary tool for photo editing, digital artwork, and creative graphic design.</p>
+        </div>
+
+        <div class="value-card">
+            <div class="value-number">02</div>
+            <h3>Adobe Illustrator</h3>
+            <p>Adobe Illustrator is used to create vector graphics, logos, icons, and professional branding designs.</p>
+        </div>
+
+        <div class="value-card">
+            <div class="value-number">03</div>
+            <h3>Adobe Premiere Pro</h3>
+            <p>Adobe Premiere Pro is my preferred software for editing videos, adding effects, and producing high-quality visual content.</p>
+        </div>
+
+    </div>
+
+    <!-- SHOWREEL -->
+    <div class="intro-values intro-values-view" id="showreelValues">
+
+        <div class="value-card">
+            <div class="value-number">01</div>
+            <h3>Visual Studio Code</h3>
+            <p>Visual Studio Code is my primary development environment for writing, debugging, and managing software projects efficiently.</p>
+        </div>
+
+        <div class="value-card">
+            <div class="value-number">02</div>
+            <h3>Web Development</h3>
+            <p>I build responsive, user-friendly, and modern websites using HTML, CSS, JavaScript, and other web technologies.</p>
+        </div>
+
+        <div class="value-card">
+            <div class="value-number">03</div>
+            <h3>Gaming Passion</h3>
+            <p>Gaming inspires my creativity, problem-solving, and continuous learning while keeping me updated with modern technology and digital experiences</p>
+        </div>
+
+    </div>
+
+</div>
+
+                <!-- MGA APPS NAG LIHOK SA OBOS -->
+                <div class="tech-track">
+
+    <div class="tech-card">
+        <i class="devicon-html5-plain colored"></i>
+        <span>HTML5</span>
+    </div>
+
+    <div class="tech-card">
+        <i class="devicon-css3-plain colored"></i>
+        <span>CSS</span>
+    </div>
+
+    <div class="tech-card">
+        <img src="images/icons/js.webp" alt="InDesign">
+        <span>JavaScript</span>
+    </div>
+
+    <div class="tech-card">
+        <i class="devicon-vscode-plain colored"></i>
+        <span>VS Code</span>
+    </div>
+
+    <div class="tech-card">
+        <i class="devicon-github-original"></i>
+        <span>GitHub</span>
+    </div>
+
+    <div class="tech-card">
+        <img src="images/icons/PS.svg" alt="InDesign">
+        <span>Photoshop</span>
+    </div>
+
+    <div class="tech-card">
+        <img src="images/icons/AI.svg" alt="InDesign">
+        <span>Illustrator</span>
+    </div>
+
+    <div class="tech-card">
+        <img src="images/icons/PP.png" alt="InDesign">
+        <span>Premiere</span>
+    </div>
+
+  <div class="tech-card">
+    <img src="images/icons/ID.svg" alt="InDesign">
+    <span>InDesign</span>
+</div>
+
+  <div class="tech-card">
+    <img src="images/icons/LR.png" alt="InDesign">
+    <span>Lightroom</span>
+</div>
+
+ <div class="tech-card">
+    <img src="images/icons/Stean.png" alt="InDesign">
+    <span>Steam</span>
+</div>
+ <div class="tech-card">
+    <img src="images/icons/EG.png" alt="InDesign">
+    <span>Epic Games</span>
+</div>
+
+
+</div>
+</div>
+
+            <!-- Services Section -->
+            <div class="content-section" id="services">
+                <div class="section-header-small">
+                    <div class="small-logo">
+                        <img src="images/icons/RWWWWWWW.svg" alt="ReyWalker Logo">
+                            <defs>
+                                <linearGradient id="smallLogoGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#00f0ff"/>
+                                    <stop offset="100%" style="stop-color:#ff00d4"/>
+                                </linearGradient>
+                            </defs>
+                            <polygon points="50,10 85,32 85,68 50,90 15,68 15,32" fill="none" stroke="url(#smallLogoGrad2)" stroke-width="3"/>
+                            <circle cx="50" cy="50" r="10" fill="url(#smallLogoGrad2)"/>
+                        </svg>
+                    </div>
+                    <div class="small-brand">
+                        <h3>ACCOUNTS</h3>
+                        <p>List</p>
+                    </div>
+                </div>
+                <button class="back-btn" onclick="backToMenu()">← Back to Menu</button>
+
+                <div class="section-header">
+                    <h2 class="section-title">ACCOUNTS</h2>
+                    <p class="section-subtitle">Categories</p>
+                </div>
+
+                <div class="tabs-container">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" onclick="switchTab(this, 'development')">Company</button>
+                        <button class="tab-btn" onclick="switchTab(this, 'design')">Personal</button>
+                        <button class="tab-btn" onclick="switchTab(this, 'consulting')">Mail</button>
+                        <button class="tab-btn" onclick="switchTab(this, 'support')">Media</button>
+                        <button class="tab-btn" onclick="switchTab(this, 'Desktop')">Desktop</button>
+                        <button class="tab-btn" onclick="switchTab(this, 'Security')">Security</button>
+                        <button class="tab-btn" onclick="switchTab(this, 'Games')">Games</button>
+                    </div>
+
+  <!-- GAMES TAB -->     
+<div class="tab-pane" id="Games">
+    <div class="services-list">
+
+        <div class="service-row">
+    <div class="service-row-icon">
+        <img src="images/icons/DN.png" alt="Desktop">
+    </div>
+    <div class="service-row-content">
+        <h4>DN Classic</h4>
+        <p>g2</p>
+        <p>MainOLD@</p>
+        <p>pin park#</p>
+    </div>
+    <div class="service-row-arrow">→</div>
+</div>
+
+
+<div class="service-row">
+    <div class="service-row-icon">
+        <img src="images/icons/Stean.png" alt="Steam">
+    </div>
+    <div class="service-row-content">
+        <h4>STEAM</h4>
+        <p>a11</p>
+        <p>DmainNWSM1@yr</p>
+    </div>
+    <div class="service-row-arrow">→</div>
+</div>
+
+
+<div class="service-row">
+    <div class="service-row-icon">
+        <img src="images/icons/ML.png" alt="Nvidia">
+    </div>
+    <div class="service-row-content">
+        <h4>ML1</h4>
+        <p>FB7</p>
+        <p>G1</p>
+    </div>
+    <div class="service-row-arrow">→</div>
+</div>
+
+
+<div class="service-row">
+    <div class="service-row-icon">
+        <img src="images/icons/ML.png" alt="Microsoft">
+    </div>
+    <div class="service-row-content">
+        <h4>ML1</h4>
+        <p>FB1</p>
+        <p>G2</p>
+    </div>
+    <div class="service-row-arrow">→</div>
+</div>
+
+<div class="service-row">
+    <div class="service-row-icon">
+        <img src="images/icons/RS.png" alt="Microsoft">
+    </div>
+    <div class="service-row-content">
+        <h4>ROCKSTAR </h4>
+        <p>G2</p>
+        <p>Abasic@01</p>
+    </div>
+    <div class="service-row-arrow">→</div>
+</div>
+
+<div class="service-row">
+    <div class="service-row-icon">
+        <img src="images/icons/US.jpg" alt="Microsoft">
+    </div>
+    <div class="service-row-content">
+        <h4>UBISOFT</h4>
+        <p>G2</p>
+        <p>BasicGR1@yr</p>
+    </div>
+    <div class="service-row-arrow">→</div>
+</div>
+
+
+    </div>
+</div>                    
+
+
+
+ <!--SECURITY TAB -->                  
+<div class="tab-pane" id="Security">
+    <div class="services-list">
+
+        <div class="service-row">
+    <div class="service-row-icon">
+        <img src="images/icons/Blink-Logo-smile-blue-rgb.jpg" alt="Desktop">
+    </div>
+    <div class="service-row-content">
+        <h4>MINI BLINK</h4>
+        <p>g2</p>
+        <p>01LNKIDDOS@</p>
+    </div>
+    <div class="service-row-arrow">→</div>
+</div>
+
+
+<div class="service-row">
+    <div class="service-row-icon">
+        <img src="images/icons/YI.png" alt="Steam">
+    </div>
+    <div class="service-row-content">
+        <h4>YI HOME</h4>
+        <p>G2</p>
+        <p>Abasic@01</p>
+    </div>
+    <div class="service-row-arrow">→</div>
+</div>
+
+
+<div class="service-row">
+    <div class="service-row-icon">
+        <img src="images/icons/EU.png" alt="Nvidia">
+    </div>
+    <div class="service-row-content">
+        <h4>EUFY</h4>
+        <p>G2</p>
+        <p>Abasic@01</p>
+    </div>
+    <div class="service-row-arrow">→</div>
+</div>
+
+
+<div class="service-row">
+    <div class="service-row-icon">
+        <img src="images/icons/WF.png" alt="Microsoft">
+    </div>
+    <div class="service-row-content">
+        <h4>PLDT A</h4>
+        <p>AliceWF</p>
+        <p>Abasic@01</p>
+    </div>
+    <div class="service-row-arrow">→</div>
+</div>
+
+<div class="service-row">
+    <div class="service-row-icon">
+        <img src="images/icons/TPL.jpg" alt="Microsoft">
+    </div>
+    <div class="service-row-content">
+        <h4>TP LINK </h4>
+        <p>DECO Booster</p>
+        <p>Abasic@01</p>
+    </div>
+    <div class="service-row-arrow">→</div>
+</div>
+
+<div class="service-row">
+    <div class="service-row-icon">
+        <img src="images/icons/WF.png" alt="Microsoft">
+    </div>
+    <div class="service-row-content">
+        <h4>PLDT M</h4>
+        <p>admin</p>
+        <p>Abasic@01</p>
+    </div>
+    <div class="service-row-arrow">→</div>
+</div>
+
+<div class="service-row">
+    <div class="service-row-icon">
+        <img src="images/icons/WF.png" alt="Microsoft">
+    </div>
+    <div class="service-row-content">
+        <h4>MAKKI</h4>
+        <p>MakkiWF</p>
+        <p>Abasic@01</p>
+    </div>
+    <div class="service-row-arrow">→</div>
+</div>
+
+    </div>
+</div>                    
+
+
+ <!-- DESKTOP TAB -->    
+ 
+
+    <div class="tab-pane" id="Desktop">
+    <div class="services-list">
+        
+       <div class="service-row">
+    <div class="service-row-icon">
+        <img src="images/icons/MS.png" alt="Desktop">
+    </div>
+    <div class="service-row-content">
+        <h4>MICROSOFT</h4>
+        <p>G1</p>
+        <p>DbasicMSO1@</p>
+    </div>
+    <div class="service-row-arrow">→</div>
+</div>
+
+
+<div class="service-row">
+    <div class="service-row-icon">
+        <img src="images/icons/SF.png" alt="Steam">
+    </div>
+    <div class="service-row-content">
+        <h4>SPOTIFY</h4>
+        <p>G1</p>
+        <p>DbasicSF1@yr</p>
+    </div>
+    <div class="service-row-arrow">→</div>
+</div>
+
+
+<div class="service-row">
+    <div class="service-row-icon">
+        <img src="images/icons/MI.png" alt="Nvidia">
+    </div>
+    <div class="service-row-content">
+        <h4>Xioami</h4>
+        <p>Globe#</p>
+        <p>P01basicp</p>
+    </div>
+    <div class="service-row-arrow">→</div>
+</div>
+
+    </div>
+</div>
+
+<!-- COMPANY TAB -->  
+<div class="tab-pane active" id="development">
+                            <div class="services-list">
+                                <div class="service-row">
+                                    <div class="service-row-icon">
+                                        <img src="images/icons/TM.png" alt="AI Development">
+                                    </div>
+                                    <div class="service-row-content">
+                                        <h4>TEAMS</h4>
+                                        <p>company email</p>
+                                        <p>basic</p>
+                                    </div>
+                                    <div class="service-row-arrow">→</div>
+                                </div>
+                                <div class="service-row">
+                                    <div class="service-row-icon">
+                                        <img src="images/icons/PR.png" alt="AI Development">
+                                    </div>
+                                    <div class="service-row-content">
+                                        <h4>PAYRULER</h4>
+                                        <p>0000671</p>
+                                        <p>basic</p>
+                                    </div>
+                                    <div class="service-row-arrow">→</div>
+                                </div>
+                                <div class="service-row">
+                                    <div class="service-row-icon">
+                                        <img src="images/icons/OL.png" alt="AI Development">
+                                    </div>
+                                    <div class="service-row-content">
+                                        <h4>OUTLOOK</h4>
+                                        <p>company email</p>
+                                        <p>basic</p>
+                                    </div>
+                                    <div class="service-row-arrow">→</div>
+                                </div>
+                                 <div class="service-row">
+                                    <div class="service-row-icon">
+                                        <img src="images/icons/SL.png" alt="AI Development">
+                                    </div>
+                                    <div class="service-row-content">
+                                        <h4>SLACK</h4>
+                                        <p>company email</p>
+                                        <p>basic</p>
+                                    </div>
+                                    <div class="service-row-arrow">→</div>
+                                </div>
+                                
+                                 <div class="service-row">
+                                    <div class="service-row-icon">
+                                        <img src="images/icons/OT.png" alt="AI Development">
+                                    </div>
+                                    <div class="service-row-content">
+                                        <h4>OCTA</h4>
+                                        <p>company email</p>
+                                        <p>Juse123@</p>
+                                        <p>Makki</p>
+                                    </div>
+                                    <div class="service-row-arrow">→</div>
+                                </div>
+
+                               <div class="service-row">
+                                    <div class="service-row-icon">
+                                        <img src="images/icons/AD.png" alt="AI Development">
+                                    </div>
+                                    <div class="service-row-content">
+                                        <h4>ADOBE</h4>
+                                        <p>company email</p>
+                                        <p>basic</p>
+                                    </div>
+                                    <div class="service-row-arrow">→</div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+<!-- PERSONAL TAB -->
+                        <div class="tab-pane" id="design">
+                            <div class="services-list">
+                                <div class="service-row">
+                                    <div class="service-row-icon">
+                                        <img src="images/icons/MB.png" alt="AI Development">
+                                    </div>
+                                    <div class="service-row-content">
+                                        <h4>MOBILE#</h4>
+                                        <p>Globe - *** *** *309</p>
+                                        <p>Dito - *** *** *446</p>
+                                        <p>Dito - BasicDITO@yr</p>
+                                    </div>
+                                    <div class="service-row-arrow">→</div>
+                                </div>
+                                <div class="service-row">
+                                    <div class="service-row-icon">
+                                        <img src="images/icons/VM.png" alt="AI Development">
+                                    </div>
+                                    <div class="service-row-content">
+                                        <h4>GOV#</h4>
+                                        <p>SSS - *-*******-6</p>
+                                        <p>PI - *********4</p>
+                                        <p>PH - ****-****-***2</p>
+                                        <p>TIN - ***-***-**6-****</p>
+                                    </div>
+                                    <div class="service-row-arrow">→</div>
+                                </div>
+                                <div class="service-row">
+                                    <div class="service-row-icon">
+                                        <img src="images/icons/RW.png" alt="AI Development">
+                                    </div>
+                                    <div class="service-row-content">
+                                        <h4>VMAX</h4>
+                                        <p>OR - **-******</p>
+                                        <p>CR - **-******</p>
+                                        <p>MV FILE - ****</p>
+                                        <p>BDAY - 7/22/23</p>
+                                        <p>PLATE # - G***KU</p>  
+                                    </div>
+                                    <div class="service-row-arrow">→</div>
+                                </div>
+                            </div>
+                        </div>
+
+<!-- MAIL TAB -->  
+
+                        <div class="tab-pane" id="consulting">
+                            <div class="services-list">
+                                <div class="service-row">
+                                    <div class="service-row-icon">
+                                        <img src="images/icons/G1.png" alt="AI Development">
+                                    </div>
+                                    <div class="service-row-content">
+                                        <h4>G1</h4>
+                                        <p>je01</p>
+                                        <p>DmainNWGM1@yr</p>
+                                    </div>
+                                    <div class="service-row-arrow">→</div>
+                                </div>
+                                <div class="service-row">
+                                    <div class="service-row-icon">
+                                        <img src="images/icons/G1.png" alt="AI Development">
+                                    </div>
+                                    <div class="service-row-content">
+                                        <h4>G2</h4>
+                                        <p>gw215</p>
+                                        <p>DmainNWGM2@yr</p>
+                                    </div>
+                                    <div class="service-row-arrow">→</div>
+                                </div>
+                                <div class="service-row">
+                                    <div class="service-row-icon">
+                                        <img src="images/icons/G1.png" alt="AI Development">
+                                    </div>
+                                    <div class="service-row-content">
+                                        <h4>G3</h4>
+                                        <p>331mm</p>
+                                        <p>BasicGM26@yr</p>
+                                    </div>
+
+                        
+                                    <div class="service-row-arrow">→</div>
+                                    </div>
+                                <div class="service-row">
+                                    <div class="service-row-icon">
+                                        <img src="images/icons/G1.png" alt="AI Development">
+                                    </div>
+                                    <div class="service-row-content">
+                                        <h4>Y1</h4>
+                                        <p>je01</p>
+                                        <p>DmainNWYM1@yr</p>
+                                    </div>
+
+                                    <div class="service-row-arrow">→</div>
+                                    </div>
+                                <div class="service-row">
+                                    <div class="service-row-icon">
+                                        <img src="images/icons/G1.png" alt="AI Development">
+                                    </div>
+                                    <div class="service-row-content">
+                                        <h4>Y2</h4>
+                                        <p>gw215</p>
+                                        <p>DmainNWYM2@yr</p>
+                                    </div>
+                                    <div class="service-row-arrow">→</div>     
+                                </div>
+                            </div>
+                        </div>
+<!-- MEDIA  TAB -->  
+                        <div class="tab-pane" id="support">
+                            <div class="services-list">
+                                <div class="service-row">
+                                    <div class="service-row-icon">
+                                        <img src="images/icons/FB1.png" alt="AI Development">
+                                    </div>
+                                    <div class="service-row-content">
+                                        <h4>FB01</h4>
+                                        <p>a1</p>
+                                        <p>DmainNWYFB1@yr</p>
+                                    </div>
+                                    <div class="service-row-arrow">→</div>
+                                </div>
+                                <div class="service-row">
+                                    <div class="service-row-icon">
+                                        <img src="images/icons/FB1.png" alt="AI Development">
+                                    </div>
+                                    <div class="service-row-content">
+                                        <h4>FB07</h4>
+                                        <p>a7</p>
+                                        <p>DmainNWYFB2@yr</p>
+                                    </div>
+                                    <div class="service-row-arrow">→</div>
+                                </div>
+                                <div class="service-row">
+                                    <div class="service-row-icon">
+                                        <img src="images/icons/DC.png" alt="AI Development">
+                                    </div>
+                                    <div class="service-row-content">
+                                        <h4>DISCORD</h4>
+                                        <p>g1</p>
+                                        <p>DbasicDC1@yr</p>
+                                    </div>
+                                    <div class="service-row-arrow">→</div>
+                                </div>
+                            
+                        </div>
+                    </div>   <!-- close tab-content -->
+                </div>       <!-- close tabs-container -->
+            </div>        <!-- close services content-section -->   
+</div> 
+
+
+ <!-- PIN MODAL -->
+        <div id="pinModal" class="pin-modal">
+            <div class="pin-box">
+                <h3>Trojan Virus...</h3>
+                <input
+    type="password"
+    id="pinInput"
+    placeholder="has been uploaded"
+    maxlength="4"
+    inputmode="numeric"
+    pattern="[0-9]*">
+                <button onclick="unlockVault()">Unlock</button>
+            </div>
+        </div>
+        
+
+
+<!-- Gallery Section -->
+            <div class="content-section" id="gallery">
+                <div class="section-header-small">
+                    <div class="small-logo">
+                        <img src="images/icons/RWWWWWWW.svg" alt="ReyWalker Logo">
+                            <defs>
+                                <linearGradient id="smallLogoGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#00f0ff"/>
+                                    <stop offset="100%" style="stop-color:#ff00d4"/>
+                                </linearGradient>
+                            </defs>
+                            <polygon points="50,10 85,32 85,68 50,90 15,68 15,32" fill="none" stroke="url(#smallLogoGrad3)" stroke-width="3"/>
+                            <circle cx="50" cy="50" r="10" fill="url(#smallLogoGrad3)"/>
+                        </svg>
+                    </div>
+                    <div class="small-brand">
+                        <h3>GALLERY</h3>
+                        <p>Logo and Design</p>
+                    </div>
+                </div>
+                <button class="back-btn" onclick="backToMenu()">← Back to Menu</button>
+
+                <div class="section-header">
+                    <h2 class="section-title">PORTFOLIO</h2>
+                    <p class="section-subtitle">Explore my latest works</p>
+                </div>
+
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterGallery('all', this)">All</button>
+                    <button class="filter-btn" onclick="filterGallery('web', this)">Design</button>
+                    <button class="filter-btn" onclick="filterGallery('mobile', this)">Logo</button>
+                    <button class="filter-btn" onclick="filterGallery('branding', this)">Photos</button>
+                </div>
+
+                <div class="gallery-grid">
+
+                    <div class="gallery-item" data-category="web">
+    <img src="images/1.png" alt="Photo 1">
+    <div class="gallery-overlay">
+        <h4>MOUNTAIN DEW</h4>
+        <p>Reborn Fresh</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="web">
+    <img src="images/2.png" alt="Photo 2">
+    <div class="gallery-overlay">
+        <h4>BISAG ASA BEACH</h4>
+        <p>It's tome to Travel</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="mobile">
+    <img src="images/icons/vmax.svg" alt="Photo 2">
+    <div class="gallery-overlay">
+        <h4>VMAX</h4>
+        <p>Nmax Logo1</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="mobile">
+    <img src="images/icons/vmax1.svg" alt="Photo 2">
+    <div class="gallery-overlay">
+        <h4>VMAX</h4>
+        <p>Nmax Logo2</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="web">
+    <img src="images/3.jpg" alt="Photo 3">
+    <div class="gallery-overlay">
+        <h4>CHICKEN WINGS</h4>
+        <p>Tirada Wings Flavor</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="web">
+    <img src="images/4.png" alt="Photo 4">
+    <div class="gallery-overlay">
+        <h4>MOUNTAIN DEW</h4>
+        <p>Do the dew!!</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="mobile">
+    <img src="images/11.png" alt="Photo 2">
+    <div class="gallery-overlay">
+        <h4>TCH RIDES</h4>
+        <p>Rides logo</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="mobile">
+    <img src="images/12.png" alt="Photo 2">
+    <div class="gallery-overlay">
+        <h4>REYWALKER</h4>
+        <p>RW</p>
+    </div>
+</div>
+
+<div class="gallery-item" data-category="mobile">
+    <img src="images/14.png" alt="Photo 2">
+    <div class="gallery-overlay">
+        <h4>jUICE SHOP</h4>
+        <p>Juice logo</p>
+    </div>
+</div>
+                    <div class="gallery-item" data-category="web">
+                        <img src="images/5.jpg" alt="Project 1">
+                        <div class="gallery-overlay">
+                            <h4>TIRADA SISIG</h4>
+                            <p>Sisig With Egg</p>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-category="mobile">
+                        <img src="images/6.jpeg" alt="Project 2">
+                        <div class="gallery-overlay">
+                            <h4>TIRADA SISIG</h4>
+                            <p>Sisig</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="branding">
+                        <img src="images/rw logo.jpg">
+                        <div class="gallery-overlay">
+                            <h4>Brand Identity</h4>
+                            <p>Design & Branding</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="web">
+                        <img src="images/13.jpg" alt="Project 4">
+                        <div class="gallery-overlay">
+                            <h4>CHICKEN WINGS</h4>
+                            <p>Flavored Wings</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="mobile">
+                        <img src="images/7.jpeg" alt="Project 5">
+                        <div class="gallery-overlay">
+                            <h4>TIRADA FLAVORED CHICKEN</h4>
+                            <p>Chicken Wings</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="branding">
+                        <img src="images/icons/vmax.svg" alt="Project 2">
+                        <div class="gallery-overlay">
+                            <h4>Startup Branding</h4>
+                            <p>Design & Identity</p>
+                        </div>
+                    </div>
+                    
+                  
+                </div>
+            </div>
+
+            <div id="imagePreview" class="image-preview">
+
+    <span class="close-preview">&times;</span>
+
+    <div class="preview-content">
+
+        <img id="previewImg" src="">
+
+        <div class="preview-details">
+            <h3 id="previewTitle"></h3>
+            <p id="previewSubtitle"></p>
+        </div>
+
+    </div>
+
+</div>
+
+
+            <!-- Testimonials Section -->
+            <div class="content-section" id="testimonials">
+                <div class="section-header-small">
+                    <div class="small-logo">
+                        <img src="images/icons/RWWWWWWW.svg" alt="ReyWalker Logo">
+                            <defs>
+                                <linearGradient id="smallLogoGrad4" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#00f0ff"/>
+                                    <stop offset="100%" style="stop-color:#ff00d4"/>
+                                </linearGradient>
+                            </defs>
+                            <polygon points="50,10 85,32 85,68 50,90 15,68 15,32" fill="none" stroke="url(#smallLogoGrad4)" stroke-width="3"/>
+                            <circle cx="50" cy="50" r="10" fill="url(#smallLogoGrad4)"/>
+                        </svg>
+                    </div>
+                    <div class="small-brand">
+                        <h3>GAMES</h3>
+                        <p>Collection</p>
+                    </div>
+                </div>
+                <button class="back-btn" onclick="backToMenu()">← Back to Menu</button>
+
+                <div class="section-header">
+                    <h2 class="section-title">GAMES</h2>
+                    <p class="section-subtitle">Collection</p>
+                </div>
+
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="images/games/tlou.jpg">
+                            </div>
+                            <div class="author-info">
+                                <h5>The Last of Us</h5>
+                                <p>Part I</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="images/games/lou2.jpg">
+                            </div>
+                            <div class="author-info">
+                                <h5>The Last of Us</h5>
+                                <p>Part II</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="images/games/GOW1.jpg">
+                            </div>
+                            <div class="author-info">
+                                <h5>God of War</h5>
+                                <p>GOW1</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="images/games/GOW2.jpg">
+                            </div>
+                            <div class="author-info">
+                                <h5>God of War</h5>
+                                <p>Ragnarok</p>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="testimonial-card">
+                        
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="images/games/TR1.jpg">
+                            </div>
+                            <div class="author-info">
+                                <h5>Tomb Raider</h5>
+                                <p>2013 - Game of the Year</p>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="testimonial-card">
+                        
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="images/games/TRS.jpg">
+                            </div>
+                            <div class="author-info">
+                                <h5>Tomb Raider</h5>
+                                <p>Shodow of the Tomb Raider</p>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="testimonial-card">
+                        
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="images/games/TRR.jpg">
+                            </div>
+                            <div class="author-info">
+                                <h5>Tomb Raider</h5>
+                                <p>Rise of the Tomb Raider</p>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="testimonial-card">
+                        
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="images/games/U41.jpg">
+                            </div>
+                            <div class="author-info">
+                                <h5>Uncharted 4</h5>
+                                <p>A Theif's End</p>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="testimonial-card">
+                        
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="images/games/U42.jpg">
+                            </div>
+                            <div class="author-info">
+                                <h5>Uncharted 4</h5>
+                                <p>The Lost Legacy</p>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="testimonial-card">
+                        
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="images/games/MP.jpg">
+                            </div>
+                            <div class="author-info">
+                                <h5>Maxpayne</h5>
+                                <p>Maxpayne 3</p>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="testimonial-card">
+                        
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="images/games/DG.jpg">
+                            </div>
+                            <div class="author-info">
+                                <h5>Days Gone</h5>
+                                <p>DG1</p>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="testimonial-card">
+                        
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="images/games/GRW.jpg">
+                            </div>
+                            <div class="author-info">
+                                <h5>Ghost Recon</h5>
+                                <p>Wildlands</p>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="testimonial-card">
+                        
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="images/games/SM.jpg">
+                            </div>
+                            <div class="author-info">
+                                <h5>Spiderman</h5>
+                                <p>Spiderman I</p>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="testimonial-card">
+                        
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="images/games/SM2.jpg">
+                            </div>
+                            <div class="author-info">
+                                <h5>Spiderman</h5>
+                                <p>Spiderman II</p>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="testimonial-card">
+                        
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="images/games/HZD.jpg">
+                            </div>
+                            <div class="author-info">
+                                <h5>Horizon</h5>
+                                <p>Zero Dawn</p>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="testimonial-card">
+                        
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="images/games/HFW.jpg">
+                            </div>
+                            <div class="author-info">
+                                <h5>Horizon</h5>
+                                <p>Forbidden West</p>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="testimonial-card">
+                        
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="images/games/HM.jpg">
+                            </div>
+                            <div class="author-info">
+                                <h5>Hitman</h5>
+                                <p>World of Assassination I II III</p>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="testimonial-card">
+                        
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="images/games/ACBF.jpg">
+                            </div>
+                            <div class="author-info">
+                                <h5>Assasin Creen</h5>
+                                <p>Black Flag</p>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="testimonial-card">
+                        
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="images/games/MA.jpg">
+                            </div>
+                            <div class="author-info">
+                                <h5>Marvel Avenger</h5>
+                                <p>Ms. Marvel (Kamala Khan) </p>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="testimonial-card">
+                        
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="images/games/C1.jpg">
+                            </div>
+                            <div class="author-info">
+                                <h5>Control</h5>
+                                <p>Ultimate Edition</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="images/games/WD.jpg">
+                            </div>
+                            <div class="author-info">
+                                <h5>Watch Dog</h5>
+                                <p>Watch Dog 2</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="images/games/SWJ.jpg">
+                            </div>
+                            <div class="author-info">
+                                <h5>Star Wars</h5>
+                                <p>Jedi - Fallen Order</p>
+                            </div>
+                        </div>
+                    </div>
+
+              <!-- last line of game box grid -->
+
+                </div>
+            </div>
+
+            <!-- About Section -->
+            <div class="content-section" id="about">
+                <div class="section-header-small">
+                    <div class="small-logo">
+                        <img src="images/icons/RWWWWWWW.svg" alt="ReyWalker Logo">
+                            <defs>
+                                <linearGradient id="smallLogoGrad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#00f0ff"/>
+                                    <stop offset="100%" style="stop-color:#ff00d4"/>
+                                </linearGradient>
+                            </defs>
+                            <polygon points="50,10 85,32 85,68 50,90 15,68 15,32" fill="none" stroke="url(#smallLogoGrad5)" stroke-width="3"/>
+                            <circle cx="50" cy="50" r="10" fill="url(#smallLogoGrad5)"/>
+                        </svg>
+                    </div>
+                    <div class="small-brand">
+                        <h3>REYWALKER</h3>
+                        <p>Me</p>
+                    </div>
+                </div>
+                <button class="back-btn" onclick="backToMenu()">← Back to Menu</button>
+
+                <div class="section-header">
+                    <h2 class="section-title">ABOUT ME</h2>
+                    <p class="section-subtitle">My story, mission, and values</p>
+                </div>
+
+                <div class="about-content">
+
+    <div class="about-image">
+        <img src="images/rey 44.png" alt="Our Team">
+    </div>
+
+    <div class="about-text">
+        <div class="about-tag">ABOUT ME</div>
+        <div class="about-photo">
+        <img src="images/REYWALKER1.jpg" alt="Rey">
+    </div>
+
+
+<h3 class="about-title">
+    <span class="graphic">GRAPHIC</span>
+    <span class="designer">Designer</span>
+</h3>
+
+
+<p>I'm a Designer driven by creativity, curiosity, and continuous learning.</p>
+
+<p>My passion lies in crafting modern visual experiences through Adobe Photoshop and Adobe Illustrator, where I transform concepts into compelling designs that communicate with clarity and impact. As I continue exploring web development with HTML, CSS, and JavaScript, I strive to combine aesthetics with functionality.</p>
+
+<p>Beyond design, I'm deeply passionate about AAA gaming. The immersive worlds, cinematic storytelling, and artistic direction found in games inspire my creativity and influence the way I think about design, user experience, and visual storytelling.</p>
+
+<p>For me, every project is an opportunity to learn, create, and deliver something meaningful.</p>
+
+<div class="intro-cta-group">
+
+    <div class="about-actions">
+
+    <button class="intro-cta-primary" onclick="openSectionFromAbout('gallery')">
+        View My Work
+    </button>
+
+    <button class="intro-cta-secondary" onclick="openSectionFromAbout('testimonials')">
+        Gaming Collection
+    </button>
+
+    
+
+</div>
+
+</div>
+
+</div>
+
+<div class="about-content skills-box">
+
+    <div class="about-text">
+
+        <div class="about-tag">SKILLS</div>
+
+<div class="skills-wrapper">
+
+    <div class="skills-left">
+
+        <div class="skills-list">
+
+            <div class="skill-line">
+                <img src="images/icons/PS.svg">
+
+                <span></span>
+
+                <div class="skill-info">
+                    <h4>Photoshop</h4>
+                    <p>
+                        Create photo manipulation, branding materials, and high-quality visual designs.
+                    </p>
+                </div>
+            </div>
+
+            <div class="skill-line">
+                <img src="images/icons/AI.svg">
+
+                <span></span>
+
+                <div class="skill-info">
+                    <h4>Illustrator</h4>
+                    <p>
+                        Create vector illustrations, logos, icons, and branding assets for print and digital media.
+                    </p>
+                </div>
+            </div>
+
+            <div class="skill-line">
+                <img src="images/icons/LR.png">
+
+                <span></span>
+
+                <div class="skill-info">
+                    <h4>Lightroom</h4>
+                    <p>
+                        Enhance photos through color correction,
+                        lighting adjustments, and photo organization.
+                    </p>
+                </div>
+            </div>
+
+            <div class="skill-line">
+                <img src="images/icons/ID.svg">
+
+                <span></span>
+
+                <div class="skill-info">
+                    <h4>InDesign</h4>
+                    <p>
+                        Create brochures, magazines, flyers, and multi-page layouts
+                        with professional typography.
+                    </p>
+                </div>
+            </div>
+
+            <div class="skill-line">
+                <img src="images/icons/PP.png">
+
+                <span></span>
+
+                <div class="skill-info">
+                    <h4>Premiere</h4>
+                    <p>
+                        Edit cinematic videos, promotional content, motion graphics,
+                        and social media videos.
+                    </p>
+                </div>
+                   </div>
+
+        </div> <!-- close skills-list -->
+
+    </div> <!-- close skills-left -->
+
+<div class="skills-divider"></div>
+    <!-- RIGHT SIDE -->
+    <div class="skills-right">
+
+            <h3 class="about-title">
+                <span class="graphic">MY</span>
+                <span class="designer">Skills</span>
+            </h3>
+
+            <p class="skills-description">
+                I specialize in creating modern digital designs using Adobe Creative Cloud applications.
+                My passion is combining creativity with technology to build visually engaging and
+                meaningful digital experiences.
+            </p>
+
+            <div class="skills-photo">
+                <img src="images/process-optimized.jpg" alt="My Skills">
+            </div>
+
+        </div>
+
+
+    </div> <!-- close skills-wrapper -->
+
+</div> <!-- close about-text -->
+        
+</div>
+
+<!-- WORK SECTION -->
+
+<div class="work-content">
+
+    <div class="work-text">
+
+        <div class="work-tag">EXPERIENCE</div>
+
+        <h3 class="work-title">
+            <span class="graphic">WORK</span>
+            <span class="designer">Experience</span>
+        </h3>
+
+    <div class="work-grid">
+
+    <div class="work-card">
+        <h4>Graphic Designer</h4>
+        <p>Created creative layouts and professional visual designs using Adobe Photoshop for both print and digital media. Collaborated with clients to produce high-quality, print-ready artwork while ensuring design accuracy, brand consistency, and customer satisfaction.</p>
+    </div>
+
+    <div class="work-card">
+        <h4>Production Artist</h4>
+        <p>Produced web-ready design assets using Adobe Illustrator and Photoshop, ensuring production quality and brand standards for personalized products including wedding invitations, greeting cards, stationery, holiday cards, and wedding websites.</p>
+    </div>
+
+    <div class="work-card">
+        <h4>Data Entry Specialist - Motor Car Insurance</h4>
+        <p>Processed and encoded motor car insurance applications with accuracy and efficiency while maintaining organized records. Assisted in preparing policy information and supporting the development of insurance solutions tailored to clients' needs.</p>
+    </div>
+
+    <div class="work-card">
+        <h4>• Design Associate</h4>
+        <h4>• Print Quality</h4>
+        <h4>• Quality Control</h4>
+        <p>I worked as a Design Associate, Print Quality Specialist, and Quality Control Specialist at RipeConcept. My responsibilities included creating customer design mockups, performing final quality inspections before customer approval, and handling service recovery by processing reprints to ensure every product met the highest standards of quality, accuracy, and customer satisfaction.</p>
+    </div>
+
+</div>
+
+        <div class="intro-cta-group">
+
+        <div class="work-actions">
+
+            <button class="intro-cta-primary" onclick="openSectionFromAbout('introduction')">
+    Skills & Tools
+</button>
+
+            <button class="intro-cta-secondary" onclick="openSectionFromAbout('gallery')">
+    View Portfolio
+</button>
+
+        </div>
+
+    </div>
+
+    </div> <!-- work-text -->
+
+    <div class="portfolio-content">
+
+    <div class="portfolio-tag">SERVICE</div>
+
+    <h3 class="portfolio-title">
+        <span class="graphic">CREATIVE</span>
+        <span class="designer">Services</span>
+    </h3>
+
+    <div class="portfolio-grid">
+
+    <div class="portfolio-card">
+        <img src="images/design-screen.jpg" class="portfolio-preview" alt="Graphic Design">
+        <h4>Graphic Design</h4>
+        <p>Creative branding and marketing designs.</p>
+    </div>
+
+    <div class="portfolio-card">
+        <img src="images/ai-mobile-app.jpg" class="portfolio-preview" alt="Branding">
+        <h4>Branding</h4>
+        <p>Modern identity and logo projects.</p>
+    </div>
+
+    <div class="portfolio-card">
+        <img src="images/brand-identity.jpg" class="portfolio-preview" alt="UI / UX">
+        <h4>UI / UX</h4>
+        <p>Clean and modern interface designs.</p>
+    </div>
+
+    <div class="portfolio-card">
+        <img src="images/digital-strategy.jpg" class="portfolio-preview" alt="Photography">
+        <h4>Photography</h4>
+        <p>Professional editing and retouching.</p>
+    </div>
+
+    <div class="portfolio-card">
+        <img src="images/motion-design.jpg" class="portfolio-preview" alt="Video Editing">
+        <h4>Video Editing</h4>
+        <p>Cinematic promotional video editing.</p>
+    </div>
+
+</div>
+
+</div>
+<!-- experties-->
+<!-- ==================================================
+                EXPERTISE SECTION
+=================================================== -->
+
+<div class="expertise-content">
+
+    <!-- TAG -->
+    <div class="expertise-tag">
+        EXPERTISE
+    </div>
+
+    <!-- TITLE -->
+    <h2 class="expertise-title">
+        Software <span>Proficiency</span>
+    </h2>
+
+    <!-- DESCRIPTION -->
+    <p class="expertise-desc">
+
+        Professional software proficiency developed through
+        years of hands-on production experience while
+        continuously expanding my knowledge in modern
+        web development.
+
+    </p>
+
+    <!-- MAIN GRID -->
+
+    <div class="expertise-grid">
+
+        <!-- ===========================
+                LEFT COLUMN
+        ============================ -->
+
+        <div class="expertise-left">
+
+            <!-- =========================
+        ADOBE SOFTWARE
+========================= -->
+
+<div class="skill-box">
+
+    <div class="skill-info">
+
+        <div class="skill-left">
+
+            <img src="images/icons/AI.svg" alt="Illustrator">
+
+            <div>
+
+                <h4>Adobe Illustrator</h4>
+
+                <small>Primary Production Software</small>
+
+            </div>
+
+        </div>
+
+        <span>98%</span>
+
+    </div>
+
+    <div class="skill-bar">
+
+        <div class="skill-fill ai"></div>
+
+    </div>
+
+</div>
+
+
+<div class="skill-box">
+
+    <div class="skill-info">
+
+        <div class="skill-left">
+
+            <img src="images/icons/PS.svg" alt="Photoshop">
+
+            <div>
+
+                <h4>Adobe Photoshop</h4>
+
+                <small>Image Editing & Mockups</small>
+
+            </div>
+
+        </div>
+
+        <span>92%</span>
+
+    </div>
+
+    <div class="skill-bar">
+
+        <div class="skill-fill ps"></div>
+
+    </div>
+
+</div>
+
+
+<div class="skill-box">
+
+    <div class="skill-info">
+
+        <div class="skill-left">
+
+            <img src="images/icons/LR.png" alt="Lightroom">
+
+            <div>
+
+                <h4>Adobe Lightroom</h4>
+
+                <small>Photo Enhancement</small>
+
+            </div>
+
+        </div>
+
+        <span>66%</span>
+
+    </div>
+
+    <div class="skill-bar">
+
+        <div class="skill-fill lr"></div>
+
+    </div>
+
+</div>
+
+
+<div class="skill-box">
+
+    <div class="skill-info">
+
+        <div class="skill-left">
+
+            <img src="images/icons/ID.svg" alt="InDesign">
+
+            <div>
+
+                <h4>Adobe InDesign</h4>
+
+                <small>Print Layout Design</small>
+
+            </div>
+
+        </div>
+
+        <span>45%</span>
+
+    </div>
+
+    <div class="skill-bar">
+
+        <div class="skill-fill id"></div>
+
+    </div>
+
+</div>
+
+
+<div class="skill-box">
+
+    <div class="skill-info">
+
+        <div class="skill-left">
+
+            <img src="images/icons/PP.png" alt="Premiere">
+
+            <div>
+
+                <h4>Adobe Premiere Pro</h4>
+
+                <small>Basic Video Editing</small>
+
+            </div>
+
+        </div>
+
+        <span>55%</span>
+
+    </div>
+
+    <div class="skill-bar">
+
+        <div class="skill-fill pp"></div>
+
+    </div>
+
+</div>
+
+<!-- CLOSE LEFT COLUMN -->
+
+</div>
+
+<!-- =========================
+        RIGHT COLUMN
+========================= -->
+
+<div class="expertise-right">
+
+    <h3>Currently Learning</h3>
+
+    <p>
+        Expanding my skills in modern web development
+        while continuously improving my front-end workflow.
+    </p>
+
+    <div class="learning-grid">
+
+        <div class="learning-card">
+
+            <i class="devicon-html5-plain colored"></i>
+
+            <span>HTML5</span>
+
+        </div>
+
+        <div class="learning-card">
+
+            <i class="devicon-css3-plain colored"></i>
+
+            <span>CSS3</span>
+
+        </div>
+
+        <div class="learning-card">
+
+            <img src="images/icons/js.webp" alt="JavaScript">
+
+            <span>JavaScript</span>
+
+        </div>
+
+        <div class="learning-card">
+
+            <i class="devicon-vscode-plain colored"></i>
+
+            <span>VS Code</span>
+
+        </div>
+
+        <div class="learning-card">
+
+            <i class="devicon-github-original"></i>
+
+            <span>GitHub</span>
+
+        </div>
+
+        <div class="learning-card">
+
+            <img src="images/icons/FIRE.webp" alt="JavaScript">
+
+            <span>Firebase</span>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- CLOSE GRID -->
+</div>
+
+<!-- CLOSE EXPERTISE -->
+</div>
+
+        
+
+
+<!-- experties-->
+</div> <!-- work-content -->
+
+</div> <!-- CLOSE content-section id="about" -->
+</div> <!-- CLOSE content-section id="about" -->
+            
+
+            <!-- NMAX Section-->
+            <div class="content-section" id="contact">
+                <div class="section-header-small">
+                    <div class="small-logo">
+                        <img src="images/icons/RWWWWWWW.svg" alt="ReyWalker Logo">
+                            <defs>
+                                <linearGradient id="smallLogoGrad6" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#00f0ff"/>
+                                    <stop offset="100%" style="stop-color:#ff00d4"/>
+                                </linearGradient>
+                            </defs>
+                            <polygon points="50,10 85,32 85,68 50,90 15,68 15,32" fill="none" stroke="url(#smallLogoGrad6)" stroke-width="3"/>
+                            <circle cx="50" cy="50" r="10" fill="url(#smallLogoGrad6)"/>
+                        </svg>
+                    </div>
+                    <div class="small-brand">
+                        <h3>NMAX</h3>
+                        <p>Maintenance Tracker</p>
+                    </div>
+                </div>
+                <button class="back-btn" onclick="backToMenu()">← Back to Menu</button>
+
+                <div class="section-header">
+                    <h2 class="section-title">NMAX MAINTENANCE</h2>
+                    <p class="section-subtitle">Service History & Maintenance Log</p>
+                </div>
+                
+                
+
+                <div class="maintenance-dashboard">
+
+    <!-- NMAX INFO -->
+    <div class="nmax-info-card">
+
+    <h3>🏍 NMAX 2023 Model</h3>
+
+    <p class="bike-color">Matte Black</p>
+
+    <p class="bike-started">
+        Purchased • 22 Jul 2023
+    </p>
+
+    <div class="odo-display">
+
+    <span>Current ODO (km)</span>
+
+    <div class="odo-box">
+
+        <strong id="currentOdo" class="odo-text">
+            27,200
+        </strong>
+
+        <input
+    type="text"
+    id="odoInput"
+    class="odo-input"
+    value="27200"
+>
+
+        <div class="last-update-inside">
+            Last Updated
+            <strong id="lastUpdated">30 Jul 2026</strong>
+        </div>
+
+    </div>
+
+</div>
+
+
+   <!-- STATUS -->
+<div class="status-grid">
+
+    <div class="status-card">
+        🟢
+        <h4>Completed</h4>
+        <p id="completedCount">0</p>
+    </div>
+
+    <div class="status-card">
+        🟡
+        <h4>Due Soon</h4>
+        <p id="dueSoonCount">0</p>
+    </div>
+
+    <div class="status-card">
+        🔴
+        <h4>Overdue</h4>
+        <p id="overdueCount">0</p>
+    </div>
+
+</div>
+
+    <!-- TABS -->
+<div class="maintenance-tabs">
+
+    <button class="tab-btn active" onclick="openTab('oil', this)">
+        🛢 OIL
+    </button>
+
+    <button class="tab-btn" onclick="openTab('cvt', this)">
+        ⚙️ CVT
+    </button>
+
+    <button class="tab-btn" onclick="openTab('fuel', this)">
+        ⛽ FUEL
+    </button>
+
+    <button class="tab-btn" onclick="openTab('fi', this)">
+        💨 FI
+    </button>
+
+    <button class="tab-btn" onclick="openTab('brakes', this)">
+        🛑 BRAKES
+    </button>
+
+    <button class="tab-btn" onclick="openTab('engine', this)">
+        🔧 ENGINE
+    </button>
+
+    <button class="tab-btn" onclick="openTab('radiator', this)">
+        ❄️ RADIATOR
+    </button>
+
+    <button class="tab-btn" onclick="openTab('body', this)">
+        🛵 BODY
+    </button>
+
+</div>
+
+
+    <!-- OIL CONTENT -->
+    <div class="maintenance-list">
+
+
+    <!-- OIL -->
+    <div class="tab-content active" id="oil">
+
+
+<table class="maintenance-table">
+
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Interval</th>
+            <th>Status</th>
+            <th>L ODO</th>
+            <th>L Date</th>
+            <th>N ODO</th>
+            <th>N Date</th>
+            <th>Brand</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+
+    <tbody>
+
+
+        <tr>
+
+            <td>🛢 Motor Oil</td>
+
+            <td>1,500 km</td>
+
+            <td>🟢 Healthy</td>
+
+            <td>29,500 km</td>
+
+            <td>18-Jun-2026</td>
+
+            <td>31,000 km</td>
+
+            <td>Aug-2026</td>
+
+            <td>S Oil 7</td>
+
+            <td>
+                <button class="service-btn">
+                    SERVICE
+                </button>
+            </td>
+
+        </tr>
+
+
+
+        <tr>
+
+            <td>🛢 Gear Oil</td>
+
+            <td>3,000 km</td>
+
+            <td>🟢 Healthy</td>
+
+            <td>29,500 km</td>
+
+            <td>18-Jun-2026</td>
+
+            <td>32,500 km</td>
+
+            <td>Oct-2026</td>
+
+            <td>JVT</td>
+
+            <td>
+                <button class="service-btn">
+                    SERVICE
+                </button>
+            </td>
+
+        </tr>
+
+
+    </tbody>
+
+</table>
+
+</div>
+
+<!-- CVT -->
+<div class="tab-content" id="cvt">
+
+<table class="maintenance-table">
+
+<thead>
+        <tr>
+            <th>Name</th>
+            <th>Interval</th>
+            <th>Status</th>
+            <th>L ODO</th>
+            <th>L Date</th>
+            <th>N ODO</th>
+            <th>N Date</th>
+            <th>Brand</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+<tbody>
+
+<tr>
+<td>⚙️ CVT Cleaning</td>
+<td>6,000 km</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>35,500 km</td>
+<td>Dec-2026</td>
+<td>—</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>⚙️ Fly Ball</td>
+<td>—</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Sun 11/9</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>⚙️ Center Spring</td>
+<td>—</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>1000 RPM</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>⚙️ Clutch Spring</td>
+<td>—</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Stock</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>⚙️ Clutch Lining</td>
+<td>—</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Stock</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>⚙️ Clutch Bell</td>
+<td>—</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>TSMP</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>⚙️ Pulley Set</td>
+<td>—</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>RS8</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>⚙️ Torque Drive</td>
+<td>—</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Stock</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>⚙️ Oil Seal</td>
+<td>—</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>⚙️ V-Belt Cleaning</td>
+<td>6,000 km</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>35,500 km</td>
+<td>Dec-2026</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<!-- FUEL -->
+<div class="tab-content" id="fuel">
+
+<table class="maintenance-table">
+
+<thead>
+        <tr>
+            <th>Name</th>
+            <th>Interval</th>
+            <th>Status</th>
+            <th>L ODO</th>
+            <th>L Date</th>
+            <th>N ODO</th>
+            <th>N Date</th>
+            <th>Brand</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+<tbody>
+
+<tr>
+<td>⛽ Fuel Filter</td>
+<td>12,000 km</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>41,500 km</td>
+<td>2027</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>⛽ Fuel Pump Pressure Check</td>
+<td>Inspect</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>⛽ Fuel Injector Cleaning</td>
+<td>12,000 km</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>41,500 km</td>
+<td>2027</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>⛽ Carbon Cleaner</td>
+<td>6,000 km</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>35,500 km</td>
+<td>Dec-2026</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<!-- FI -->
+<div class="tab-content" id="fi">
+
+<table class="maintenance-table">
+
+<thead>
+        <tr>
+            <th>Name</th>
+            <th>Interval</th>
+            <th>Status</th>
+            <th>L ODO</th>
+            <th>L Date</th>
+            <th>N ODO</th>
+            <th>N Date</th>
+            <th>Brand</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+<tbody>
+
+<tr>
+<td>💨 Air Filter Hose</td>
+<td>Inspect</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>💨 Air Filter</td>
+<td>12,000 km</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>41,500 km</td>
+<td>2027</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>💨 FI Cleaning</td>
+<td>12,000 km</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>41,500 km</td>
+<td>2027</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>💨 FI Diagnostic</td>
+<td>Inspect</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>💨 Manifold Cleaning</td>
+<td>12,000 km</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>41,500 km</td>
+<td>2027</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>💨 Throttle Body</td>
+<td>12,000 km</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>41,500 km</td>
+<td>2027</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<!-- BREAK SECTION-->
+
+<div class="tab-content" id="brakes">
+
+<table class="maintenance-table">
+
+<thead>
+        <tr>
+            <th>Name</th>
+            <th>Interval</th>
+            <th>Status</th>
+            <th>L ODO</th>
+            <th>L Date</th>
+            <th>N ODO</th>
+            <th>N Date</th>
+            <th>Brand</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+<tbody>
+
+<tr>
+<td>🛑 Front Brake Pads</td>
+<td>12,000 km</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>41,500 km</td>
+<td>2027</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>🛑 Rear Brake Pads</td>
+<td>12,000 km</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>41,500 km</td>
+<td>2027</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>🛑 Front Caliper</td>
+<td>Inspect</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>🛑 Rear Caliper</td>
+<td>Inspect</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>🛑 Brake Fluid</td>
+<td>24,000 km</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>53,500 km</td>
+<td>2028</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>🛑 Brake Hose</td>
+<td>Inspect</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>🛑 Brake Pivot</td>
+<td>Inspect</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>🛑 Throttle Grip</td>
+<td>Inspect</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<!-- ENGINE-->
+
+<div class="tab-content" id="engine">
+
+<table class="maintenance-table">
+
+<thead>
+        <tr>
+            <th>Name</th>
+            <th>Interval</th>
+            <th>Status</th>
+            <th>L ODO</th>
+            <th>L Date</th>
+            <th>N ODO</th>
+            <th>N Date</th>
+            <th>Brand</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+<tbody>
+
+<tr>
+<td>🔧 Gasket</td>
+<td>Inspect</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>🔧 Engine Oil Strainer</td>
+<td>6,000 km</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>35,500 km</td>
+<td>Dec-2026</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>🔧 Engine Bushing</td>
+<td>Inspect</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>🔧 Wheel Bearings</td>
+<td>Inspect</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>SKF</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>🔧 Exhaust</td>
+<td>Inspect</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Stock</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>🔧 Rocker Arm Bearing</td>
+<td>Inspect</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>🔧 Valve Clearance</td>
+<td>24,000 km</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>53,500 km</td>
+<td>2028</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>🔧 Spark Plug</td>
+<td>12,000 km</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>41,500 km</td>
+<td>2027</td>
+<td>NGK</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>🔧 Spark Plug Cap</td>
+<td>Inspect</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>NGK</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>🔧 Engine Refresh</td>
+<td>As Needed</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>🔧 Adpro</td>
+<td>Inspect</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Adpro</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>🔧 Ball Race</td>
+<td>Inspect</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>🔧 Steering Bearings</td>
+<td>Inspect</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<!--RADIATOR-->
+
+<div class="tab-content" id="radiator">
+
+<table class="maintenance-table">
+
+<thead>
+        <tr>
+            <th>Name</th>
+            <th>Interval</th>
+            <th>Status</th>
+            <th>L ODO</th>
+            <th>L Date</th>
+            <th>N ODO</th>
+            <th>N Date</th>
+            <th>Brand</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+<tbody>
+
+<tr>
+<td>❄️ Radiator Coolant</td>
+<td>24,000 km</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>53,500 km</td>
+<td>2028</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>❄️ Radiator Flush</td>
+<td>24,000 km</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>53,500 km</td>
+<td>2028</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>❄️ Radiator Hose</td>
+<td>Inspect</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>❄️ Reservoir Tank</td>
+<td>Inspect</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>❄️ Water Pump</td>
+<td>Inspect</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>❄️ Radiator Cap</td>
+<td>Inspect</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<!--BODY-->
+
+<div class="tab-content" id="body">
+
+<table class="maintenance-table">
+
+<thead>
+        <tr>
+            <th>Name</th>
+            <th>Interval</th>
+            <th>Status</th>
+            <th>L ODO</th>
+            <th>L Date</th>
+            <th>N ODO</th>
+            <th>N Date</th>
+            <th>Brand</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+<tbody>
+
+<tr>
+<td>🛵 Front Tire</td>
+<td>Inspect</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Michelin</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>🛵 Rear Tire</td>
+<td>Inspect</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Michelin</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>🛵 Front Shock</td>
+<td>Inspect</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>🛵 Rear Shock</td>
+<td>Inspect</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>YSS</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>🛵 Battery</td>
+<td>24 Months</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>2028</td>
+<td>GS Yuasa</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>🛵 Horn</td>
+<td>Inspect</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>Yamaha</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>🛵 Headlight</td>
+<td>Inspect</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>LED</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+<tr>
+<td>🛵 Overall Body Check</td>
+<td>Every Wash</td>
+<td>🟢 Healthy</td>
+<td>29,500 km</td>
+<td>18-Jun-2026</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><button class="service-btn">SERVICE</button></td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>  
+
+<!-- =========================
+     SERVICE EDIT MODAL
+========================= -->
+<div id="serviceModal" class="service-modal">
+
+    <div class="service-modal-content">
+
+        <span class="close-service">&times;</span>
+
+        <h2>Service Update</h2>
+
+        <label>Service</label>
+        <input type="text" id="editServiceName" readonly>
+
+        <label>Status</label>
+        <select id="editStatus">
+            <option>🟢 Healthy</option>
+            <option>🟡 Due Soon</option>
+            <option>🔴 Overdue</option>
+            <option>✅ Replaced</option>
+        </select>
+
+        <label>Last ODO</label>
+        <input type="text" id="editLastOdo">
+
+        <label>Last Date</label>
+        <input type="text" id="editLastDate">
+
+        <label>Next ODO</label>
+        <input type="text" id="editNextOdo">
+
+        <label>Next Date</label>
+        <input type="text" id="editNextDate">
+
+        <label>Brand</label>
+        <input type="text" id="editBrand">
+
+        <div class="service-actions">
+            <button id="cancelService">Cancel</button>
+            <button id="saveService">Save</button>
+        </div>
+
+    </div>
+</div>
+
+
+                
+
+        <!-- Footer -->
+        <footer class="footer" id="mainFooter">
+            <p>© 2026 NexaVerse. Crafted with passion. Design by <a href="https://templatemo.com" target="_blank">TemplateMo</a></p>
+        </footer>
+    </div>
+<script src="templatemo-nexa-scripts.js"></script>
+
+
+
+<script>
+
+const LOGOUT_TIME = 5 * 60 * 1000; // 5 minutes
+
+let logoutTimer;
+
+function logout(){
+
+    localStorage.removeItem("isLoggedIn");
+
+    window.location.href = "login.html";
+
+}
+
+function resetLogoutTimer(){
+
+    clearTimeout(logoutTimer);
+
+    logoutTimer = setTimeout(logout, LOGOUT_TIME);
+
+}
+
+document.addEventListener("mousemove", resetLogoutTimer);
+document.addEventListener("keydown", resetLogoutTimer);
+document.addEventListener("mousedown", resetLogoutTimer);
+document.addEventListener("scroll", resetLogoutTimer);
+document.addEventListener("touchstart", resetLogoutTimer);
+
+resetLogoutTimer();
+
+</script>
+
+
+</body>
+</html>
+

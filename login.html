@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>REYWALKER | Login</title>
+
+    <link rel="stylesheet" href="assets/css/login.css">
+
+    <!-- Font Awesome para sa eye icon -->
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+</head>
+<body>
+
+    <!-- Matrix Background -->
+    <canvas id="matrix"></canvas>
+
+    <!-- Login Box -->
+    <div class="login-container">
+
+        <div class="login-box">
+
+            <h1>Trojan Virus</h1>
+            <p>Authorized Personnel only</p>
+
+            <div class="input-group">
+                <label>Emanresu</label>
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Virus"
+                    autocomplete="off">
+            </div>
+
+            <div class="input-group">
+                <label>Drowssap</label>
+
+                <div class="password-box">
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Site">
+
+                    <i class="fas fa-eye" id="togglePassword"></i>
+
+                </div>
+            </div>
+
+            <button id="loginBtn">
+                LOG IN
+            </button>
+
+            <p id="error"></p>
+
+        </div>
+
+    </div>
+
+    <script src="assets/js/login.js"></script>
+
+    <script>
+    document.addEventListener("keydown", function(e) {
+        if (e.key === "Enter") {
+            document.getElementById("loginBtn").click();
+        }
+    });
+    </script>
+
+</body>
+</html>
