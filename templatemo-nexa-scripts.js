@@ -557,24 +557,51 @@ localStorage.setItem(
     currentRow.closest("table").innerHTML
 );
 
+
+if(window.saveServiceData){
+
+    saveServiceData(
+        activeTab,
+        currentRow.closest("table").innerHTML
+    );
+
+}
+
+
 updateStatusCount();
 
 serviceModal.style.display = "none";
 
 };
 
-// LOAD SERVICE DATA
-document.querySelectorAll(".tab-content").forEach(tab => {
 
-    const savedService = localStorage.getItem("service_" + tab.id);
 
-    if(savedService){
+// LOAD SERVICE DATA FROM FIREBASE
 
-        tab.querySelector("table").innerHTML = savedService;
+async function loadFirebaseServices(){
 
-    }
+    if(!window.loadService) return;
 
-});
+    document.querySelectorAll(".tab-content").forEach(async tab => {
+
+        const savedService = await window.loadService(tab.id);
+
+        if(savedService){
+
+            const table = tab.querySelector("table");
+
+            if(table){
+                table.innerHTML = savedService;
+            }
+
+        }
+
+    });
+
+}
+
+window.addEventListener("load", loadFirebaseServices);
+
 
 // STATUS COUNT
 
