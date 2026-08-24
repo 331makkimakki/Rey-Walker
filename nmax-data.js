@@ -2,7 +2,9 @@ import { db } from "./firebase.js";
 import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
 
+// =========================
 // SAVE SERVICE DATA
+// =========================
 export async function saveServiceData(tabName, tableData){
 
     await setDoc(
@@ -15,7 +17,9 @@ export async function saveServiceData(tabName, tableData){
 }
 
 
+// =========================
 // LOAD SERVICE DATA
+// =========================
 export async function loadService(tabName){
 
     const docSnap = await getDoc(
@@ -25,6 +29,43 @@ export async function loadService(tabName){
     if(docSnap.exists()){
 
         return docSnap.data().table;
+
+    }
+
+    return null;
+
+}
+
+
+// =========================
+// SAVE NMAX INFO
+// =========================
+export async function saveNmaxInfo(currentOdo, lastUpdated){
+
+    await setDoc(
+        doc(db, "nmax", "info"),
+        {
+            currentOdo: currentOdo,
+            lastUpdated: lastUpdated
+        },
+        { merge: true }
+    );
+
+}
+
+
+// =========================
+// LOAD NMAX INFO
+// =========================
+export async function loadNmaxInfo(){
+
+    const docSnap = await getDoc(
+        doc(db, "nmax", "info")
+    );
+
+    if(docSnap.exists()){
+
+        return docSnap.data();
 
     }
 

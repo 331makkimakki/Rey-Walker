@@ -518,12 +518,13 @@ document.addEventListener("click", function(e){
         const cells = currentRow.querySelectorAll("td");
 
         document.getElementById("editServiceName").value = cells[0].innerText;
-        document.getElementById("editStatus").value = cells[2].innerText;
-        document.getElementById("editLastOdo").value = cells[3].innerText;
-        document.getElementById("editLastDate").value = cells[4].innerText;
-        document.getElementById("editNextOdo").value = cells[5].innerText;
-        document.getElementById("editNextDate").value = cells[6].innerText;
-        document.getElementById("editBrand").value = cells[7].innerText;
+document.getElementById("editInterval").value = cells[1].innerText;
+document.getElementById("editStatus").value = cells[2].innerText;
+document.getElementById("editLastOdo").value = cells[3].innerText;
+document.getElementById("editLastDate").value = cells[4].innerText;
+document.getElementById("editNextOdo").value = cells[5].innerText;
+document.getElementById("editNextDate").value = cells[6].innerText;
+document.getElementById("editBrand").value = cells[7].innerText;
 
         serviceModal.style.display = "flex";
 
@@ -541,39 +542,37 @@ saveService.onclick = () => {
 
     const cells = currentRow.querySelectorAll("td");
 
+    cells[0].innerText = document.getElementById("editServiceName").value;
+    cells[1].innerText = document.getElementById("editInterval").value;
     cells[2].innerText = document.getElementById("editStatus").value;
     cells[3].innerText = document.getElementById("editLastOdo").value;
     cells[4].innerText = document.getElementById("editLastDate").value;
     cells[5].innerText = document.getElementById("editNextOdo").value;
     cells[6].innerText = document.getElementById("editNextDate").value;
     cells[7].innerText = document.getElementById("editBrand").value;
-    
 
-// SAVE SERVICE DATA
-const activeTab = currentRow.closest(".tab-content").id;
+    // SAVE SERVICE DATA
+    const activeTab = currentRow.closest(".tab-content").id;
 
-localStorage.setItem(
-    "service_" + activeTab,
-    currentRow.closest("table").innerHTML
-);
-
-
-if(window.saveServiceData){
-
-    saveServiceData(
-        activeTab,
+    localStorage.setItem(
+        "service_" + activeTab,
         currentRow.closest("table").innerHTML
     );
 
-}
+    if(window.saveServiceData){
 
+        saveServiceData(
+            activeTab,
+            currentRow.closest("table").innerHTML
+        );
 
-updateStatusCount();
+    }
 
-serviceModal.style.display = "none";
+    updateStatusCount();
+
+    serviceModal.style.display = "none";
 
 };
-
 
 
 // LOAD SERVICE DATA FROM FIREBASE

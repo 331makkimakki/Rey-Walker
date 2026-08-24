@@ -3025,10 +3025,13 @@ if(localStorage.getItem("isLoggedIn") !== "true"){
 
         <h2>Service Update</h2>
 
-        <label>Service</label>
-        <input type="text" id="editServiceName" readonly>
+        <label>Name</label>
+<input type="text" id="editServiceName">
 
-        <label>Status</label>
+<label>Interval</label>
+<input type="text" id="editInterval">
+
+<label>Status</label>
         <select id="editStatus">
             <option>🟢 Healthy</option>
             <option>🟡 Due Soon</option>
@@ -3072,10 +3075,165 @@ if(localStorage.getItem("isLoggedIn") !== "true"){
 <script src="templatemo-nexa-scripts.js"></script>
 
 <script type="module">
-import { saveServiceData, loadService } from "./nmax-data.js";
+import {
+    saveServiceData,
+    loadService,
+    saveNmaxInfo,
+    loadNmaxInfo
+} from "./nmax-data.js";
 
 window.saveServiceData = saveServiceData;
 window.loadService = loadService;
+
+
+// =========================
+// LOAD NMAX INFO
+// =========================
+
+const currentOdo = document.getElementById("currentOdo");
+const odoInput = document.getElementById("odoInput");
+const lastUpdated = document.getElementById("lastUpdated");
+
+
+// LOAD FROM FIREBASE
+async function loadNmaxInfoToPage(){
+
+    const data = await loadNmaxInfo();
+
+    if(!data) return;
+
+    if(data.currentOdo !== undefined){
+
+        currentOdo.textContent =
+            Number(data.currentOdo).toLocaleString();
+
+        odoInput.value = data.currentOdo;
+
+    }
+
+    if(data.lastUpdated !== undefined){
+
+        lastUpdated.textContent = data.lastUpdated;
+
+    }
+
+}
+
+
+// =========================
+// EDIT ODO
+// =========================
+
+currentOdo.addEventListener("click", function(){
+
+    odoInput.value = currentOdo.textContent
+        .replace(/,/g, "")
+        .trim();
+
+    currentOdo.style.display = "none";
+
+    odoInput.style.display = "block";
+
+    odoInput.focus();
+
+    odoInput.select();
+
+});
+
+
+// ENTER = SAVE ODO
+odoInput.addEventListener("keydown", async function(e){
+
+    if(e.key !== "Enter") return;
+
+    const value = odoInput.value
+        .replace(/,/g, "")
+        .trim();
+
+    if(!value || isNaN(value)) return;
+
+    try {
+
+        await saveNmaxInfo(
+            Number(value),
+            lastUpdated.textContent
+        );
+
+        currentOdo.textContent =
+            Number(value).toLocaleString();
+
+        odoInput.value = value;
+
+        odoInput.style.display = "none";
+
+        currentOdo.style.display = "block";
+
+    } catch(error) {
+
+        console.error("Failed to save ODO:", error);
+
+    }
+
+});
+
+// =========================
+// EDIT LAST UPDATED
+// =========================
+
+lastUpdated.addEventListener("click", function(){
+
+    const currentDate = lastUpdated.textContent;
+
+    const input = document.createElement("input");
+
+    input.type = "text";
+    input.value = currentDate;
+    input.className = "odo-input";
+
+    input.style.display = "block";
+    input.style.width = "100%";
+
+    lastUpdated.style.display = "none";
+
+    lastUpdated.parentElement.appendChild(input);
+
+    input.focus();
+    input.select();
+
+    input.addEventListener("keydown", async function(e){
+
+        if(e.key !== "Enter") return;
+
+        const newDate = input.value.trim();
+
+        if(!newDate) return;
+
+        try {
+
+            await saveNmaxInfo(
+                odoInput.value.replace(/,/g, ""),
+                newDate
+            );
+
+            lastUpdated.textContent = newDate;
+
+            input.remove();
+
+            lastUpdated.style.display = "inline";
+
+        } catch(error) {
+
+            console.error("Failed to save date:", error);
+
+        }
+
+    });
+
+});
+
+// LOAD DATA WHEN PAGE OPENS
+loadNmaxInfoToPage();
+
 </script>
 
 
