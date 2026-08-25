@@ -645,14 +645,6 @@ else if(value.includes("Overdue")){
 
 updateStatusCount();
 
-// Close if click outside
-window.addEventListener("click", function(e){
-
-    if(e.target === serviceModal){
-        serviceModal.style.display = "none";
-    }
-
-});
 
 
 const odoText = document.getElementById("currentOdo");
