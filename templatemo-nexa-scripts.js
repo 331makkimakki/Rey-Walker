@@ -749,6 +749,7 @@ import { db } from "./firebase.js";
 
 import {
     doc,
+    getDoc,
     setDoc
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
@@ -824,6 +825,7 @@ import {
                     );
 
                     renderNotes();
+                    
 
                 }
 
