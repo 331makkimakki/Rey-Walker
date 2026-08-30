@@ -745,6 +745,13 @@ document.addEventListener("DOMContentLoaded", () => {
 // REYWALKER NOTES
 // =========================================================
 
+import { db } from "./firebase.js";
+
+import {
+    doc,
+    setDoc
+} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
+
 (function () {
 
     const notesGrid = document.getElementById("notesGrid");
@@ -757,6 +764,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const sideItems = document.querySelectorAll(".keep-side-item");
 
+    
+    
+    
+    
     // ---------------------------------------------------------
     // LOAD EXISTING NOTES
     // ---------------------------------------------------------
@@ -771,12 +782,58 @@ document.addEventListener("DOMContentLoaded", () => {
     // SAVE NOTES
     // ---------------------------------------------------------
 
-    function saveNotes() {
+    async function saveNotes() {
 
-        localStorage.setItem(
-            "reywalkerNotes",
-            JSON.stringify(notesData)
-        );
+    localStorage.setItem(
+        "reywalkerNotes",
+        JSON.stringify(notesData)
+    );
+
+    await setDoc(
+        doc(db, "notes", "reywalkerNotes"),
+        {
+            notes: notesData
+        }
+    );
+
+}
+
+ // ---------------------------------------------------------
+    // LOAD NOTES FROM FIREBASE
+    // ---------------------------------------------------------
+
+    async function loadNotesFromFirebase() {
+
+        try {
+
+            const noteDoc = await getDoc(
+                doc(db, "notes", "reywalkerNotes")
+            );
+
+            if (noteDoc.exists()) {
+
+                const data = noteDoc.data();
+
+                if (Array.isArray(data.notes)) {
+
+                    notesData = data.notes;
+
+                    localStorage.setItem(
+                        "reywalkerNotes",
+                        JSON.stringify(notesData)
+                    );
+
+                    renderNotes();
+
+                }
+
+            }
+
+        } catch (error) {
+
+            console.error("Firebase Notes Load Error:", error);
+
+        }
 
     }
 
@@ -1854,10 +1911,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     };
 
-    // ---------------------------------------------------------
-    // INITIAL LOAD
-    // ---------------------------------------------------------
+   // ---------------------------------------------------------
+// INITIAL LOAD
+// ---------------------------------------------------------
 
-    renderNotes();
+renderNotes();
+loadNotesFromFirebase();
 
 })();
