@@ -112,6 +112,22 @@ if(localStorage.getItem("isLoggedIn") !== "true"){
                 <div class="menu-badge">NT</div>
                 <div class="menu-title">NMAX TRACKER</div>
             </div>
+            <!-- NEW 3 TABS -->
+
+<div class="menu-item initial-load" data-section="funds">
+    <div class="menu-badge">FD</div>
+    <div class="menu-title">FUNDS</div>
+</div>
+
+<div class="menu-item initial-load" data-section="links">
+    <div class="menu-badge">LK</div>
+    <div class="menu-title">LINKS</div>
+</div>
+
+<div class="menu-item initial-load" data-section="notes">
+    <div class="menu-badge">NS</div>
+    <div class="menu-title">NOTES</div>
+</div>
         </div>
 
         <!-- Content Sections -->
@@ -121,15 +137,6 @@ if(localStorage.getItem("isLoggedIn") !== "true"){
                 <div class="section-header-small">
                     <div class="small-logo">
                         <img src="images/icons/RWWWWWWW.svg" alt="ReyWalker Logo">
-                            <defs>
-                                <linearGradient id="smallLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#00f0ff"/>
-                                    <stop offset="100%" style="stop-color:#ff00d4"/>
-                                </linearGradient>
-                            </defs>
-                            <polygon points="50,10 85,32 85,68 50,90 15,68 15,32" fill="none" stroke="url(#smallLogoGrad)" stroke-width="3"/>
-                            <circle cx="50" cy="50" r="10" fill="url(#smallLogoGrad)"/>
-                        </svg>
                     </div>
                     <div class="small-brand">
                         <h3>REYWALKER</h3>
@@ -3061,6 +3068,421 @@ if(localStorage.getItem("isLoggedIn") !== "true"){
 
     </div>
 </div>
+</div>
+</div>
+</div>
+</div>
+ <!-- LAST LINE SA NMAX TRACKER -->
+
+ <!-- =========================
+     FUNDS SECTION
+========================= -->
+<div class="content-section" id="funds">
+
+    <div class="section-header-small">
+        <div class="small-logo">
+            <img src="images/icons/RWWWWWWW.svg" alt="ReyWalker Logo">
+        </div>
+
+        <div class="small-brand">
+            <h3>REYWALKER</h3>
+            <p>Funds</p>
+        </div>
+    </div>
+
+    <button class="back-btn" onclick="backToMenu()">← Back to Menu</button>
+
+    <div class="section-content">
+        <h2>FUNDS</h2>
+        <p>Manage and track your funds here.</p>
+    </div>
+
+</div>
+
+
+<!-- =========================
+     LINKS SECTION
+========================= -->
+<div class="content-section" id="links">
+
+    <div class="section-header-small">
+        <div class="small-logo">
+            <img src="images/icons/RWWWWWWW.svg" alt="ReyWalker Logo">
+        </div>
+
+        <div class="small-brand">
+            <h3>REYWALKER</h3>
+            <p>Links</p>
+        </div>
+    </div>
+
+    <button class="back-btn" onclick="backToMenu()">← Back to Menu</button>
+
+    <div class="section-content">
+        <h2>LINKS</h2>
+        <p>Your important links will be stored here.</p>
+    </div>
+
+</div>
+
+
+
+
+
+<!-- =========================================================
+     NOTES SECTION
+========================================================= -->
+
+<div class="content-section" id="notes">
+
+    <div class="section-header">
+        <h2 class="section-title">NOTES</h2>
+        <p class="section-subtitle">
+            Capture your thoughts, ideas, and reminders
+        </p>
+    </div>
+
+    <div class="section-header-small">
+
+        <div class="small-logo">
+            <img src="images/icons/RWWWWWWW.svg" alt="ReyWalker Logo">
+        </div>
+
+        <div class="small-brand">
+            <h3>REYWALKER</h3>
+            <p>Notes</p>
+        </div>
+
+    </div>
+
+    <button class="back-btn" onclick="backToMenu()">
+        ← Back to Menu
+    </button>
+
+
+    <!-- =====================================================
+         GOOGLE KEEP STYLE WORKSPACE
+    ====================================================== -->
+
+    <div class="keep-workspace">
+
+        <!-- TOP BAR -->
+
+        <div class="keep-topbar">
+
+            <div class="keep-page-title">
+                <span class="keep-logo">●</span>
+                <span>Notes</span>
+            </div>
+
+            <div class="keep-search">
+
+                <span class="keep-search-icon">⌕</span>
+
+                <input
+                    type="text"
+                    id="notesSearch"
+                    placeholder="Search your notes"
+                    autocomplete="off"
+                >
+
+                <button
+                    id="clearNotesSearch"
+                    class="keep-clear-search"
+                    type="button">
+                    ×
+                </button>
+
+            </div>
+
+            <div class="keep-top-actions">
+
+                <button
+                    class="keep-icon-btn"
+                    type="button"
+                    onclick="renderNotes()"
+                    title="Refresh">
+                    ↻
+                </button>
+
+                <button
+                    class="keep-icon-btn"
+                    type="button"
+                    title="Settings">
+                    ⚙
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             MAIN AREA
+        ================================================== -->
+
+        <div class="keep-main">
+
+
+            <!-- =================================================
+                 LEFT SIDEBAR
+            ================================================== -->
+
+            <aside class="keep-sidebar">
+
+                <button
+                    class="keep-side-item active"
+                    data-category="all">
+
+                    <span>📝</span>
+                    <span>Notes</span>
+
+                </button>
+
+
+                <button
+                    class="keep-side-item"
+                    data-category="reminders">
+
+                    <span>🔔</span>
+                    <span>Reminders</span>
+
+                </button>
+
+
+                <div class="keep-sidebar-title">
+                    CATEGORIES
+                </div>
+
+
+                <button
+                    class="keep-side-item"
+                    data-category="personal">
+
+                    <span>●</span>
+                    <span>Personal</span>
+
+                </button>
+
+
+                <button
+                    class="keep-side-item"
+                    data-category="work">
+
+                    <span>●</span>
+                    <span>Work</span>
+
+                </button>
+
+
+                <button
+                    class="keep-side-item"
+                    data-category="ideas">
+
+                    <span>●</span>
+                    <span>Ideas</span>
+
+                </button>
+
+
+                <button
+                    class="keep-side-item"
+                    data-category="important">
+
+                    <span>●</span>
+                    <span>Important</span>
+
+                </button>
+
+
+                <div class="keep-sidebar-bottom">
+
+                    <button class="keep-side-item">
+                        <span>🗄</span>
+                        <span>Archive</span>
+                    </button>
+
+                    <button class="keep-side-item">
+                        <span>🗑</span>
+                        <span>Trash</span>
+                    </button>
+
+                </div>
+
+            </aside>
+
+
+            <!-- =================================================
+                 NOTES CONTENT
+            ================================================== -->
+
+            <main class="keep-content">
+
+
+                <!-- CREATE NOTE -->
+
+                <div class="keep-create-wrapper">
+
+                    <div
+                        class="keep-create"
+                        id="keepCreate">
+
+                        <input
+                            type="text"
+                            id="newNoteTitle"
+                            placeholder="Title"
+                            autocomplete="off"
+                        >
+
+                        <textarea
+                            id="newNoteText"
+                            placeholder="Take a note..."
+                            rows="1"></textarea>
+
+
+                        <!-- CATEGORY -->
+
+                        <div class="keep-create-category">
+
+                            <span>Category:</span>
+
+                            <select id="newNoteCategory">
+
+                                <option value="personal">
+                                    Personal
+                                </option>
+
+                                <option value="work">
+                                    Work
+                                </option>
+
+                                <option value="ideas">
+                                    Ideas
+                                </option>
+
+                                <option value="reminders">
+                                    Reminders
+                                </option>
+
+                                <option value="important">
+                                    Important
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- FOOTER -->
+
+                        <div class="keep-create-footer">
+
+
+                            <!-- COLORS -->
+
+                            <div class="keep-palette">
+
+                                <button
+                                    type="button"
+                                    class="keep-color selected"
+                                    data-color="white"
+                                    style="background:#ffffff"
+                                    title="White">
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="keep-color"
+                                    data-color="red"
+                                    style="background:#f28b82"
+                                    title="Red">
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="keep-color"
+                                    data-color="orange"
+                                    style="background:#fbbc04"
+                                    title="Orange">
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="keep-color"
+                                    data-color="yellow"
+                                    style="background:#fff475"
+                                    title="Yellow">
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="keep-color"
+                                    data-color="green"
+                                    style="background:#ccff90"
+                                    title="Green">
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="keep-color"
+                                    data-color="blue"
+                                    style="background:#a7ffeb"
+                                    title="Blue">
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="keep-color"
+                                    data-color="purple"
+                                    style="background:#d7aefb"
+                                    title="Purple">
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="keep-color"
+                                    data-color="pink"
+                                    style="background:#fdcfe8"
+                                    title="Pink">
+                                </button>
+
+                            </div>
+
+
+                            <button
+                                id="addNoteBtn"
+                                class="keep-add-btn"
+                                type="button">
+                                Add note
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- NOTES GRID -->
+
+                <div class="keep-notes-area">
+
+                    <div
+                        id="notesGrid"
+                        class="keep-notes-grid">
+                    </div>
+
+                </div>
+
+            </main>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
 
 
                 

@@ -741,3 +741,566 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+// =========================================================
+// REYWALKER NOTES
+// =========================================================
+
+(function () {
+
+    const notesGrid = document.getElementById("notesGrid");
+    const addNoteBtn = document.getElementById("addNoteBtn");
+    const newNoteTitle = document.getElementById("newNoteTitle");
+    const newNoteText = document.getElementById("newNoteText");
+    const newNoteCategory = document.getElementById("newNoteCategory");
+    const notesSearch = document.getElementById("notesSearch");
+    const clearNotesSearch = document.getElementById("clearNotesSearch");
+
+    let notesData =
+        JSON.parse(localStorage.getItem("reywalkerNotes")) || [];
+
+    let selectedNoteColor = "white";
+    let selectedCategory = "all";
+
+
+    // =========================================================
+    // SAVE
+    // =========================================================
+
+    function saveNotes() {
+
+        localStorage.setItem(
+            "reywalkerNotes",
+            JSON.stringify(notesData)
+        );
+
+    }
+
+
+    // =========================================================
+    // ADD NOTE
+    // =========================================================
+
+    if (addNoteBtn) {
+
+        addNoteBtn.addEventListener("click", function () {
+
+            const title = newNoteTitle
+                ? newNoteTitle.value.trim()
+                : "";
+
+            const text = newNoteText
+                ? newNoteText.value.trim()
+                : "";
+
+            const category = newNoteCategory
+                ? newNoteCategory.value
+                : "personal";
+
+
+            if (!title && !text) {
+
+                if (newNoteText) {
+                    newNoteText.focus();
+                }
+
+                return;
+            }
+
+
+            const note = {
+
+                id: Date.now(),
+
+                title: title || "Untitled",
+
+                text: text,
+
+                category: category,
+
+                color: selectedNoteColor
+
+            };
+
+
+            notesData.unshift(note);
+
+            saveNotes();
+
+            renderNotes(
+                notesSearch
+                    ? notesSearch.value
+                    : ""
+            );
+
+            // =========================================================
+// NOTE ZOOM CLOSE
+// =========================================================
+
+const noteZoomModal =
+    document.getElementById("noteZoomModal");
+
+const closeNoteZoom =
+    document.getElementById("closeNoteZoom");
+
+if (closeNoteZoom) {
+
+    closeNoteZoom.addEventListener("click", function () {
+
+        noteZoomModal.classList.remove("active");
+
+    });
+
+}
+
+
+            // CLEAR INPUTS
+
+            if (newNoteTitle) {
+                newNoteTitle.value = "";
+            }
+
+            if (newNoteText) {
+                newNoteText.value = "";
+            }
+
+
+            // RESET CATEGORY
+
+            if (newNoteCategory) {
+                newNoteCategory.value = "personal";
+            }
+
+
+            // RESET COLOR
+
+            selectedNoteColor = "white";
+
+            document
+                .querySelectorAll(".keep-color")
+                .forEach(btn =>
+                    btn.classList.remove("selected")
+                );
+
+            const white =
+                document.querySelector(
+                    '.keep-color[data-color="white"]'
+                );
+
+            if (white) {
+                white.classList.add("selected");
+            }
+
+        });
+
+    }
+
+
+    // =========================================================
+    // COLOR
+    // =========================================================
+
+    document
+        .querySelectorAll(".keep-create .keep-color")
+        .forEach(button => {
+
+            button.addEventListener("click", function () {
+
+                document
+                    .querySelectorAll(".keep-create .keep-color")
+                    .forEach(btn =>
+                        btn.classList.remove("selected")
+                    );
+
+                this.classList.add("selected");
+
+                selectedNoteColor =
+                    this.dataset.color;
+
+            });
+
+        });
+
+
+    // =========================================================
+    // CATEGORY
+    // =========================================================
+
+    document
+        .querySelectorAll(".keep-side-item[data-category]")
+        .forEach(button => {
+
+            button.addEventListener("click", function () {
+
+                document
+                    .querySelectorAll(
+                        ".keep-side-item[data-category]"
+                    )
+                    .forEach(btn =>
+                        btn.classList.remove("active")
+                    );
+
+                this.classList.add("active");
+
+                selectedCategory =
+                    this.dataset.category;
+
+                renderNotes(
+                    notesSearch
+                        ? notesSearch.value
+                        : ""
+                );
+
+            });
+
+        });
+
+
+    // =========================================================
+    // RENDER
+    // =========================================================
+
+    function renderNotes(searchText = "") {
+
+        if (!notesGrid) return;
+
+        notesGrid.innerHTML = "";
+
+        const search =
+            String(searchText)
+                .toLowerCase()
+                .trim();
+
+
+        const filteredNotes =
+            notesData.filter(note => {
+
+                const categoryMatch =
+                    selectedCategory === "all" ||
+                    note.category === selectedCategory;
+
+                const searchMatch =
+                    String(note.title || "")
+                        .toLowerCase()
+                        .includes(search) ||
+
+                    String(note.text || "")
+                        .toLowerCase()
+                        .includes(search);
+
+
+                return categoryMatch && searchMatch;
+
+            });
+
+
+        if (filteredNotes.length === 0) {
+
+            notesGrid.innerHTML = `
+                <div class="keep-empty">
+                    <div class="keep-empty-icon">📝</div>
+                    <div>No notes yet</div>
+                </div>
+            `;
+
+            return;
+        }
+
+
+        filteredNotes.forEach(note => {
+
+            const realIndex =
+                notesData.findIndex(
+                    n => n.id === note.id
+                );
+
+
+            const card =
+                document.createElement("div");
+
+
+            card.className =
+                "keep-note keep-" +
+                (note.color || "white");
+
+
+            card.dataset.id =
+                note.id;
+
+
+            card.innerHTML = `
+
+                <div class="keep-note-title">
+                    ${escapeNotesHTML(note.title)}
+                </div>
+
+                <div class="keep-note-body">
+                    ${escapeNotesHTML(note.text)}
+                </div>
+
+                <div class="keep-note-actions">
+
+                    <button
+                        type="button"
+                        title="Edit">
+                        ✎
+                    </button>
+
+                    <button
+                        type="button"
+                        title="Delete">
+                        🗑
+                    </button>
+
+                </div>
+
+            `;
+
+
+            const buttons =
+                card.querySelectorAll(
+                    ".keep-note-actions button"
+                );
+
+
+            // EDIT
+
+            buttons[0].addEventListener(
+                "click",
+                function (e) {
+
+                    e.stopPropagation();
+
+                    editNote(realIndex);
+
+                }
+            );
+
+// =====================================================
+// CLICK EXISTING NOTE = ZOOM
+// =====================================================
+
+card.addEventListener("click", function(e) {
+
+    if (e.target.closest(".keep-note-actions")) {
+        return;
+    }
+
+    card.classList.toggle("note-zoomed");
+
+});
+
+            // DELETE
+
+            buttons[1].addEventListener(
+                "click",
+                function (e) {
+
+                    e.stopPropagation();
+
+                    deleteNote(realIndex);
+
+                }
+            );
+
+
+            notesGrid.appendChild(card);
+
+        });
+
+    }
+
+
+
+
+    // =========================================================
+    // EDIT
+    // =========================================================
+
+    function editNote(index) {
+
+        const note = notesData[index];
+
+        if (!note) return;
+
+
+        const card =
+            document.querySelector(
+                `.keep-note[data-id="${note.id}"]`
+            );
+
+        if (!card) return;
+
+
+        card.innerHTML = `
+
+            <input
+                class="keep-edit-title"
+                type="text"
+                value="${escapeNotesAttribute(note.title)}"
+            >
+
+            <textarea
+                class="keep-edit-body"
+                placeholder="Take a note..."
+            >${escapeNotesHTML(note.text)}</textarea>
+
+            <div class="keep-note-actions">
+
+                <button
+                    type="button"
+                    class="keep-save-btn">
+                    ✓
+                </button>
+
+                <button
+                    type="button"
+                    class="keep-delete-btn">
+                    🗑
+                </button>
+
+            </div>
+
+        `;
+
+
+        const titleInput =
+            card.querySelector(".keep-edit-title");
+
+        const bodyInput =
+            card.querySelector(".keep-edit-body");
+
+
+        card.querySelector(".keep-save-btn")
+            .addEventListener("click", function (e) {
+
+                e.stopPropagation();
+
+                notesData[index].title =
+                    titleInput.value.trim() || "Untitled";
+
+                notesData[index].text =
+                    bodyInput.value.trim();
+
+                saveNotes();
+
+                renderNotes(
+                    notesSearch
+                        ? notesSearch.value
+                        : ""
+                );
+
+            });
+
+
+        card.querySelector(".keep-delete-btn")
+            .addEventListener("click", function (e) {
+
+                e.stopPropagation();
+
+                deleteNote(index);
+
+            });
+
+
+        titleInput.focus();
+
+    }
+
+
+    // =========================================================
+    // DELETE
+    // =========================================================
+
+    function deleteNote(index) {
+
+        if (!confirm("Delete this note?")) {
+            return;
+        }
+
+
+        notesData.splice(index, 1);
+
+        saveNotes();
+
+        renderNotes(
+            notesSearch
+                ? notesSearch.value
+                : ""
+        );
+
+    }
+
+
+    // =========================================================
+    // SEARCH
+    // =========================================================
+
+    if (notesSearch) {
+
+        notesSearch.addEventListener(
+            "input",
+            function () {
+
+                renderNotes(this.value);
+
+            }
+        );
+
+    }
+
+
+    // =========================================================
+    // CLEAR SEARCH
+    // =========================================================
+
+    if (clearNotesSearch) {
+
+        clearNotesSearch.addEventListener(
+            "click",
+            function () {
+
+                if (!notesSearch) return;
+
+                notesSearch.value = "";
+
+                renderNotes();
+
+                notesSearch.focus();
+
+            }
+        );
+
+    }
+
+
+    // =========================================================
+    // ESCAPE HTML
+    // =========================================================
+
+    function escapeNotesHTML(text) {
+
+        return String(text || "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    function escapeNotesAttribute(text) {
+
+        return escapeNotesHTML(text);
+
+    }
+
+
+    // =========================================================
+    // INITIAL LOAD
+    // =========================================================
+
+    renderNotes();
+
+})();
+

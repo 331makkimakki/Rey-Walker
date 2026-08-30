@@ -4454,3 +4454,670 @@ margin-bottom:12px;
 
 }
 
+
+```css
+/* =========================================================
+   FUNDS / LINKS / NOTES
+   ========================================================= */
+
+/* Common layout */
+#funds,
+#links,
+#notes {
+    width: 100%;
+}
+
+#funds .section-content,
+#links .section-content,
+#notes .section-content {
+    margin-top: 30px;
+    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+}
+
+#funds .section-content h2,
+#links .section-content h2,
+#notes .section-content h2 {
+    margin: 0 0 10px;
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    color: #fff;
+}
+
+#funds .section-content p,
+#links .section-content p,
+#notes .section-content p {
+    margin: 0;
+    color: #999;
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   FUNDS
+   ========================================================= */
+
+#funds .section-content {
+    min-height: 300px;
+}
+
+
+/* =========================================================
+   LINKS
+   ========================================================= */
+
+#links .section-content {
+    min-height: 300px;
+}
+
+
+/* =========================================================
+   NOTES
+   ========================================================= */
+
+#notes .section-content {
+    min-height: 300px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    #funds .section-content,
+    #links .section-content,
+    #notes .section-content {
+        padding: 18px;
+        margin-top: 20px;
+    }
+
+    #funds .section-content h2,
+    #links .section-content h2,
+    #notes .section-content h2 {
+        font-size: 23px;
+    }
+
+}
+```
+
+
+
+```css
+/* =========================================================
+   GOOGLE KEEP STYLE NOTES - DARK MODE
+========================================================= */
+
+.keep-workspace {
+    width: 100%;
+    margin-top: 30px;
+    background: #111214;
+    border: 1px solid #292b30;
+    border-radius: 18px;
+    overflow: hidden;
+    color: #e8eaed;
+    min-height: 650px;
+}
+
+
+/* =========================================================
+   TOP BAR
+========================================================= */
+
+.keep-topbar {
+    height: 72px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    padding: 0 25px;
+    border-bottom: 1px solid #292b30;
+    background: #17181b;
+}
+
+.keep-page-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 150px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.keep-logo {
+    color: #fbbc04;
+    font-size: 20px;
+}
+
+.keep-search {
+    flex: 1;
+    max-width: 650px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    background: #24262a;
+    border-radius: 10px;
+    padding: 0 14px;
+}
+
+.keep-search-icon {
+    font-size: 24px;
+    color: #9aa0a6;
+    margin-right: 10px;
+}
+
+.keep-search input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #fff;
+    font-size: 15px;
+}
+
+.keep-search input::placeholder {
+    color: #9aa0a6;
+}
+
+.keep-clear-search {
+    border: none;
+    background: transparent;
+    color: #aaa;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.keep-top-actions {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+}
+
+.keep-icon-btn {
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: #b9b9b9;
+    font-size: 21px;
+    cursor: pointer;
+}
+
+.keep-icon-btn:hover {
+    background: #292b30;
+    color: #fff;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.keep-main {
+    display: flex;
+    min-height: 575px;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.keep-sidebar {
+    width: 225px;
+    flex-shrink: 0;
+    padding: 20px 12px;
+    border-right: 1px solid #292b30;
+    background: #151619;
+}
+
+.keep-side-item {
+    width: 100%;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 0 18px;
+    margin-bottom: 4px;
+    border: none;
+    border-radius: 0 25px 25px 0;
+    background: transparent;
+    color: #bfc1c5;
+    font-size: 14px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.keep-side-item:hover {
+    background: #24262a;
+    color: #fff;
+}
+
+.keep-side-item.active {
+    background: #332f20;
+    color: #fff;
+}
+
+.keep-side-item span:first-child {
+    width: 22px;
+    text-align: center;
+}
+
+.keep-sidebar-title {
+    margin: 25px 18px 10px;
+    color: #777b82;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+
+.keep-sidebar-bottom {
+    margin-top: 30px;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.keep-content {
+    flex: 1;
+    min-width: 0;
+    padding: 30px;
+}
+
+
+/* =========================================================
+   CREATE NOTE
+========================================================= */
+
+.keep-create-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 35px;
+}
+
+.keep-create {
+    width: 100%;
+    max-width: 650px;
+    background: #202124;
+    border: 1px solid #303134;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.25);
+    overflow: hidden;
+}
+
+.keep-create input,
+.keep-create textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #fff;
+    padding: 16px 18px 8px;
+    font-family: inherit;
+}
+
+.keep-create input {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.keep-create textarea {
+    min-height: 70px;
+    resize: vertical;
+    font-size: 15px;
+    padding-top: 10px;
+}
+
+.keep-create input::placeholder,
+.keep-create textarea::placeholder {
+    color: #9aa0a6;
+}
+
+
+/* CATEGORY */
+
+.keep-create-category {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 18px 12px;
+    color: #9aa0a6;
+    font-size: 12px;
+}
+
+.keep-create-category select {
+    border: 1px solid #3a3c40;
+    border-radius: 6px;
+    background: #292a2d;
+    color: #eee;
+    padding: 6px 10px;
+    outline: none;
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   CREATE FOOTER
+========================================================= */
+
+.keep-create-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    border-top: 1px solid #303134;
+}
+
+.keep-palette {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.keep-color {
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.keep-color:hover {
+    transform: scale(1.15);
+}
+
+.keep-color.selected {
+    border-color: #fff;
+    box-shadow: 0 0 0 2px #555;
+}
+
+.keep-add-btn {
+    border: none;
+    border-radius: 6px;
+    padding: 9px 17px;
+    background: #fbbc04;
+    color: #111;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.keep-add-btn:hover {
+    filter: brightness(1.1);
+}
+
+
+/* =========================================================
+   NOTES GRID
+========================================================= */
+
+.keep-notes-area {
+    width: 100%;
+}
+
+.keep-notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 18px;
+    align-items: start;
+}
+
+
+/* =========================================================
+   NOTE CARD
+========================================================= */
+
+.keep-note {
+    position: relative;
+    min-height: 145px;
+    padding: 18px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,.08);
+    color: #202124;
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+    overflow: hidden;
+}
+
+.keep-note:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(0,0,0,.35);
+}
+
+.keep-note-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    word-break: break-word;
+}
+
+.keep-note-body {
+    font-size: 14px;
+    line-height: 1.55;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   NOTE COLORS
+========================================================= */
+
+.keep-white {
+    background: #f5f5f5;
+}
+
+.keep-red {
+    background: #f28b82;
+}
+
+.keep-orange {
+    background: #fbbc04;
+}
+
+.keep-yellow {
+    background: #fff475;
+}
+
+.keep-green {
+    background: #ccff90;
+}
+
+.keep-blue {
+    background: #a7ffeb;
+}
+
+.keep-purple {
+    background: #d7aefb;
+}
+
+.keep-pink {
+    background: #fdcfe8;
+}
+
+
+/* =========================================================
+   NOTE ACTIONS
+========================================================= */
+
+.keep-note-actions {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    display: flex;
+    gap: 4px;
+    opacity: 0;
+    transition: .2s;
+}
+
+.keep-note:hover .keep-note-actions {
+    opacity: 1;
+}
+
+.keep-note-actions button {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0,0,0,.15);
+    color: #222;
+    cursor: pointer;
+}
+
+.keep-note-actions button:hover {
+    background: rgba(0,0,0,.25);
+}
+
+
+/* =========================================================
+   EDIT MODE
+========================================================= */
+
+.keep-note.editing {
+    cursor: default;
+}
+
+.keep-edit-title,
+.keep-edit-body {
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #202124;
+    font-family: inherit;
+}
+
+.keep-edit-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.keep-edit-body {
+    min-height: 100px;
+    resize: vertical;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.keep-empty {
+    grid-column: 1 / -1;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #777b82;
+    gap: 12px;
+}
+
+.keep-empty-icon {
+    font-size: 48px;
+    opacity: .6;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .keep-sidebar {
+        width: 70px;
+    }
+
+    .keep-side-item {
+        justify-content: center;
+        padding: 0;
+        border-radius: 50%;
+    }
+
+    .keep-side-item span:last-child,
+    .keep-sidebar-title {
+        display: none;
+    }
+
+    .keep-content {
+        padding: 18px;
+    }
+
+    .keep-topbar {
+        gap: 10px;
+    }
+
+    .keep-page-title {
+        min-width: auto;
+    }
+
+    .keep-page-title span:last-child {
+        display: none;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .keep-search {
+        max-width: none;
+    }
+
+    .keep-top-actions {
+        display: none;
+    }
+
+    .keep-create-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+}
+```
+
+
+// =====================================================
+// CLICK NOTE CARD = ZOOM
+// =====================================================
+
+card.addEventListener("click", function(e) {
+
+    // Ayaw zoom kung Edit/Delete ang gi-click
+    if (e.target.closest(".keep-note-actions")) {
+        return;
+    }
+
+    // Zoom this note
+    card.classList.add("note-zoomed");
+
+});
+
+```css
+/* EXISTING NOTE ZOOM */
+
+.keep-note.note-zoomed {
+    position: fixed !important;
+    top: 50%;
+    left: 50%;
+    width: min(700px, 90vw);
+    max-height: 80vh;
+    transform: translate(-50%, -50%) !important;
+    z-index: 9999;
+    overflow-y: auto;
+}
+```
+
+
