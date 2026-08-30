@@ -745,13 +745,9 @@ document.addEventListener("DOMContentLoaded", () => {
 // REYWALKER NOTES
 // =========================================================
 
-import { db } from "./firebase.js";
 
-import {
-    doc,
-    getDoc,
-    setDoc
-} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
+
+const noteFirebase = import("./note.js");
 
 (function () {
 
@@ -783,19 +779,16 @@ import {
     // SAVE NOTES
     // ---------------------------------------------------------
 
-    async function saveNotes() {
+async function saveNotes() {
 
     localStorage.setItem(
         "reywalkerNotes",
         JSON.stringify(notesData)
     );
 
-    await setDoc(
-        doc(db, "notes", "reywalkerNotes"),
-        {
-            notes: notesData
-        }
-    );
+    const { saveNotesToFirebase } = await noteFirebase;
+
+    await saveNotesToFirebase(notesData);
 
 }
 
@@ -805,40 +798,36 @@ import {
 
     async function loadNotesFromFirebase() {
 
-        try {
+    try {
 
-            const noteDoc = await getDoc(
-                doc(db, "notes", "reywalkerNotes")
+        const { loadNotesFromFirebase: loadFromFirebase } =
+            await noteFirebase;
+
+        const firebaseNotes = await loadFromFirebase();
+
+        if (Array.isArray(firebaseNotes)) {
+
+            notesData = firebaseNotes;
+
+            localStorage.setItem(
+                "reywalkerNotes",
+                JSON.stringify(notesData)
             );
 
-            if (noteDoc.exists()) {
-
-                const data = noteDoc.data();
-
-                if (Array.isArray(data.notes)) {
-
-                    notesData = data.notes;
-
-                    localStorage.setItem(
-                        "reywalkerNotes",
-                        JSON.stringify(notesData)
-                    );
-
-                    renderNotes();
-                    
-
-                }
-
-            }
-
-        } catch (error) {
-
-            console.error("Firebase Notes Load Error:", error);
+            renderNotes();
 
         }
 
+    } catch (error) {
+
+        console.error(
+            "Firebase Notes Load Error:",
+            error
+        );
+
     }
 
+}
     // ---------------------------------------------------------
     // ESCAPE HTML
     // ---------------------------------------------------------
@@ -1687,6 +1676,73 @@ import {
 
     }
 
+// ---------------------------------------------------------
+// CUSTOM DELETE CONFIRMATION
+// ---------------------------------------------------------
+
+let noteToDeleteIndex = null;
+
+function showNoteDeleteConfirm(index) {
+
+    noteToDeleteIndex = index;
+
+    const overlay =
+        document.getElementById("noteConfirmOverlay");
+
+    if (overlay) {
+        overlay.classList.add("active");
+    }
+
+}
+
+function closeNoteDeleteConfirm() {
+
+    noteToDeleteIndex = null;
+
+    const overlay =
+        document.getElementById("noteConfirmOverlay");
+
+    if (overlay) {
+        overlay.classList.remove("active");
+    }
+
+}
+
+document.addEventListener("click", function (e) {
+
+    if (e.target.id === "noteConfirmCancel") {
+
+        closeNoteDeleteConfirm();
+
+    }
+
+    if (e.target.id === "noteConfirmDelete") {
+
+        const index = noteToDeleteIndex;
+
+        closeNoteDeleteConfirm();
+
+        if (index === null) return;
+
+        const note = notesData[index];
+
+        if (!note) return;
+
+        note.trashed = true;
+        note.archived = false;
+
+        saveNotes();
+
+        renderNotes(
+            notesSearch
+                ? notesSearch.value
+                : ""
+        );
+
+    }
+
+});
+
     // ---------------------------------------------------------
     // MOVE TO TRASH
     // ---------------------------------------------------------
@@ -1697,11 +1753,8 @@ import {
 
         if (!note) return;
 
-        if (
-            !confirm("Move this note to Trash?")
-        ) {
-            return;
-        }
+        showNoteDeleteConfirm(index);
+return;
 
         note.trashed = true;
         note.archived = false;

@@ -3484,7 +3484,42 @@ if(localStorage.getItem("isLoggedIn") !== "true"){
 
 
 
+<!-- NOTE DELETE CONFIRMATION -->
+<div id="noteConfirmOverlay" class="note-confirm-overlay">
 
+    <div class="note-confirm-box">
+
+        <div class="note-confirm-icon">🗑️</div>
+
+        <div class="note-confirm-title">
+            Move to Trash?
+        </div>
+
+        <div class="note-confirm-text">
+            Are you sure you want to move this note to Trash?
+        </div>
+
+        <div class="note-confirm-actions">
+
+            <button
+                type="button"
+                id="noteConfirmCancel"
+                class="note-confirm-cancel">
+                Cancel
+            </button>
+
+            <button
+                type="button"
+                id="noteConfirmDelete"
+                class="note-confirm-delete">
+                Delete
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
                 
 
         <!-- Footer -->
@@ -3494,7 +3529,7 @@ if(localStorage.getItem("isLoggedIn") !== "true"){
 
 </div>
 
-<script type="module" src="templatemo-nexa-scripts.js"></script>
+<script src="templatemo-nexa-scripts.js"></script>
 
 <script type="module">
 import {

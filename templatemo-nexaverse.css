@@ -5244,3 +5244,113 @@ margin-bottom:12px;
     visibility: hidden !important;
     pointer-events: none !important;
 }
+
+
+/* =========================================================
+   NOTES DELETE CONFIRMATION
+   ========================================================= */
+
+.note-confirm-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(5px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+}
+
+.note-confirm-overlay.active {
+    display: flex;
+}
+
+.note-confirm-box {
+    width: min(380px, calc(100% - 40px));
+
+    background: rgba(18,18,18,.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border-radius: 20px;
+
+    border: 1px solid rgba(0,210,106,.25);
+
+    box-shadow:
+        0 0 30px rgba(0,210,106,.15);
+
+    padding: 25px;
+
+    text-align: center;
+
+    animation: pop .35s ease;
+}
+
+.note-confirm-icon {
+    width: 52px;
+    height: 52px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    background: #f1f1f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+}
+
+.note-confirm-title {
+    font-size: 19px;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 8px;
+}
+
+.note-confirm-text {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.5;
+    margin-bottom: 22px;
+}
+
+.note-confirm-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.note-confirm-actions button {
+    flex: 1;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.note-confirm-cancel {
+    background: #eeeeee;
+    color: #333;
+}
+
+.note-confirm-delete {
+    background: #222;
+    color: white;
+}
+
+.note-confirm-actions button:hover {
+    transform: translateY(-1px);
+    opacity: 0.9;
+}
+
+@keyframes noteConfirmPop {
+    from {
+        opacity: 0;
+        transform: scale(0.94);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
