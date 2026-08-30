@@ -755,16 +755,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const notesSearch = document.getElementById("notesSearch");
     const clearNotesSearch = document.getElementById("clearNotesSearch");
 
+    const sideItems = document.querySelectorAll(".keep-side-item");
+
+    // ---------------------------------------------------------
+    // LOAD EXISTING NOTES
+    // ---------------------------------------------------------
+
     let notesData =
         JSON.parse(localStorage.getItem("reywalkerNotes")) || [];
 
     let selectedNoteColor = "white";
     let selectedCategory = "all";
 
-
-    // =========================================================
-    // SAVE
-    // =========================================================
+    // ---------------------------------------------------------
+    // SAVE NOTES
+    // ---------------------------------------------------------
 
     function saveNotes() {
 
@@ -775,10 +780,55 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+    // ---------------------------------------------------------
+    // ESCAPE HTML
+    // ---------------------------------------------------------
 
-    // =========================================================
+    function escapeNotesHTML(text) {
+
+        return String(text || "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+    function escapeNotesAttribute(text) {
+
+        return escapeNotesHTML(text);
+
+    }
+
+    // ---------------------------------------------------------
+    // CLOSE ALL ZOOM
+    // ---------------------------------------------------------
+
+    function closeAllZoom() {
+
+        document
+            .querySelectorAll(".keep-note.note-zoomed")
+            .forEach(card => {
+
+                card.classList.remove("note-zoomed");
+
+            });
+
+        const overlay =
+            document.querySelector(".note-zoom-overlay");
+
+        if (overlay) {
+
+            overlay.classList.remove("active");
+
+        }
+
+    }
+
+    // ---------------------------------------------------------
     // ADD NOTE
-    // =========================================================
+    // ---------------------------------------------------------
 
     if (addNoteBtn) {
 
@@ -796,7 +846,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 ? newNoteCategory.value
                 : "personal";
 
-
             if (!title && !text) {
 
                 if (newNoteText) {
@@ -805,7 +854,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 return;
             }
-
 
             const note = {
 
@@ -817,10 +865,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 category: category,
 
-                color: selectedNoteColor
+                color: selectedNoteColor,
+
+                archived: false,
+
+                trashed: false
 
             };
-
 
             notesData.unshift(note);
 
@@ -832,28 +883,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     : ""
             );
 
-            // =========================================================
-// NOTE ZOOM CLOSE
-// =========================================================
-
-const noteZoomModal =
-    document.getElementById("noteZoomModal");
-
-const closeNoteZoom =
-    document.getElementById("closeNoteZoom");
-
-if (closeNoteZoom) {
-
-    closeNoteZoom.addEventListener("click", function () {
-
-        noteZoomModal.classList.remove("active");
-
-    });
-
-}
-
-
-            // CLEAR INPUTS
+            // Clear inputs
 
             if (newNoteTitle) {
                 newNoteTitle.value = "";
@@ -863,23 +893,23 @@ if (closeNoteZoom) {
                 newNoteText.value = "";
             }
 
-
-            // RESET CATEGORY
+            // Reset category
 
             if (newNoteCategory) {
                 newNoteCategory.value = "personal";
             }
 
-
-            // RESET COLOR
+            // Reset color
 
             selectedNoteColor = "white";
 
             document
                 .querySelectorAll(".keep-color")
-                .forEach(btn =>
-                    btn.classList.remove("selected")
-                );
+                .forEach(btn => {
+
+                    btn.classList.remove("selected");
+
+                });
 
             const white =
                 document.querySelector(
@@ -894,10 +924,9 @@ if (closeNoteZoom) {
 
     }
 
-
-    // =========================================================
+    // ---------------------------------------------------------
     // COLOR
-    // =========================================================
+    // ---------------------------------------------------------
 
     document
         .querySelectorAll(".keep-create .keep-color")
@@ -920,29 +949,30 @@ if (closeNoteZoom) {
 
         });
 
+    // ---------------------------------------------------------
+    // SIDEBAR
+    // ---------------------------------------------------------
 
-    // =========================================================
-    // CATEGORY
-    // =========================================================
+    sideItems.forEach(button => {
 
-    document
-        .querySelectorAll(".keep-side-item[data-category]")
-        .forEach(button => {
+        button.addEventListener("click", function () {
 
-            button.addEventListener("click", function () {
+            const category =
+                this.dataset.category;
 
-                document
-                    .querySelectorAll(
-                        ".keep-side-item[data-category]"
-                    )
-                    .forEach(btn =>
-                        btn.classList.remove("active")
-                    );
+            // Normal category buttons
+
+            if (category) {
+
+                closeAllZoom();
+
+                sideItems.forEach(btn =>
+                    btn.classList.remove("active")
+                );
 
                 this.classList.add("active");
 
-                selectedCategory =
-                    this.dataset.category;
+                selectedCategory = category;
 
                 renderNotes(
                     notesSearch
@@ -950,18 +980,70 @@ if (closeNoteZoom) {
                         : ""
                 );
 
-            });
+                return;
+            }
+
+            // ARCHIVE
+
+            const text =
+                this.innerText.trim().toLowerCase();
+
+            if (text.includes("archive")) {
+
+                closeAllZoom();
+
+                sideItems.forEach(btn =>
+                    btn.classList.remove("active")
+                );
+
+                this.classList.add("active");
+
+                selectedCategory = "archive";
+
+                renderNotes(
+                    notesSearch
+                        ? notesSearch.value
+                        : ""
+                );
+
+                return;
+            }
+
+            // TRASH
+
+            if (text.includes("trash")) {
+
+                closeAllZoom();
+
+                sideItems.forEach(btn =>
+                    btn.classList.remove("active")
+                );
+
+                this.classList.add("active");
+
+                selectedCategory = "trash";
+
+                renderNotes(
+                    notesSearch
+                        ? notesSearch.value
+                        : ""
+                );
+
+            }
 
         });
 
+    });
 
-    // =========================================================
-    // RENDER
-    // =========================================================
+    // ---------------------------------------------------------
+    // RENDER NOTES
+    // ---------------------------------------------------------
 
     function renderNotes(searchText = "") {
 
         if (!notesGrid) return;
+
+        closeAllZoom();
 
         notesGrid.innerHTML = "";
 
@@ -970,41 +1052,99 @@ if (closeNoteZoom) {
                 .toLowerCase()
                 .trim();
 
-
         const filteredNotes =
             notesData.filter(note => {
 
-                const categoryMatch =
-                    selectedCategory === "all" ||
-                    note.category === selectedCategory;
+                const isArchived =
+                    note.archived === true;
+
+                const isTrashed =
+                    note.trashed === true;
+
+                // ARCHIVE
+
+                if (selectedCategory === "archive") {
+
+                    if (!isArchived || isTrashed) {
+                        return false;
+                    }
+
+                }
+
+                // TRASH
+
+                else if (selectedCategory === "trash") {
+
+                    if (!isTrashed) {
+                        return false;
+                    }
+
+                }
+
+                // NORMAL
+
+                else {
+
+                    if (isArchived || isTrashed) {
+                        return false;
+                    }
+
+                    if (
+                        selectedCategory !== "all" &&
+                        note.category !== selectedCategory
+                    ) {
+                        return false;
+                    }
+
+                }
+
+                // SEARCH
 
                 const searchMatch =
+
                     String(note.title || "")
                         .toLowerCase()
-                        .includes(search) ||
+                        .includes(search)
+
+                    ||
 
                     String(note.text || "")
                         .toLowerCase()
                         .includes(search);
 
-
-                return categoryMatch && searchMatch;
+                return searchMatch;
 
             });
 
+        // -----------------------------------------------------
+        // EMPTY
+        // -----------------------------------------------------
 
         if (filteredNotes.length === 0) {
+
+            let message = "No notes yet";
+
+            if (selectedCategory === "archive") {
+                message = "No archived notes";
+            }
+
+            if (selectedCategory === "trash") {
+                message = "Trash is empty";
+            }
 
             notesGrid.innerHTML = `
                 <div class="keep-empty">
                     <div class="keep-empty-icon">📝</div>
-                    <div>No notes yet</div>
+                    <div>${message}</div>
                 </div>
             `;
 
             return;
         }
 
+        // -----------------------------------------------------
+        // CREATE CARDS
+        // -----------------------------------------------------
 
         filteredNotes.forEach(note => {
 
@@ -1013,95 +1153,338 @@ if (closeNoteZoom) {
                     n => n.id === note.id
                 );
 
-
             const card =
                 document.createElement("div");
-
 
             card.className =
                 "keep-note keep-" +
                 (note.color || "white");
 
-
             card.dataset.id =
                 note.id;
 
+            // -------------------------------------------------
+            // NORMAL NOTE
+            // -------------------------------------------------
 
-            card.innerHTML = `
+            if (
+                selectedCategory !== "trash" &&
+                selectedCategory !== "archive"
+            ) {
 
-                <div class="keep-note-title">
-                    ${escapeNotesHTML(note.title)}
-                </div>
+                card.innerHTML = `
 
-                <div class="keep-note-body">
-                    ${escapeNotesHTML(note.text)}
-                </div>
+                    <div class="keep-note-title">
+                        ${escapeNotesHTML(note.title)}
+                    </div>
 
-                <div class="keep-note-actions">
+                    <div class="keep-note-body">
+                        ${escapeNotesHTML(note.text)}
+                    </div>
 
-                    <button
-                        type="button"
-                        title="Edit">
-                        ✎
-                    </button>
+                    <div class="keep-note-actions">
 
-                    <button
-                        type="button"
-                        title="Delete">
-                        🗑
-                    </button>
+                        <button
+                            type="button"
+                            class="keep-edit-btn"
+                            title="Edit">
+                            ✎
+                        </button>
 
-                </div>
+                        <button
+                            type="button"
+                            class="keep-archive-btn"
+                            title="Archive">
+                            🗄
+                        </button>
 
-            `;
+                        <button
+                            type="button"
+                            class="keep-delete-btn"
+                            title="Move to Trash">
+                            🗑
+                        </button>
 
+                    </div>
 
-            const buttons =
-                card.querySelectorAll(
-                    ".keep-note-actions button"
+                `;
+
+            }
+
+            // -------------------------------------------------
+            // ARCHIVED NOTE
+            // -------------------------------------------------
+
+            else if (
+                selectedCategory === "archive"
+            ) {
+
+                card.innerHTML = `
+
+                    <div class="keep-note-title">
+                        ${escapeNotesHTML(note.title)}
+                    </div>
+
+                    <div class="keep-note-body">
+                        ${escapeNotesHTML(note.text)}
+                    </div>
+
+                    <div class="keep-note-actions">
+
+                        <button
+                            type="button"
+                            class="keep-restore-btn"
+                            title="Restore">
+                            ↩
+                        </button>
+
+                        <button
+                            type="button"
+                            class="keep-delete-btn"
+                            title="Move to Trash">
+                            🗑
+                        </button>
+
+                    </div>
+
+                `;
+
+            }
+
+            // -------------------------------------------------
+            // TRASH NOTE
+            // -------------------------------------------------
+
+            else {
+
+                card.innerHTML = `
+
+                    <div class="keep-note-title">
+                        ${escapeNotesHTML(note.title)}
+                    </div>
+
+                    <div class="keep-note-body">
+                        ${escapeNotesHTML(note.text)}
+                    </div>
+
+                    <div class="keep-note-actions">
+
+                        <button
+                            type="button"
+                            class="keep-restore-btn"
+                            title="Restore">
+                            ↩
+                        </button>
+
+                        <button
+                            type="button"
+                            class="keep-permanent-delete-btn"
+                            title="Delete Permanently">
+                            🗑
+                        </button>
+
+                    </div>
+
+                `;
+
+            }
+
+            // -------------------------------------------------
+            // ZOOM NOTE
+            // -------------------------------------------------
+
+            card.addEventListener("click", function (e) {
+
+                // Ayaw zoom kung action button
+                if (
+                    e.target.closest(".keep-note-actions")
+                ) {
+                    return;
+                }
+
+                // Close other notes
+                document
+                    .querySelectorAll(".keep-note.note-zoomed")
+                    .forEach(otherCard => {
+
+                        otherCard.classList.remove(
+                            "note-zoomed"
+                        );
+
+                    });
+
+                // Get/create overlay
+                let overlay =
+                    document.querySelector(
+                        ".note-zoom-overlay"
+                    );
+
+                if (!overlay) {
+
+                    overlay =
+                        document.createElement("div");
+
+                    overlay.className =
+                        "note-zoom-overlay";
+
+                    document.body.appendChild(
+                        overlay
+                    );
+
+                    overlay.addEventListener(
+                        "click",
+                        function () {
+
+                            closeAllZoom();
+
+                        }
+                    );
+
+                }
+
+                // Zoom selected note
+                card.classList.add(
+                    "note-zoomed"
                 );
 
+                // Dark background
+                overlay.classList.add(
+                    "active"
+                );
 
+            });
+
+            // -------------------------------------------------
             // EDIT
+            // -------------------------------------------------
 
-            buttons[0].addEventListener(
-                "click",
-                function (e) {
+            const editBtn =
+                card.querySelector(
+                    ".keep-edit-btn"
+                );
 
-                    e.stopPropagation();
+            if (editBtn) {
 
-                    editNote(realIndex);
+                editBtn.addEventListener(
+                    "click",
+                    function (e) {
 
-                }
-            );
+                        e.stopPropagation();
 
-// =====================================================
-// CLICK EXISTING NOTE = ZOOM
-// =====================================================
+                        closeAllZoom();
 
-card.addEventListener("click", function(e) {
+                        editNote(realIndex);
 
-    if (e.target.closest(".keep-note-actions")) {
-        return;
-    }
+                    }
+                );
 
-    card.classList.toggle("note-zoomed");
+            }
 
-});
+            // -------------------------------------------------
+            // ARCHIVE
+            // -------------------------------------------------
 
+            const archiveBtn =
+                card.querySelector(
+                    ".keep-archive-btn"
+                );
+
+            if (archiveBtn) {
+
+                archiveBtn.addEventListener(
+                    "click",
+                    function (e) {
+
+                        e.stopPropagation();
+
+                        closeAllZoom();
+
+                        archiveNote(realIndex);
+
+                    }
+                );
+
+            }
+
+            // -------------------------------------------------
+            // RESTORE
+            // -------------------------------------------------
+
+            const restoreBtn =
+                card.querySelector(
+                    ".keep-restore-btn"
+                );
+
+            if (restoreBtn) {
+
+                restoreBtn.addEventListener(
+                    "click",
+                    function (e) {
+
+                        e.stopPropagation();
+
+                        closeAllZoom();
+
+                        restoreNote(realIndex);
+
+                    }
+                );
+
+            }
+
+            // -------------------------------------------------
             // DELETE
+            // -------------------------------------------------
 
-            buttons[1].addEventListener(
-                "click",
-                function (e) {
+            const deleteBtn =
+                card.querySelector(
+                    ".keep-delete-btn"
+                );
 
-                    e.stopPropagation();
+            if (deleteBtn) {
 
-                    deleteNote(realIndex);
+                deleteBtn.addEventListener(
+                    "click",
+                    function (e) {
 
-                }
-            );
+                        e.stopPropagation();
 
+                        closeAllZoom();
+
+                        moveToTrash(realIndex);
+
+                    }
+                );
+
+            }
+
+            // -------------------------------------------------
+            // PERMANENT DELETE
+            // -------------------------------------------------
+
+            const permanentDeleteBtn =
+                card.querySelector(
+                    ".keep-permanent-delete-btn"
+                );
+
+            if (permanentDeleteBtn) {
+
+                permanentDeleteBtn.addEventListener(
+                    "click",
+                    function (e) {
+
+                        e.stopPropagation();
+
+                        closeAllZoom();
+
+                        permanentDeleteNote(
+                            realIndex
+                        );
+
+                    }
+                );
+
+            }
 
             notesGrid.appendChild(card);
 
@@ -1109,19 +1492,15 @@ card.addEventListener("click", function(e) {
 
     }
 
-
-
-
-    // =========================================================
-    // EDIT
-    // =========================================================
+    // ---------------------------------------------------------
+    // EDIT NOTE
+    // ---------------------------------------------------------
 
     function editNote(index) {
 
         const note = notesData[index];
 
         if (!note) return;
-
 
         const card =
             document.querySelector(
@@ -1130,6 +1509,9 @@ card.addEventListener("click", function(e) {
 
         if (!card) return;
 
+        closeAllZoom();
+
+        card.classList.add("editing");
 
         card.innerHTML = `
 
@@ -1154,29 +1536,37 @@ card.addEventListener("click", function(e) {
 
                 <button
                     type="button"
-                    class="keep-delete-btn">
-                    🗑
+                    class="keep-cancel-edit-btn">
+                    ×
                 </button>
 
             </div>
 
         `;
 
-
         const titleInput =
-            card.querySelector(".keep-edit-title");
+            card.querySelector(
+                ".keep-edit-title"
+            );
 
         const bodyInput =
-            card.querySelector(".keep-edit-body");
+            card.querySelector(
+                ".keep-edit-body"
+            );
 
+        // SAVE
 
-        card.querySelector(".keep-save-btn")
-            .addEventListener("click", function (e) {
+        card.querySelector(
+            ".keep-save-btn"
+        ).addEventListener(
+            "click",
+            function (e) {
 
                 e.stopPropagation();
 
                 notesData[index].title =
-                    titleInput.value.trim() || "Untitled";
+                    titleInput.value.trim() ||
+                    "Untitled";
 
                 notesData[index].text =
                     bodyInput.value.trim();
@@ -1189,34 +1579,135 @@ card.addEventListener("click", function(e) {
                         : ""
                 );
 
-            });
+            }
+        );
 
+        // CANCEL
 
-        card.querySelector(".keep-delete-btn")
-            .addEventListener("click", function (e) {
+        card.querySelector(
+            ".keep-cancel-edit-btn"
+        ).addEventListener(
+            "click",
+            function (e) {
 
                 e.stopPropagation();
 
-                deleteNote(index);
+                renderNotes(
+                    notesSearch
+                        ? notesSearch.value
+                        : ""
+                );
 
-            });
-
+            }
+        );
 
         titleInput.focus();
 
     }
 
+    // ---------------------------------------------------------
+    // ARCHIVE
+    // ---------------------------------------------------------
 
-    // =========================================================
-    // DELETE
-    // =========================================================
+    function archiveNote(index) {
 
-    function deleteNote(index) {
+        const note = notesData[index];
 
-        if (!confirm("Delete this note?")) {
+        if (!note) return;
+
+        note.archived = true;
+        note.trashed = false;
+
+        saveNotes();
+
+        renderNotes(
+            notesSearch
+                ? notesSearch.value
+                : ""
+        );
+
+    }
+
+    // ---------------------------------------------------------
+    // MOVE TO TRASH
+    // ---------------------------------------------------------
+
+    function moveToTrash(index) {
+
+        const note = notesData[index];
+
+        if (!note) return;
+
+        if (
+            !confirm("Move this note to Trash?")
+        ) {
             return;
         }
 
+        note.trashed = true;
+        note.archived = false;
+
+        saveNotes();
+
+        renderNotes(
+            notesSearch
+                ? notesSearch.value
+                : ""
+        );
+
+    }
+
+    // ---------------------------------------------------------
+    // RESTORE
+    // ---------------------------------------------------------
+
+    function restoreNote(index) {
+
+        const note = notesData[index];
+
+        if (!note) return;
+
+        note.trashed = false;
+        note.archived = false;
+
+        saveNotes();
+
+        selectedCategory = "all";
+
+        sideItems.forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+        const notesButton =
+            document.querySelector(
+                '.keep-side-item[data-category="all"]'
+            );
+
+        if (notesButton) {
+            notesButton.classList.add("active");
+        }
+
+        renderNotes(
+            notesSearch
+                ? notesSearch.value
+                : ""
+        );
+
+    }
+
+    // ---------------------------------------------------------
+    // PERMANENT DELETE
+    // ---------------------------------------------------------
+
+    function permanentDeleteNote(index) {
+
+        if (
+            !confirm(
+                "Delete this note permanently?"
+            )
+        ) {
+            return;
+        }
 
         notesData.splice(index, 1);
 
@@ -1230,10 +1721,9 @@ card.addEventListener("click", function(e) {
 
     }
 
-
-    // =========================================================
+    // ---------------------------------------------------------
     // SEARCH
-    // =========================================================
+    // ---------------------------------------------------------
 
     if (notesSearch) {
 
@@ -1248,10 +1738,9 @@ card.addEventListener("click", function(e) {
 
     }
 
-
-    // =========================================================
+    // ---------------------------------------------------------
     // CLEAR SEARCH
-    // =========================================================
+    // ---------------------------------------------------------
 
     if (clearNotesSearch) {
 
@@ -1272,35 +1761,103 @@ card.addEventListener("click", function(e) {
 
     }
 
+    // ---------------------------------------------------------
+    // REFRESH
+    // ---------------------------------------------------------
 
-    // =========================================================
-    // ESCAPE HTML
-    // =========================================================
+    const refreshButton =
+        document.querySelector(
+            '.keep-icon-btn[title="Refresh"]'
+        );
 
-    function escapeNotesHTML(text) {
+    if (refreshButton) {
 
-        return String(text || "")
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
+        refreshButton.addEventListener(
+            "click",
+            function () {
+
+                closeAllZoom();
+
+                notesData =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "reywalkerNotes"
+                        )
+                    ) || [];
+
+                renderNotes(
+                    notesSearch
+                        ? notesSearch.value
+                        : ""
+                );
+
+            }
+        );
 
     }
 
+    // ---------------------------------------------------------
+    // SETTINGS
+    // ---------------------------------------------------------
 
-    function escapeNotesAttribute(text) {
+    const settingsButton =
+        document.querySelector(
+            '.keep-icon-btn[title="Settings"]'
+        );
 
-        return escapeNotesHTML(text);
+    if (settingsButton) {
+
+        settingsButton.addEventListener(
+            "click",
+            function () {
+
+                alert(
+                    "Notes Settings\n\n" +
+                    "• Your notes are saved automatically.\n" +
+                    "• Deleted notes go to Trash.\n" +
+                    "• Archived notes are stored in Archive."
+                );
+
+            }
+        );
 
     }
 
+    // ---------------------------------------------------------
+    // GLOBAL ESCAPE FOR ZOOM
+    // ---------------------------------------------------------
 
-    // =========================================================
+    document.addEventListener(
+        "keydown",
+        function (e) {
+
+            if (e.key === "Escape") {
+
+                closeAllZoom();
+
+            }
+
+        }
+    );
+
+    // ---------------------------------------------------------
+    // MAKE RENDER NOTES AVAILABLE GLOBALLY
+    // ---------------------------------------------------------
+
+    window.renderNotes = function () {
+
+        renderNotes(
+            notesSearch
+                ? notesSearch.value
+                : ""
+        );
+
+    };
+
+    // ---------------------------------------------------------
     // INITIAL LOAD
-    // =========================================================
+    // ---------------------------------------------------------
 
     renderNotes();
 
 })();
-
