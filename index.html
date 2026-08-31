@@ -3489,7 +3489,9 @@ if(localStorage.getItem("isLoggedIn") !== "true"){
 
     <div class="note-confirm-box">
 
-        <div class="note-confirm-icon">🗑️</div>
+        <div class="note-confirm-icon">
+    <img src="images/icons/TRASH.png" alt="Warning">
+</div>
 
         <div class="note-confirm-title">
             Move to Trash?
@@ -3513,6 +3515,45 @@ if(localStorage.getItem("isLoggedIn") !== "true"){
                 id="noteConfirmDelete"
                 class="note-confirm-delete">
                 Delete
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- PERMANENT DELETE CONFIRMATION -->
+<div id="permanentDeleteConfirmOverlay" class="note-confirm-overlay">
+
+    <div class="note-confirm-box">
+
+       <div class="note-confirm-icon">
+    <img src="images/icons/CAUTION.png" alt="Warning">
+</div>
+
+        <div class="note-confirm-title">
+            Delete Permanently?
+        </div>
+
+        <div class="note-confirm-text">
+            This note will be permanently deleted and cannot be recovered.
+        </div>
+
+        <div class="note-confirm-actions">
+
+            <button
+                type="button"
+                id="permanentDeleteConfirmCancel"
+                class="note-confirm-cancel">
+                Cancel
+            </button>
+
+            <button
+                type="button"
+                id="permanentDeleteConfirmDelete"
+                class="note-confirm-delete">
+                Delete Permanently
             </button>
 
         </div>

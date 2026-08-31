@@ -1807,19 +1807,79 @@ return;
 
     }
 
-    // ---------------------------------------------------------
-    // PERMANENT DELETE
-    // ---------------------------------------------------------
+// ---------------------------------------------------------
+// PERMANENT DELETE
+// ---------------------------------------------------------
 
-    function permanentDeleteNote(index) {
+let noteToPermanentDeleteIndex = null;
 
-        if (
-            !confirm(
-                "Delete this note permanently?"
-            )
-        ) {
-            return;
+function permanentDeleteNote(index) {
+
+    noteToPermanentDeleteIndex = index;
+
+    const overlay =
+        document.getElementById(
+            "permanentDeleteConfirmOverlay"
+        );
+
+    if (overlay) {
+        overlay.classList.add("active");
+    }
+
+}
+
+
+// ---------------------------------------------------------
+// PERMANENT DELETE CONFIRMATION
+// ---------------------------------------------------------
+
+document.addEventListener("click", function (e) {
+
+    // CANCEL
+    if (
+        e.target.id ===
+        "permanentDeleteConfirmCancel"
+    ) {
+
+        const overlay =
+            document.getElementById(
+                "permanentDeleteConfirmOverlay"
+            );
+
+        if (overlay) {
+            overlay.classList.remove("active");
         }
+
+        noteToPermanentDeleteIndex = null;
+
+    }
+
+
+    // CONFIRM DELETE
+    if (
+        e.target.id ===
+        "permanentDeleteConfirmDelete"
+    ) {
+
+        const index =
+            noteToPermanentDeleteIndex;
+
+        const overlay =
+            document.getElementById(
+                "permanentDeleteConfirmOverlay"
+            );
+
+        if (overlay) {
+            overlay.classList.remove("active");
+        }
+
+        noteToPermanentDeleteIndex = null;
+
+        if (index === null) return;
+
+        const note = notesData[index];
+
+        if (!note) return;
 
         notesData.splice(index, 1);
 
@@ -1832,6 +1892,8 @@ return;
         );
 
     }
+
+});
 
     // ---------------------------------------------------------
     // SEARCH
