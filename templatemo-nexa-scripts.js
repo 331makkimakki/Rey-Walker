@@ -2036,3 +2036,25 @@ renderNotes();
 loadNotesFromFirebase();
 
 })();
+
+
+// FOOTER REYWALKER → ABOUT
+const footerReyWalker = document.getElementById("footerReyWalker");
+
+if (footerReyWalker) {
+
+    footerReyWalker.addEventListener("click", function(e) {
+
+        e.preventDefault();
+
+        const aboutItem = document.querySelector(
+            '.menu-item[data-section="about"]'
+        );
+
+        if (aboutItem) {
+            aboutItem.click();
+        }
+
+    });
+
+}

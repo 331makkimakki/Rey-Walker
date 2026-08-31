@@ -111,8 +111,8 @@ document
     document.getElementById("password").value;
 
     if(
-        user==="ReyWalker" &&
-        pass==="makkimakki331"
+        user==="reywalker01" &&
+        pass==="makkinakaigit331"
 ){
 
     localStorage.setItem("isLoggedIn", "true");
