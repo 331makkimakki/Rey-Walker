@@ -27,11 +27,26 @@ menuItems.forEach(item => {
 
       const sectionId = item.dataset.section;
 
-      if(sectionId === "services"){
-          console.log("PIN OPEN");
-          document.getElementById("pinModal").classList.add("active");
-          return;
-      }
+      if(sectionId === "services" || sectionId === "notes"){
+
+    console.log("PIN OPEN:", sectionId);
+
+    const pinModal = document.getElementById("pinModal");
+
+    pinModal.dataset.targetSection = sectionId;
+
+    pinModal.classList.add("active");
+
+    const pinInput = document.getElementById("pinInput");
+
+    if(pinInput){
+        setTimeout(() => {
+            pinInput.focus();
+        }, 100);
+    }
+
+    return;
+}
 
       showSection(sectionId);
    });
@@ -274,6 +289,7 @@ document.addEventListener("keydown", function(e) {
 
 
 // PIN UNLOCK
+
 function unlockVault(){
 
     const pinInput = document.getElementById("pinInput");
@@ -281,18 +297,24 @@ function unlockVault(){
 
     if(pin === "1061"){
 
-        document.getElementById("pinModal").classList.remove("active");
+        const pinModal = document.getElementById("pinModal");
 
-        pinInput.value = ""; // Clear after success
+        const targetSection =
+            pinModal.dataset.targetSection || "services";
 
-        showSection("services");
+        pinModal.classList.remove("active");
+
+        pinInput.value = "";
+
+        delete pinModal.dataset.targetSection;
+
+        showSection(targetSection);
 
     } else {
 
         alert("Wrong PIN");
 
-        pinInput.value = ""; // Clear after wrong PIN
-
+        pinInput.value = "";
         pinInput.focus();
 
     }
