@@ -1226,9 +1226,9 @@ async function saveNotes() {
                         ${escapeNotesHTML(note.title)}
                     </div>
 
-                    <div class="keep-note-body">
-                        ${escapeNotesHTML(note.text)}
-                    </div>
+                    <div class="keep-note-body"> 
+    ${escapeNotesHTML(note.text.trimStart())}
+</div>
 
                     <div class="keep-note-actions">
 
