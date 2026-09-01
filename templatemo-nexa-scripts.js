@@ -590,9 +590,11 @@ saveService.onclick = () => {
 
     }
 
-    updateStatusCount();
+            updateStatusCount();
+    updateServiceSummary();
 
     serviceModal.style.display = "none";
+    serviceModal.classList.remove("active");
 
 };
 
@@ -629,6 +631,7 @@ window.addEventListener("load", async () => {
     await loadFirebaseServices();
 
     updateStatusCount();
+    updateServiceSummary();
 
 });
 
@@ -668,12 +671,101 @@ else if(value.includes("Overdue")){
 
     document.getElementById("completedCount").innerText = completed;
     document.getElementById("dueSoonCount").innerText = dueSoon;
-    document.getElementById("overdueCount").innerText = overdue;
+        document.getElementById("overdueCount").innerText = overdue;
 
 }
 
 
+// =========================
+// NMAX SERVICE SUMMARY
+// =========================
 
+function updateServiceSummary(){
+
+    const dueSoonBody = document.getElementById("summaryDueSoon");
+    const overdueBody = document.getElementById("summaryOverdue");
+
+    if(!dueSoonBody || !overdueBody) return;
+
+    dueSoonBody.innerHTML = "";
+    overdueBody.innerHTML = "";
+
+    let dueSoonCount = 0;
+    let overdueCount = 0;
+
+    document.querySelectorAll(".tab-content tbody tr").forEach(row => {
+
+        const cells = row.querySelectorAll("td");
+
+        if(cells.length < 8) return;
+
+        const name = cells[0].innerText.trim();
+        const status = cells[2].innerText.trim();
+        const nextOdo = cells[5].innerText.trim();
+        const nextDate = cells[6].innerText.trim();
+        const brand = cells[7].innerText.trim();
+
+        if(status.includes("Due Soon")){
+
+            const tr = document.createElement("tr");
+
+            tr.innerHTML = `
+                <td>${name}</td>
+                <td>${status}</td>
+                <td>${nextOdo}</td>
+                <td>${nextDate}</td>
+                <td>${brand}</td>
+            `;
+
+            dueSoonBody.appendChild(tr);
+            dueSoonCount++;
+
+        }
+
+        else if(status.includes("Overdue")){
+
+            const tr = document.createElement("tr");
+
+            tr.innerHTML = `
+                <td>${name}</td>
+                <td>${status}</td>
+                <td>${nextOdo}</td>
+                <td>${nextDate}</td>
+                <td>${brand}</td>
+            `;
+
+            overdueBody.appendChild(tr);
+            overdueCount++;
+
+        }
+
+    });
+
+    if(dueSoonCount === 0){
+
+        dueSoonBody.innerHTML = `
+            <tr>
+                <td colspan="5" class="summary-empty">
+                    No Due Soon services
+                </td>
+            </tr>
+        `;
+
+    }
+
+    if(overdueCount === 0){
+
+        overdueBody.innerHTML = `
+            <tr>
+                <td colspan="5" class="summary-empty">
+                    No Overdue services
+                </td>
+            </tr>
+        `;
+
+    }
+
+}
 
 
 const odoText = document.getElementById("currentOdo");
@@ -2079,3 +2171,4 @@ if (footerReyWalker) {
     });
 
 }
+
