@@ -872,29 +872,33 @@ async function saveNotes() {
     }
 
     // ---------------------------------------------------------
-    // CLOSE ALL ZOOM
-    // ---------------------------------------------------------
+// CLOSE ALL ZOOM
+// ---------------------------------------------------------
 
-    function closeAllZoom() {
+function closeAllZoom() {
 
-        document
-            .querySelectorAll(".keep-note.note-zoomed")
-            .forEach(card => {
+    document
+        .querySelectorAll(".keep-note.note-zoomed")
+        .forEach(card => {
 
-                card.classList.remove("note-zoomed");
+            // Ibalik ang card sa notes grid
+            if (card.parentElement !== notesGrid) {
+                notesGrid.appendChild(card);
+            }
 
-            });
+            card.classList.remove("note-zoomed");
+            card.classList.remove("editing");
 
-        const overlay =
-            document.querySelector(".note-zoom-overlay");
+        });
 
-        if (overlay) {
+    const overlay =
+        document.querySelector(".note-zoom-overlay");
 
-            overlay.classList.remove("active");
-
-        }
-
+    if (overlay) {
+        overlay.classList.remove("active");
     }
+
+}
 
     // ---------------------------------------------------------
     // ADD NOTE
@@ -1360,70 +1364,55 @@ async function saveNotes() {
             }
 
             // -------------------------------------------------
-            // ZOOM NOTE
-            // -------------------------------------------------
+// ZOOM NOTE
+// -------------------------------------------------
 
-            card.addEventListener("click", function (e) {
+card.addEventListener("click", function (e) {
 
-                // Ayaw zoom kung action button
-                if (
-                    e.target.closest(".keep-note-actions")
-                ) {
-                    return;
-                }
+     if (card.classList.contains("editing")) {
+        return;
+    }
 
-                // Close other notes
-                document
-                    .querySelectorAll(".keep-note.note-zoomed")
-                    .forEach(otherCard => {
+    // Ayaw zoom kung action button
+    if (e.target.closest(".keep-note-actions")) {
+        return;
+    }
 
-                        otherCard.classList.remove(
-                            "note-zoomed"
-                        );
+    // Close other zoomed notes
+    document
+        .querySelectorAll(".keep-note.note-zoomed")
+        .forEach(otherCard => {
+            otherCard.classList.remove("note-zoomed");
+        });
 
-                    });
+    // Get/create overlay
+    let overlay = document.querySelector(".note-zoom-overlay");
 
-                // Get/create overlay
-                let overlay =
-                    document.querySelector(
-                        ".note-zoom-overlay"
-                    );
+    if (!overlay) {
 
-                if (!overlay) {
+        overlay = document.createElement("div");
 
-                    overlay =
-                        document.createElement("div");
+        overlay.className = "note-zoom-overlay";
 
-                    overlay.className =
-                        "note-zoom-overlay";
+        document.body.appendChild(overlay);
 
-                    document.body.appendChild(
-                        overlay
-                    );
+        overlay.addEventListener("click", function () {
+            closeAllZoom();
+        });
+    }
 
-                    overlay.addEventListener(
-                        "click",
-                        function () {
+    // IMPORTANT:
+    // Move note directly to body so position: fixed
+    // will use the browser viewport, not the parent container.
+    document.body.appendChild(card);
 
-                            closeAllZoom();
+    // Zoom selected note
+    card.classList.add("note-zoomed");
 
-                        }
-                    );
+    // Dark background
+    overlay.classList.add("active");
 
-                }
-
-                // Zoom selected note
-                card.classList.add(
-                    "note-zoomed"
-                );
-
-                // Dark background
-                overlay.classList.add(
-                    "active"
-                );
-
-            });
-
+});
             // -------------------------------------------------
             // EDIT
             // -------------------------------------------------
@@ -1563,117 +1552,113 @@ async function saveNotes() {
     }
 
     // ---------------------------------------------------------
-    // EDIT NOTE
-    // ---------------------------------------------------------
+// EDIT NOTE
+// ---------------------------------------------------------
 
-    function editNote(index) {
+function editNote(index) {
 
-        const note = notesData[index];
+    const note = notesData[index];
 
-        if (!note) return;
+    if (!note) return;
 
-        const card =
-            document.querySelector(
-                `.keep-note[data-id="${note.id}"]`
-            );
-
-        if (!card) return;
-
-        closeAllZoom();
-
-        card.classList.add("editing");
-
-        card.innerHTML = `
-
-            <input
-                class="keep-edit-title"
-                type="text"
-                value="${escapeNotesAttribute(note.title)}"
-            >
-
-            <textarea
-                class="keep-edit-body"
-                placeholder="Take a note..."
-            >${escapeNotesHTML(note.text)}</textarea>
-
-            <div class="keep-note-actions">
-
-                <button
-                    type="button"
-                    class="keep-save-btn">
-                    ✓
-                </button>
-
-                <button
-                    type="button"
-                    class="keep-cancel-edit-btn">
-                    ×
-                </button>
-
-            </div>
-
-        `;
-
-        const titleInput =
-            card.querySelector(
-                ".keep-edit-title"
-            );
-
-        const bodyInput =
-            card.querySelector(
-                ".keep-edit-body"
-            );
-
-        // SAVE
-
-        card.querySelector(
-            ".keep-save-btn"
-        ).addEventListener(
-            "click",
-            function (e) {
-
-                e.stopPropagation();
-
-                notesData[index].title =
-                    titleInput.value.trim() ||
-                    "Untitled";
-
-                notesData[index].text =
-                    bodyInput.value.trim();
-
-                saveNotes();
-
-                renderNotes(
-                    notesSearch
-                        ? notesSearch.value
-                        : ""
-                );
-
-            }
+    const card =
+        document.querySelector(
+            `.keep-note[data-id="${note.id}"]`
         );
 
-        // CANCEL
+    if (!card) return;
 
-        card.querySelector(
-            ".keep-cancel-edit-btn"
-        ).addEventListener(
-            "click",
-            function (e) {
+    // Keep the note centered and zoomed while editing
+    card.classList.add("note-zoomed");
+    card.classList.add("editing");
 
-                e.stopPropagation();
+    card.innerHTML = `
 
-                renderNotes(
-                    notesSearch
-                        ? notesSearch.value
-                        : ""
-                );
+        <input
+            class="keep-edit-title"
+            type="text"
+            value="${escapeNotesAttribute(note.title)}"
+        >
 
-            }
-        );
+        <textarea
+            class="keep-edit-body"
+            placeholder="Take a note..."
+        >${escapeNotesHTML(note.text)}</textarea>
 
-        titleInput.focus();
+        <div class="keep-note-actions">
 
-    }
+            <button
+                type="button"
+                class="keep-save-btn">
+                ✓
+            </button>
+
+            <button
+                type="button"
+                class="keep-cancel-edit-btn">
+                ×
+            </button>
+
+        </div>
+
+    `;
+
+    const titleInput =
+        card.querySelector(".keep-edit-title");
+
+    const bodyInput =
+        card.querySelector(".keep-edit-body");
+
+    // SAVE
+
+    card.querySelector(".keep-save-btn")
+        .addEventListener("click", function (e) {
+
+            e.stopPropagation();
+
+            notesData[index].title =
+                titleInput.value.trim() || "Untitled";
+
+            notesData[index].text =
+                bodyInput.value.trim();
+
+            saveNotes();
+
+
+            if (card.parentElement !== notesGrid) {
+    notesGrid.appendChild(card);
+}
+
+card.classList.remove("note-zoomed");
+card.classList.remove("editing");
+            // Render again:
+            // returns the note to its normal grid position/size
+            renderNotes(
+                notesSearch
+                    ? notesSearch.value
+                    : ""
+            );
+
+        });
+
+    // CANCEL
+
+    card.querySelector(".keep-cancel-edit-btn")
+        .addEventListener("click", function (e) {
+
+            e.stopPropagation();
+
+            renderNotes(
+                notesSearch
+                    ? notesSearch.value
+                    : ""
+            );
+
+        });
+
+    titleInput.focus();
+
+}
 
     // ---------------------------------------------------------
     // ARCHIVE
@@ -1902,6 +1887,15 @@ document.addEventListener("click", function (e) {
         const note = notesData[index];
 
         if (!note) return;
+
+        const cardToDelete =
+    document.querySelector(
+        `.keep-note[data-id="${note.id}"]`
+    );
+
+if (cardToDelete) {
+    cardToDelete.remove();
+}
 
         notesData.splice(index, 1);
 
