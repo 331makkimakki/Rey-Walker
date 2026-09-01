@@ -3078,7 +3078,25 @@ if(localStorage.getItem("isLoggedIn") !== "true"){
 <div class="nmax-summary" id="nmaxSummary">
 
     <!-- SUMMARY HEADER -->
-    <h3>📋 SUMMARY</h3>
+    <h3>🔧 SUMMARY</h3>
+    <p class="summary-subtitle">NMAX Maintenance</p>
+
+    <!-- SUMMARY DATE -->
+
+<div class="summary-date-box">
+
+    <span>NEXT UPDATE</span>
+
+    <strong id="summaryDate">02 Sep 2026</strong>
+
+    <input
+        type="text"
+        id="summaryDateInput"
+        class="summary-date-input"
+        value="02 Sep 2026"
+    >
+
+</div>
 
     <!-- DUE SOON -->
     <div class="summary-section">
@@ -3134,6 +3152,7 @@ if(localStorage.getItem("isLoggedIn") !== "true"){
         </table>
 
     </div>
+    
 
 </div>
 </div>

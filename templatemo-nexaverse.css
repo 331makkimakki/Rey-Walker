@@ -5781,3 +5781,154 @@ margin-bottom:12px;
 .nmax-summary h3 {
     text-align: left !important;
 }
+
+/* =========================
+   SUMMARY DATE BOX
+========================= */
+
+.summary-date-box {
+    width: 100%;
+    margin-top: 25px;
+    padding: 18px 20px;
+
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.summary-date-box span {
+    font-size: 12px;
+    font-weight: 700;
+    opacity: 0.65;
+    letter-spacing: 0.5px;
+}
+
+.summary-date-box strong {
+    font-size: 18px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.summary-date-input {
+    display: none;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    background: transparent;
+    border: none;
+    outline: none;
+
+    color: inherit;
+    font-size: 18px;
+    font-weight: 800;
+    font-family: inherit;
+}
+
+.summary-date-box {
+    text-align: left !important;
+    align-items: flex-start !important;
+}
+
+.summary-date-box span,
+.summary-date-box strong,
+.summary-date-box input {
+    text-align: left !important;
+}
+
+/* SUMMARY DATE - CENTER TEXT */
+
+.summary-date-box {
+    text-align: center !important;
+    align-items: center !important;
+}
+
+.summary-date-box span,
+.summary-date-box strong,
+.summary-date-box input {
+    text-align: center !important;
+}
+
+/* =========================
+   SUMMARY ROW SEPARATORS
+========================= */
+
+.summary-table tbody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.summary-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.summary-table tbody td {
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.summary-table tbody td:last-child {
+    border-right: none;
+}
+
+/* =========================
+   SUMMARY BOX WIDTH
+========================= */
+
+.nmax-summary .summary-section {
+    width: 70% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.nmax-summary .summary-section .summary-table {
+    width: 100% !important;
+}
+
+/* SUMMARY DATE BOX WIDTH */
+
+.nmax-summary .summary-date-box {
+    width: 70% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box;
+}
+
+/* =========================
+   SUMMARY HEADER ALIGNMENT
+========================= */
+
+.nmax-summary h3 {
+    width: 75% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box;
+}
+
+/* SUMMARY DATE COLOR */
+
+.summary-date-box strong {
+    color: #29b6f6 !important;
+}
+
+.summary-date-input {
+    color: #29b6f6 !important;
+}
+
+/* =========================
+   SUMMARY SUBTITLE
+========================= */
+
+.nmax-summary .summary-subtitle {
+    width: 70%;
+    margin: -10px auto 20px auto;
+
+    font-size: 13px;
+    font-weight: 600;
+    opacity: 0.6;
+
+    text-align: left;
+    box-sizing: border-box;
+}

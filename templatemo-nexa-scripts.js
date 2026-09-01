@@ -2172,3 +2172,43 @@ if (footerReyWalker) {
 
 }
 
+// =========================
+// SUMMARY DATE
+// =========================
+
+const summaryDate = document.getElementById("summaryDate");
+const summaryDateInput = document.getElementById("summaryDateInput");
+
+if(summaryDate && summaryDateInput){
+
+    summaryDate.addEventListener("click", function(){
+
+        summaryDateInput.value = summaryDate.textContent.trim();
+
+        summaryDate.style.display = "none";
+        summaryDateInput.style.display = "block";
+
+        summaryDateInput.focus();
+        summaryDateInput.select();
+
+    });
+
+
+    summaryDateInput.addEventListener("keydown", function(e){
+
+        if(e.key !== "Enter") return;
+
+        const value = summaryDateInput.value.trim();
+
+        if(!value) return;
+
+        summaryDate.textContent = value;
+
+        summaryDateInput.value = value;
+
+        summaryDateInput.style.display = "none";
+        summaryDate.style.display = "block";
+
+    });
+
+}
