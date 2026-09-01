@@ -2212,3 +2212,645 @@ if(summaryDate && summaryDateInput){
     });
 
 }
+
+
+/* =========================================================
+   LINKS SECTION
+========================================================= */
+
+let linksData = JSON.parse(
+    localStorage.getItem("linksData")
+) || [];
+
+
+// =========================================================
+// ELEMENTS
+// =========================================================
+
+const linksGrid =
+    document.querySelector(".links-grid");
+
+const linksSearchInput =
+    document.querySelector(".links-search input");
+
+const addLinkBtn =
+    document.querySelector(".add-link-btn");
+
+
+// =========================================================
+// SAVE
+// =========================================================
+
+function saveLinks() {
+    localStorage.setItem(
+        "linksData",
+        JSON.stringify(linksData)
+    );
+}
+
+
+// =========================================================
+// RENDER LINKS
+// =========================================================
+
+function renderLinks(search = "") {
+
+    if (!linksGrid) return;
+
+    linksGrid.innerHTML = "";
+
+    const searchText =
+        search.toLowerCase().trim();
+
+    const filteredLinks =
+        linksData.filter(link => {
+
+            return (
+                String(link.title || "")
+                    .toLowerCase()
+                    .includes(searchText)
+
+                ||
+
+                String(link.description || "")
+                    .toLowerCase()
+                    .includes(searchText)
+
+                ||
+
+                String(link.domain || "")
+                    .toLowerCase()
+                    .includes(searchText)
+
+                ||
+
+                String(link.collection || "")
+                    .toLowerCase()
+                    .includes(searchText)
+
+                ||
+
+                (link.tags || [])
+                    .join(" ")
+                    .toLowerCase()
+                    .includes(searchText)
+            );
+
+        });
+
+
+    // =====================================================
+    // EMPTY
+    // =====================================================
+
+    if (filteredLinks.length === 0) {
+
+        linksGrid.innerHTML = `
+            <div style="
+                grid-column: 1 / -1;
+                text-align: center;
+                padding: 60px 20px;
+                color: #777;
+            ">
+                <div style="
+                    font-size: 35px;
+                    margin-bottom: 12px;
+                ">
+                    🔗
+                </div>
+
+                <div style="
+                    font-size: 16px;
+                    color: #aaa;
+                    margin-bottom: 6px;
+                ">
+                    No links found
+                </div>
+
+                <div style="
+                    font-size: 13px;
+                ">
+                    Add your first link to get started.
+                </div>
+            </div>
+        `;
+
+        return;
+    }
+
+
+    // =====================================================
+    // CARDS
+    // =====================================================
+
+    filteredLinks.forEach((link) => {
+
+        const realIndex =
+            linksData.indexOf(link);
+
+
+        const card =
+            document.createElement("div");
+
+        card.className = "link-card";
+
+
+        const imageHTML =
+            link.image
+                ? `
+                    <div class="link-card-image">
+                        <img
+                            src="${escapeHTML(link.image)}"
+                            alt=""
+                        >
+                    </div>
+                `
+                : "";
+
+
+        const tagsHTML =
+            (link.tags || []).length
+                ? `
+                    <div class="link-tags">
+                        ${(link.tags || [])
+                            .map(tag => `
+                                <span>
+                                    ${escapeHTML(tag)}
+                                </span>
+                            `)
+                            .join("")}
+                    </div>
+                `
+                : "";
+
+
+        const domainHTML =
+            link.domain
+                ? `
+                    <div class="link-domain">
+                        🔗
+                        <span>
+                            ${escapeHTML(link.domain)}
+                        </span>
+                    </div>
+                `
+                : "";
+
+
+        const collectionHTML =
+            link.collection
+                ? `
+                    <div class="link-collection">
+                        📁
+                        <span>
+                            ${escapeHTML(link.collection)}
+                        </span>
+                    </div>
+                `
+                : "";
+
+
+        card.innerHTML = `
+
+            ${imageHTML}
+
+            <div class="link-card-body">
+
+                <h3>
+                    ${escapeHTML(
+                        link.title || "Untitled Link"
+                    )}
+                </h3>
+
+                <p class="link-description">
+                    ${escapeHTML(
+                        link.description || ""
+                    )}
+                </p>
+
+                ${domainHTML}
+
+                ${tagsHTML}
+
+                ${collectionHTML}
+
+                <div class="link-card-actions">
+
+                    <button
+                        type="button"
+                        class="link-open-btn"
+                        title="Open Link">
+                        ↗
+                    </button>
+
+                    <button
+                        type="button"
+                        class="link-edit-btn"
+                        title="Edit Link">
+                        ✎
+                    </button>
+
+                    <button
+                        type="button"
+                        class="link-delete-btn"
+                        title="Delete Link">
+                        🗑
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+
+
+        // =================================================
+        // OPEN
+        // =================================================
+
+        const openBtn =
+            card.querySelector(
+                ".link-open-btn"
+            );
+
+        if (openBtn) {
+
+            openBtn.addEventListener(
+                "click",
+                function (e) {
+
+                    e.stopPropagation();
+
+                    if (!link.url) return;
+
+                    let url = link.url.trim();
+
+                    if (
+                        !url.startsWith("http://") &&
+                        !url.startsWith("https://")
+                    ) {
+                        url =
+                            "https://" + url;
+                    }
+
+                    window.open(
+                        url,
+                        "_blank"
+                    );
+                }
+            );
+        }
+
+
+        // =================================================
+        // EDIT
+        // =================================================
+
+        const editBtn =
+            card.querySelector(
+                ".link-edit-btn"
+            );
+
+        if (editBtn) {
+
+            editBtn.addEventListener(
+                "click",
+                function (e) {
+
+                    e.stopPropagation();
+
+                    editLink(realIndex);
+
+                }
+            );
+        }
+
+
+        // =================================================
+        // DELETE
+        // =================================================
+
+        const deleteBtn =
+            card.querySelector(
+                ".link-delete-btn"
+            );
+
+        if (deleteBtn) {
+
+            deleteBtn.addEventListener(
+                "click",
+                function (e) {
+
+                    e.stopPropagation();
+
+                    deleteLink(realIndex);
+
+                }
+            );
+        }
+
+
+        linksGrid.appendChild(card);
+
+    });
+}
+
+
+// =========================================================
+// ADD LINK
+// =========================================================
+
+function addLink() {
+
+    const title =
+        prompt("Link title:");
+
+    if (!title || !title.trim()) {
+        return;
+    }
+
+
+    const url =
+        prompt("URL:");
+
+    if (!url || !url.trim()) {
+        return;
+    }
+
+
+    const description =
+        prompt("Description:") || "";
+
+
+    const domain =
+        getDomain(url);
+
+
+    const newLink = {
+
+        title:
+            title.trim(),
+
+        url:
+            url.trim(),
+
+        description:
+            description.trim(),
+
+        domain:
+            domain,
+
+        image:
+            "",
+
+        tags:
+            [],
+
+        collection:
+            "",
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+
+    linksData.unshift(
+        newLink
+    );
+
+    saveLinks();
+
+    renderLinks(
+        linksSearchInput
+            ? linksSearchInput.value
+            : ""
+    );
+}
+
+
+// =========================================================
+// EDIT LINK
+// =========================================================
+
+function editLink(index) {
+
+    const link =
+        linksData[index];
+
+    if (!link) return;
+
+
+    const title =
+        prompt(
+            "Link title:",
+            link.title || ""
+        );
+
+    if (
+        title === null ||
+        !title.trim()
+    ) {
+        return;
+    }
+
+
+    const url =
+        prompt(
+            "URL:",
+            link.url || ""
+        );
+
+    if (
+        url === null ||
+        !url.trim()
+    ) {
+        return;
+    }
+
+
+    const description =
+        prompt(
+            "Description:",
+            link.description || ""
+        );
+
+
+    link.title =
+        title.trim();
+
+    link.url =
+        url.trim();
+
+    link.description =
+        description === null
+            ? link.description
+            : description.trim();
+
+    link.domain =
+        getDomain(link.url);
+
+
+    saveLinks();
+
+    renderLinks(
+        linksSearchInput
+            ? linksSearchInput.value
+            : ""
+    );
+}
+
+
+// =========================================================
+// DELETE LINK
+// =========================================================
+
+function deleteLink(index) {
+
+    const link =
+        linksData[index];
+
+    if (!link) return;
+
+
+    const confirmed =
+        confirm(
+            `Delete "${link.title}"?`
+        );
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    linksData.splice(
+        index,
+        1
+    );
+
+    saveLinks();
+
+    renderLinks(
+        linksSearchInput
+            ? linksSearchInput.value
+            : ""
+    );
+}
+
+
+// =========================================================
+// GET DOMAIN
+// =========================================================
+
+function getDomain(url) {
+
+    try {
+
+        let cleanURL =
+            url.trim();
+
+        if (
+            !cleanURL.startsWith("http://") &&
+            !cleanURL.startsWith("https://")
+        ) {
+            cleanURL =
+                "https://" + cleanURL;
+        }
+
+
+        return new URL(
+            cleanURL
+        ).hostname.replace(
+            /^www\./,
+            ""
+        );
+
+    } catch (error) {
+
+        return url
+            .replace(
+                /^https?:\/\//,
+                ""
+            )
+            .replace(
+                /^www\./,
+                ""
+            )
+            .split("/")[0];
+
+    }
+}
+
+
+// =========================================================
+// ESCAPE HTML
+// =========================================================
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+}
+
+
+// =========================================================
+// SEARCH
+// =========================================================
+
+if (linksSearchInput) {
+
+    linksSearchInput.addEventListener(
+        "input",
+        function () {
+
+            renderLinks(
+                this.value
+            );
+
+        }
+    );
+
+}
+
+
+// =========================================================
+// ADD LINK BUTTON
+// =========================================================
+
+if (addLinkBtn) {
+
+    addLinkBtn.addEventListener(
+        "click",
+        function () {
+
+            addLink();
+
+        }
+    );
+
+}
+
+
+// =========================================================
+// INITIAL LOAD
+// =========================================================
+
+renderLinks();

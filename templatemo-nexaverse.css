@@ -5932,3 +5932,407 @@ margin-bottom:12px;
     text-align: left;
     box-sizing: border-box;
 }
+
+/* =========================================================
+   LINKS SECTION
+========================================================= */
+
+/* Links Dashboard */
+.links-dashboard {
+    width: 100%;
+    margin-top: 30px;
+}
+
+
+/* =========================================================
+   SEARCH + BUTTONS
+========================================================= */
+
+.links-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    margin-bottom: 32px;
+}
+
+.links-search {
+    flex: 1;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 0 14px;
+
+    background: #0d0d0d;
+    border: 1px solid #292929;
+    border-radius: 7px;
+
+    color: #888;
+}
+
+.links-search input {
+    width: 100%;
+    height: 100%;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+    color: #fff;
+
+    font-size: 14px;
+}
+
+.links-search input::placeholder {
+    color: #777;
+}
+
+
+/* Toolbar Buttons */
+
+.add-link-btn,
+.add-collection-btn {
+    height: 42px;
+
+    padding: 0 18px;
+
+    border: none;
+    border-radius: 7px;
+
+    background: #f5f5f5;
+    color: #111;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition: 0.2s ease;
+}
+
+.add-link-btn:hover,
+.add-collection-btn:hover {
+    background: #ffffff;
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   RECENT LINKS HEADER
+========================================================= */
+
+.links-section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+}
+
+.links-section-heading h2 {
+    margin: 0;
+
+    color: #fff;
+
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.links-section-heading p {
+    margin: 3px 0 0;
+
+    color: #999;
+
+    font-size: 13px;
+}
+
+.view-all-links-btn {
+    border: none;
+    background: transparent;
+
+    color: #ddd;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.view-all-links-btn:hover {
+    color: #fff;
+}
+
+
+/* =========================================================
+   LINKS GRID
+========================================================= */
+
+.links-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    gap: 22px;
+
+    width: 100%;
+}
+
+
+/* =========================================================
+   LINK CARD
+========================================================= */
+
+.link-card {
+    min-width: 0;
+
+    overflow: hidden;
+
+    background: #0b0b0b;
+
+    border: 1px solid #292929;
+    border-radius: 8px;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.link-card:hover {
+    transform: translateY(-2px);
+
+    border-color: #444;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================================
+   LINK IMAGE
+========================================================= */
+
+.link-card-image {
+    width: 100%;
+    height: 180px;
+
+    overflow: hidden;
+
+    background: #151515;
+}
+
+.link-card-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition: transform 0.3s ease;
+}
+
+.link-card:hover .link-card-image img {
+    transform: scale(1.03);
+}
+
+
+/* =========================================================
+   LINK CARD BODY
+========================================================= */
+
+.link-card-body {
+    padding: 15px 16px 12px;
+}
+
+.link-card-body h3 {
+    margin: 0 0 10px;
+
+    color: #fff;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.link-description {
+    margin: 0 0 12px;
+
+    color: #999;
+
+    font-size: 13px;
+    line-height: 1.5;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   DOMAIN
+========================================================= */
+
+.link-domain {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    margin-bottom: 12px;
+
+    color: #aaa;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   TAGS
+========================================================= */
+
+.link-tags {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 6px;
+
+    margin-bottom: 13px;
+}
+
+.link-tags span {
+    padding: 5px 9px;
+
+    border-radius: 12px;
+
+    background: #252525;
+
+    color: #ddd;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   COLLECTION
+========================================================= */
+
+.link-collection {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    margin-bottom: 14px;
+
+    color: #aaa;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   CARD ACTIONS
+========================================================= */
+
+.link-card-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding-top: 10px;
+
+    border-top: 1px solid #222;
+}
+
+.link-card-actions button {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #333;
+    border-radius: 50%;
+
+    background: #101010;
+
+    color: #ccc;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.link-card-actions button:hover {
+    background: #1d1d1d;
+
+    color: #fff;
+
+    border-color: #555;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    .links-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 900px) {
+
+    .links-toolbar {
+        flex-wrap: wrap;
+    }
+
+    .links-search {
+        width: 100%;
+        flex-basis: 100%;
+    }
+
+    .links-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .links-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .links-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .add-link-btn,
+    .add-collection-btn {
+        width: 100%;
+    }
+
+}

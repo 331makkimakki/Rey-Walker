@@ -3187,12 +3187,23 @@ if(localStorage.getItem("isLoggedIn") !== "true"){
 </div>
 
 
-<!-- =========================
+<!-- =========================================================
      LINKS SECTION
-========================= -->
+========================================================= -->
+
 <div class="content-section" id="links">
 
+    <!-- BIG HEADER -->
+    <div class="section-header">
+        <h2 class="section-title">LINKS</h2>
+        <p class="section-subtitle">
+            Save your important links and websites
+        </p>
+    </div>
+
+    <!-- SMALL BRAND HEADER -->
     <div class="section-header-small">
+
         <div class="small-logo">
             <img src="images/icons/RWWWWWWW.svg" alt="ReyWalker Logo">
         </div>
@@ -3201,16 +3212,128 @@ if(localStorage.getItem("isLoggedIn") !== "true"){
             <h3>REYWALKER</h3>
             <p>Links</p>
         </div>
+
     </div>
 
-    <button class="back-btn" onclick="backToMenu()">← Back to Menu</button>
+    <button class="back-btn" onclick="backToMenu()">
+        ← Back to Menu
+    </button>
 
-    <div class="section-content">
-        <h2>LINKS</h2>
-        <p>Your important links will be stored here.</p>
+
+    <!-- =========================
+         LINKS DASHBOARD
+    ========================= -->
+
+    <div class="links-dashboard">
+
+        <!-- SEARCH + BUTTONS -->
+        <div class="links-toolbar">
+
+            <div class="links-search">
+                🔍
+                <input
+                    type="text"
+                    id="linksSearch"
+                    placeholder="Search links..."
+                >
+            </div>
+
+            <button class="add-link-btn" type="button">
+                ＋ Add New Link
+            </button>
+
+            <button class="add-collection-btn" type="button">
+                ＋ Add New Collection
+            </button>
+
+        </div>
+
+
+        <!-- RECENT LINKS -->
+        <div class="links-section-heading">
+
+            <div>
+                <h2>◷ Recent Links</h2>
+                <p>Last added links</p>
+            </div>
+
+            <button type="button" class="view-all-links-btn">
+                View All →
+            </button>
+
+        </div>
+
+
+        <!-- LINK CARDS -->
+        <div class="links-grid">
+
+
+            <!-- LINK CARD -->
+            <div class="link-card">
+
+                <div class="link-card-image">
+                    <img
+                        src="images/links/sample.jpg"
+                        alt="Link Preview"
+                    >
+                </div>
+
+                <div class="link-card-body">
+
+                    <h3>Website Title</h3>
+
+                    <p class="link-description">
+                        Short description of this saved website or resource.
+                    </p>
+
+                    <div class="link-domain">
+                        🔗 example.com
+                    </div>
+
+                    <div class="link-tags">
+                        <span>website</span>
+                        <span>tools</span>
+                    </div>
+
+                    <div class="link-collection">
+                        ◈ Resources
+                    </div>
+
+                    <div class="link-card-actions">
+
+                        <button type="button" title="Open">
+                            ↗
+                        </button>
+
+                        <button type="button" title="Favorite">
+                            ♡
+                        </button>
+
+                        <button type="button" title="Viewed">
+                            ◉
+                        </button>
+
+                        <button type="button" title="Archive">
+                            ▣
+                        </button>
+
+                        <button type="button" title="More">
+                            ⋮
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
     </div>
 
 </div>
+
 
 
 
