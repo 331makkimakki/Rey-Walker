@@ -1428,11 +1428,9 @@ card.addEventListener("click", function (e) {
                     "click",
                     function (e) {
 
-                        e.stopPropagation();
+                       e.stopPropagation();
 
-                        closeAllZoom();
-
-                        editNote(realIndex);
+editNote(realIndex);
 
                     }
                 );
