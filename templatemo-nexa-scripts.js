@@ -596,33 +596,41 @@ saveService.onclick = () => {
 
 };
 
-
 // LOAD SERVICE DATA FROM FIREBASE
 
 async function loadFirebaseServices(){
 
     if(!window.loadService) return;
 
-    document.querySelectorAll(".tab-content").forEach(async tab => {
+    const tabs = document.querySelectorAll(".tab-content");
 
-        const savedService = await window.loadService(tab.id);
+    await Promise.all(
+        [...tabs].map(async tab => {
 
-        if(savedService){
+            const savedService = await window.loadService(tab.id);
 
-            const table = tab.querySelector("table");
+            if(savedService){
 
-            if(table){
-                table.innerHTML = savedService;
+                const table = tab.querySelector("table");
+
+                if(table){
+                    table.innerHTML = savedService;
+                }
+
             }
 
-        }
-
-    });
+        })
+    );
 
 }
 
-window.addEventListener("load", loadFirebaseServices);
+window.addEventListener("load", async () => {
 
+    await loadFirebaseServices();
+
+    updateStatusCount();
+
+});
 
 // STATUS COUNT
 
@@ -665,7 +673,6 @@ else if(value.includes("Overdue")){
 }
 
 
-updateStatusCount();
 
 
 
