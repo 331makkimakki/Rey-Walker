@@ -3794,12 +3794,18 @@ if(localStorage.getItem("isLoggedIn") !== "true"){
 <script src="templatemo-nexa-scripts.js"></script>
 
 <script type="module">
+
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
+import { app } from "./firebase.js";
+
 import {
     saveServiceData,
     loadService,
     saveNmaxInfo,
     loadNmaxInfo
 } from "./nmax-data.js";
+
+const auth = getAuth(app);
 
 window.saveServiceData = saveServiceData;
 window.loadService = loadService;
@@ -3966,8 +3972,19 @@ lastUpdated.addEventListener("click", function(){
 
 });
 
+
+
 // LOAD DATA WHEN PAGE OPENS
-loadNmaxInfoToPage();
+onAuthStateChanged(auth, function(user) {
+
+    if (!user) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    loadNmaxInfoToPage();
+
+});
 
 </script>
 

@@ -1,3 +1,18 @@
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyD640tg70IDxtLekY6Cntma78P5o62_uIY",
+    authDomain: "rey-walker-nmax.firebaseapp.com",
+    projectId: "rey-walker-nmax",
+    storageBucket: "rey-walker-nmax.firebasestorage.app",
+    messagingSenderId: "793511355795",
+    appId: "1:793511355795:web:7365c52e01dccafe36f466"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
 // =========================
 // MATRIX BACKGROUND
 // =========================
@@ -102,26 +117,34 @@ eye.onclick=function(){
 
 document
 .getElementById("loginBtn")
-.onclick=function(){
+.onclick = async function(){
 
-    const user=
-    document.getElementById("username").value;
+    const user =
+    document.getElementById("username").value.trim();
 
-    const pass=
+    const pass =
     document.getElementById("password").value;
 
-    if(
-        user==="reywalker01" &&
-        pass==="makkinakaigit331"
-){
+    const error =
+    document.getElementById("error");
 
-    localStorage.setItem("isLoggedIn", "true");
+    try {
 
-    window.location.href = "index.html";
+        await signInWithEmailAndPassword(
+            auth,
+            user,
+            pass
+        );
 
-    }else{
+        localStorage.setItem("isLoggedIn", "true");
 
-        document.getElementById("error").innerHTML=
+        window.location.href = "index.html";
+
+    } catch(errorFirebase) {
+
+        console.error("Firebase Login Error:", errorFirebase);
+
+        error.innerHTML =
         "Wrong Username or Password.";
 
     }
