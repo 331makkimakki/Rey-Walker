@@ -40,19 +40,19 @@ export async function loadService(tabName){
 // =========================
 // SAVE NMAX INFO
 // =========================
-export async function saveNmaxInfo(currentOdo, lastUpdated){
+export async function saveNmaxInfo(currentOdo, lastUpdated, summaryDate){
 
     await setDoc(
         doc(db, "nmax", "info"),
         {
             currentOdo: currentOdo,
-            lastUpdated: lastUpdated
+            lastUpdated: lastUpdated,
+            summaryDate: summaryDate
         },
         { merge: true }
     );
 
 }
-
 
 // =========================
 // LOAD NMAX INFO

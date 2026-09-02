@@ -5914,7 +5914,12 @@ margin-bottom:12px;
 }
 
 .summary-date-input {
-    color: #29b6f6 !important;
+    color: #ffffff !important;
+    font-size: 14px !important;
+    height: 24px !important;
+    padding: 0 !important;
+    border-bottom: 1px solid #29b6f6 !important;
+    width: 100px;
 }
 
 /* =========================

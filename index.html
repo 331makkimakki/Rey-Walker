@@ -3803,6 +3803,7 @@ import {
 
 window.saveServiceData = saveServiceData;
 window.loadService = loadService;
+window.saveNmaxInfo = saveNmaxInfo;
 
 
 // =========================
@@ -3812,6 +3813,8 @@ window.loadService = loadService;
 const currentOdo = document.getElementById("currentOdo");
 const odoInput = document.getElementById("odoInput");
 const lastUpdated = document.getElementById("lastUpdated");
+const summaryDate = document.getElementById("summaryDate");
+const summaryDateInput = document.getElementById("summaryDateInput");
 
 
 // LOAD FROM FIREBASE
@@ -3832,9 +3835,16 @@ async function loadNmaxInfoToPage(){
 
     if(data.lastUpdated !== undefined){
 
-        lastUpdated.textContent = data.lastUpdated;
+    lastUpdated.textContent = data.lastUpdated;
 
-    }
+}
+
+if(data.summaryDate !== undefined){
+
+    summaryDate.textContent = data.summaryDate;
+    summaryDateInput.value = data.summaryDate;
+
+}
 
 }
 
@@ -3874,22 +3884,27 @@ odoInput.addEventListener("keydown", async function(e){
     try {
 
         await saveNmaxInfo(
-            Number(value),
-            lastUpdated.textContent
-        );
+    Number(value),
+    lastUpdated.textContent,
+    summaryDate.textContent
+);
 
         currentOdo.textContent =
             Number(value).toLocaleString();
 
         odoInput.value = value;
 
+        // CLOSE EDIT MODE
         odoInput.style.display = "none";
-
         currentOdo.style.display = "block";
 
     } catch(error) {
 
         console.error("Failed to save ODO:", error);
+
+        // CLOSE EDIT MODE EVEN IF SAVE FAILS
+        odoInput.style.display = "none";
+        currentOdo.style.display = "block";
 
     }
 
@@ -3930,9 +3945,10 @@ lastUpdated.addEventListener("click", function(){
         try {
 
             await saveNmaxInfo(
-                odoInput.value.replace(/,/g, ""),
-                newDate
-            );
+    odoInput.value.replace(/,/g, ""),
+    newDate,
+    summaryDate.textContent
+);
 
             lastUpdated.textContent = newDate;
 

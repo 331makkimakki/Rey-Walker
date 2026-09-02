@@ -768,60 +768,7 @@ function updateServiceSummary(){
 }
 
 
-const odoText = document.getElementById("currentOdo");
-const odoInput = document.getElementById("odoInput");
-const savedOdo = localStorage.getItem("currentOdo");
 
-if(savedOdo){
-    odoText.innerText = Number(savedOdo).toLocaleString();
-}
-
-if(odoText && odoInput){
-
-    odoText.onclick = () => {
-
-        odoText.style.display = "none";
-        odoInput.style.display = "block";
-
-        odoInput.value = odoText.innerText.replace(/,/g,'');
-        odoInput.focus();
-
-    };
-
-
-    odoInput.onkeydown = (e) => {
-
-        if(e.key === "Enter"){
-
-            let newOdo = odoInput.value.replace(/\D/g,'');
-
-            if(newOdo !== ""){
-
-    odoText.innerText = Number(newOdo).toLocaleString();
-
-    localStorage.setItem("currentOdo", newOdo);
-
-}
-
-            odoInput.style.display = "none";
-            odoText.style.display = "block";
-
-        }
-
-    };
-
-}
-
-function openSectionFromAbout(sectionId) {
-
-    contentSections.forEach(section => {
-        section.classList.remove('active');
-    });
-
-    const section = document.getElementById(sectionId);
-    section.classList.add('active');
-
-}
 
 
 /* =====================================
@@ -2194,22 +2141,35 @@ if(summaryDate && summaryDateInput){
     });
 
 
-    summaryDateInput.addEventListener("keydown", function(e){
+    summaryDateInput.addEventListener("keydown", async function(e){
 
-        if(e.key !== "Enter") return;
+    if(e.key !== "Enter") return;
 
-        const value = summaryDateInput.value.trim();
+    const value = summaryDateInput.value.trim();
 
-        if(!value) return;
+    if(!value) return;
+
+    try {
+
+        await saveNmaxInfo(
+    odoInput.value.replace(/,/g, ""),
+    lastUpdated.textContent,
+    value
+);
 
         summaryDate.textContent = value;
-
         summaryDateInput.value = value;
 
         summaryDateInput.style.display = "none";
         summaryDate.style.display = "block";
 
-    });
+    } catch(error) {
+
+        console.error("Failed to save Summary Date:", error);
+
+    }
+
+});
 
 }
 
