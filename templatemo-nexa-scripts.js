@@ -113,6 +113,30 @@ contentSections.forEach(section => {
       const section = document.getElementById(sectionId);
       section.classList.add('active');
 
+      if (bottomBackBtn) {
+    bottomBackBtn.style.setProperty("display", "none", "important");
+    bottomBackBtn.onclick = function () {
+    backToMenu();
+};
+
+
+}
+
+// =========================================================
+// BOTTOM BACK BUTTON SCROLL
+// =========================================================
+
+window.addEventListener("scroll", function () {
+
+    if (!bottomBackBtn) return;
+
+    if (window.scrollY > 100) {
+        bottomBackBtn.style.setProperty("display", "block", "important");
+    } else {
+        bottomBackBtn.style.setProperty("display", "none", "important");
+    }
+
+});
       
 
       // Animate stats if introduction section
@@ -124,12 +148,18 @@ contentSections.forEach(section => {
    }, 550);
 }
 
+
+
 function backToMenu() {
    if (isTransitioning) return;
    isTransitioning = true;
 
    const activeSection = document.querySelector('.content-section.active');
    if (activeSection) {
+
+      if (bottomBackBtn) {
+       bottomBackBtn.style.setProperty("display", "none", "important");
+   }
       // Get fixed elements that need to fade out
       const sectionHeaderSmall = activeSection.querySelector('.section-header-small');
       const backBtn = activeSection.querySelector('.back-btn');
@@ -2814,3 +2844,4 @@ if (addLinkBtn) {
 // =========================================================
 
 renderLinks();
+
