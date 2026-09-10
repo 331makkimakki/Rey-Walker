@@ -2213,6 +2213,71 @@ let linksData = JSON.parse(
 ) || [];
 
 // =========================================================
+// LINKS FIREBASE CONNECTION
+// =========================================================
+
+let linksFirebaseDB = null;
+let linksFirebaseAuth = null;
+let linksFirebaseUser = null;
+
+
+// Load Firebase
+(async function () {
+
+    try {
+
+        const firebase =
+            await import("./firebase.js");
+
+        const authModule =
+            await import(
+                "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js"
+            );
+
+        linksFirebaseDB =
+            firebase.db;
+
+        linksFirebaseAuth =
+            authModule.getAuth(firebase.app);
+
+
+        authModule.onAuthStateChanged(
+    linksFirebaseAuth,
+    async function (user) {
+
+        linksFirebaseUser =
+            user || null;
+
+        console.log(
+            "Links Firebase user:",
+            linksFirebaseUser
+                ? linksFirebaseUser.uid
+                : "Not logged in"
+        );
+
+
+        if (linksFirebaseUser) {
+
+            await loadLinksFromFirebase();
+
+        }
+
+    }
+);
+
+
+    } catch (error) {
+
+        console.error(
+            "Links Firebase connection failed:",
+            error
+        );
+
+    }
+
+})();
+
+// =========================================================
 // CUSTOM COLLECTIONS
 // =========================================================
 
@@ -2250,13 +2315,151 @@ const addLinkBtn =
 // SAVE
 // =========================================================
 
-function saveLinks() {
+async function saveLinks() {
+
+    // LOCAL BACKUP
     localStorage.setItem(
         "linksData",
         JSON.stringify(linksData)
     );
+
+
+    // FIREBASE
+    if (!linksFirebaseDB || !linksFirebaseUser) {
+        console.log("Links saved locally. Firebase user not ready.");
+        return;
+    }
+
+
+    try {
+
+        const { doc, setDoc } =
+            await import(
+                "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js"
+            );
+
+
+        const linksRef =
+            doc(
+                linksFirebaseDB,
+                "users",
+                linksFirebaseUser.uid,
+                "links",
+                "data"
+            );
+
+
+        await setDoc(
+            linksRef,
+            {
+                items: linksData,
+                updatedAt: new Date().toISOString()
+            }
+        );
+
+
+        console.log(
+            "Links saved to Firebase."
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Failed to save Links to Firebase:",
+            error
+        );
+
+    }
+
 }
 
+// =========================================================
+// LOAD LINKS FROM FIREBASE
+// =========================================================
+
+async function loadLinksFromFirebase() {
+
+    if (!linksFirebaseDB || !linksFirebaseUser) {
+        return;
+    }
+
+
+    try {
+
+        const { doc, getDoc } =
+            await import(
+                "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js"
+            );
+
+
+        const linksRef =
+            doc(
+                linksFirebaseDB,
+                "users",
+                linksFirebaseUser.uid,
+                "links",
+                "data"
+            );
+
+
+        const snapshot =
+            await getDoc(linksRef);
+
+
+        if (!snapshot.exists()) {
+
+            console.log(
+                "No Links found in Firebase."
+            );
+
+            return;
+        }
+
+
+        const data =
+            snapshot.data();
+
+
+        if (Array.isArray(data.items)) {
+
+            linksData =
+                data.items;
+
+
+            localStorage.setItem(
+                "linksData",
+                JSON.stringify(linksData)
+            );
+
+
+            renderLinks(
+                linksSearchInput
+                    ? linksSearchInput.value
+                    : ""
+            );
+
+
+            updateCollectionCounts();
+
+
+            console.log(
+                "Links loaded from Firebase."
+            );
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "Failed to load Links from Firebase:",
+            error
+        );
+
+    }
+
+}
 
 // =========================================================
 // RENDER LINKS
