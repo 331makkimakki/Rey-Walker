@@ -2212,6 +2212,25 @@ let linksData = JSON.parse(
     localStorage.getItem("linksData")
 ) || [];
 
+// =========================================================
+// CUSTOM COLLECTIONS
+// =========================================================
+
+let customCollections =
+    JSON.parse(
+        localStorage.getItem("linksCollectionsData")
+    ) || [];
+
+
+function saveCustomCollections() {
+
+    localStorage.setItem(
+        "linksCollectionsData",
+        JSON.stringify(customCollections)
+    );
+
+}
+
 
 // =========================================================
 // ELEMENTS
@@ -2280,10 +2299,9 @@ function renderLinks(search = "") {
 
                 ||
 
-                (link.tags || [])
-                    .join(" ")
-                    .toLowerCase()
-                    .includes(searchText)
+                String(link.type || "")
+    .toLowerCase()
+    .includes(searchText)
             );
 
         });
@@ -2346,35 +2364,32 @@ function renderLinks(search = "") {
 
 
         const imageHTML =
-            link.image
-                ? `
-                    <div class="link-card-image">
-                        <img
-                            src="${escapeHTML(link.image)}"
-                            alt=""
-                        >
-                    </div>
-                `
-                : "";
+    link.image
+        ? `
+            <div class="link-card-image">
+                <img
+                    src="${escapeHTML(link.image)}"
+                    alt=""
+                >
+            </div>
+        `
+        : "";
 
 
-        const tagsHTML =
-            (link.tags || []).length
-                ? `
-                    <div class="link-tags">
-                        ${(link.tags || [])
-                            .map(tag => `
-                                <span>
-                                    ${escapeHTML(tag)}
-                                </span>
-                            `)
-                            .join("")}
-                    </div>
-                `
-                : "";
+const typeHTML =
+    link.type
+        ? `
+            <div class="link-type">
+                ◇
+                <span>
+                    ${escapeHTML(link.type)}
+                </span>
+            </div>
+        `
+        : "";
 
 
-        const domainHTML =
+const domainHTML =
             link.domain
                 ? `
                     <div class="link-domain">
@@ -2420,7 +2435,7 @@ function renderLinks(search = "") {
 
                 ${domainHTML}
 
-                ${tagsHTML}
+                ${typeHTML}
 
                 ${collectionHTML}
 
@@ -2544,31 +2559,120 @@ function renderLinks(search = "") {
     });
 }
 
+function openAddLinkModal() {
+
+    const modal =
+        document.getElementById("addLinkModal");
+
+    if (!modal) return;
+
+    modal.classList.add("active");
+
+    const titleInput =
+        document.getElementById("linkTitle");
+
+    if (titleInput) {
+        setTimeout(() => {
+            titleInput.focus();
+        }, 100);
+    }
+}
+
 
 // =========================================================
-// ADD LINK
+// CLOSE ADD LINK MODAL
 // =========================================================
 
-function addLink() {
+function closeAddLinkModal() {
+
+    const modal =
+        document.getElementById("addLinkModal");
+
+    if (!modal) return;
+
+    modal.classList.remove("active");
+}
+
+
+// =========================================================
+// SAVE NEW LINK
+// =========================================================
+
+function saveNewLink() {
+
+    const titleInput =
+        document.getElementById("linkTitle");
+
+    const urlInput =
+        document.getElementById("linkUrl");
+
+    const descriptionInput =
+        document.getElementById("linkDescription");
+
+    const collectionInput =
+        document.getElementById("linkCollection");
+
+    const typeInput =
+    document.getElementById("linkType");
+
+    const pinnedInput =
+        document.getElementById("linkPinned");
+
+    const favoriteInput =
+        document.getElementById("linkFavorite");
+
 
     const title =
-        prompt("Link title:");
+        titleInput
+            ? titleInput.value.trim()
+            : "";
 
-    if (!title || !title.trim()) {
+    const url =
+        urlInput
+            ? urlInput.value.trim()
+            : "";
+
+
+    if (!title) {
+
+        alert("Please enter a link title.");
+
+        if (titleInput) {
+            titleInput.focus();
+        }
+
         return;
     }
 
 
-    const url =
-        prompt("URL:");
+    if (!url) {
 
-    if (!url || !url.trim()) {
+        alert("Please enter a URL.");
+
+        if (urlInput) {
+            urlInput.focus();
+        }
+
         return;
     }
 
 
     const description =
-        prompt("Description:") || "";
+        descriptionInput
+            ? descriptionInput.value.trim()
+            : "";
+
+
+    const collection =
+        collectionInput
+            ? collectionInput.value
+            : "";
+
+
+    const type =
+    typeInput
+        ? typeInput.value
+        : "";
 
 
     const domain =
@@ -2576,37 +2680,14 @@ function addLink() {
 
 
     const newLink = {
+    title, url, description, domain, image: "", type, collection,
+    pinned: pinnedInput ? pinnedInput.checked : false,
+    favorite: favoriteInput ? favoriteInput.checked : false,
+    reviewed: false,
+    createdAt: new Date().toISOString()
+};
 
-        title:
-            title.trim(),
-
-        url:
-            url.trim(),
-
-        description:
-            description.trim(),
-
-        domain:
-            domain,
-
-        image:
-            "",
-
-        tags:
-            [],
-
-        collection:
-            "",
-
-        createdAt:
-            new Date().toISOString()
-
-    };
-
-
-    linksData.unshift(
-        newLink
-    );
+    linksData.unshift(newLink);
 
     saveLinks();
 
@@ -2615,7 +2696,43 @@ function addLink() {
             ? linksSearchInput.value
             : ""
     );
+
+
+    closeAddLinkModal();
+
+
+    // RESET FORM
+
+if (titleInput) {
+    titleInput.value = "";
 }
+
+if (urlInput) {
+    urlInput.value = "";
+}
+
+if (descriptionInput) {
+    descriptionInput.value = "";
+}
+
+if (collectionInput) {
+    collectionInput.value = "";
+}
+
+if (typeInput) {
+    typeInput.value = "";
+}
+
+if (pinnedInput) {
+    pinnedInput.checked = false;
+}
+
+if (favoriteInput) {
+    favoriteInput.checked = false;
+}
+
+}
+
 
 
 // =========================================================
@@ -2831,10 +2948,135 @@ if (addLinkBtn) {
         "click",
         function () {
 
-            addLink();
+            openAddLinkModal();
 
         }
     );
+
+}
+
+// =========================================================
+// ADD COLLECTION MODAL
+// =========================================================
+
+const addCollectionBtn =
+    document.querySelector(".add-collection-btn");
+
+
+function openAddCollectionModal() {
+
+    const modal =
+        document.getElementById("addCollectionModal");
+
+    if (!modal) return;
+
+    modal.classList.add("active");
+
+
+    const nameInput =
+        document.getElementById("newCollectionName");
+
+    if (nameInput) {
+
+        setTimeout(function () {
+
+            nameInput.focus();
+
+        }, 100);
+
+    }
+
+}
+
+
+function closeAddCollectionModal() {
+
+    const modal =
+        document.getElementById("addCollectionModal");
+
+    if (!modal) return;
+
+    modal.classList.remove("active");
+
+}
+
+
+if (addCollectionBtn) {
+
+    addCollectionBtn.addEventListener(
+        "click",
+        function () {
+
+            openAddCollectionModal();
+
+        }
+    );
+
+}
+
+// =========================================================
+// SAVE NEW COLLECTION
+// =========================================================
+
+function saveNewCollection() {
+
+    const nameInput =
+        document.getElementById("newCollectionName");
+
+    const name =
+        nameInput
+            ? nameInput.value.trim()
+            : "";
+
+    if (!name) {
+
+        alert("Please enter a collection name.");
+
+        if (nameInput) {
+            nameInput.focus();
+        }
+
+        return;
+    }
+
+
+    // Check existing collection
+    const existingCollection =
+        document.querySelector(
+            `#linksCollections [data-collection="${CSS.escape(name)}"]`
+        );
+
+
+    if (existingCollection) {
+
+        alert("This collection already exists.");
+
+        if (nameInput) {
+            nameInput.focus();
+        }
+
+        return;
+    }
+
+
+    // Save permanently
+    customCollections.push(name);
+
+    saveCustomCollections();
+
+
+    // Add to sidebar + dropdown
+    addCustomCollectionToUI(name);
+
+
+    // Close modal
+    closeAddCollectionModal();
+
+
+    // Clear input
+    if (nameInput) {
+        nameInput.value = "";
+    }
 
 }
 
@@ -2844,4 +3086,573 @@ if (addLinkBtn) {
 // =========================================================
 
 renderLinks();
+updateCollectionCounts();
 
+// =========================================================
+// ADD / LOAD CUSTOM COLLECTION
+// =========================================================
+
+function addCustomCollectionToUI(name) {
+
+    const collectionsContainer =
+        document.getElementById("linksCollections");
+
+    const collectionSelect =
+        document.getElementById("linkCollection");
+
+    if (!collectionsContainer) return;
+
+
+    // Prevent duplicate sidebar collection
+    const existingButton =
+        Array.from(
+            collectionsContainer.querySelectorAll("[data-collection]")
+        ).find(function (button) {
+
+            return (
+                button.dataset.collection.toLowerCase()
+                === name.toLowerCase()
+            );
+
+        });
+
+
+    if (!existingButton) {
+
+        const button =
+            document.createElement("button");
+
+        button.type = "button";
+        button.className = "links-nav-item";
+        button.dataset.collection = name;
+
+        button.innerHTML = `
+            <span>◈</span>
+            <span>${escapeHTML(name)}</span>
+            <small>0</small>
+        `;
+
+
+        collectionsContainer.appendChild(button);
+
+
+        // Custom collection filter
+        button.addEventListener(
+            "click",
+            function () {
+
+                document
+                    .querySelectorAll(".links-nav-item")
+                    .forEach(function (item) {
+
+                        item.classList.remove("active");
+
+                    });
+
+
+                this.classList.add("active");
+
+
+                renderLinks(
+                    linksSearchInput
+                        ? linksSearchInput.value
+                        : ""
+                );
+
+
+                document
+                    .querySelectorAll(".link-card")
+                    .forEach(function (card) {
+
+                        if (
+                            String(card.dataset.collection || "")
+                            !== name
+                        ) {
+
+                            card.remove();
+
+                        }
+
+                    });
+
+            }
+        );
+
+    }
+
+
+    // Add to Collection dropdown
+    if (collectionSelect) {
+
+        const existsInDropdown =
+            Array.from(
+                collectionSelect.options
+            ).some(function (option) {
+
+                return option.value === name;
+
+            });
+
+
+        if (!existsInDropdown) {
+
+            const option =
+                document.createElement("option");
+
+            option.value = name;
+            option.textContent = name;
+
+            collectionSelect.appendChild(option);
+
+        }
+
+    }
+
+}
+
+// =========================================================
+// UPDATE COLLECTION COUNTS
+// =========================================================
+
+function updateCollectionCounts() {
+
+    const collectionButtons =
+        document.querySelectorAll(
+            "#linksCollections [data-collection]"
+        );
+
+    collectionButtons.forEach(function (button) {
+
+        const collection =
+            button.dataset.collection;
+
+        const count =
+            linksData.filter(function (link) {
+
+                return (
+                    String(link.collection || "").trim()
+                    === collection
+                );
+
+            }).length;
+
+        const countElement =
+            button.querySelector("small");
+
+        if (countElement) {
+            countElement.textContent = count;
+        }
+
+    });
+
+}
+
+// =========================================================
+// LINKS SIDEBAR - FILTERS + COLLECTIONS + TYPES
+// =========================================================
+
+document.querySelectorAll(".links-nav-item").forEach(function (button) {
+
+    button.addEventListener("click", function () {
+
+        const filter = this.dataset.filter || "";
+        const collection = this.dataset.collection || "";
+        const type = this.dataset.type || "";
+        
+
+        // Remove active from all sidebar items
+        document.querySelectorAll(".links-nav-item").forEach(function (item) {
+            item.classList.remove("active");
+        });
+
+        // Highlight clicked item
+        this.classList.add("active");
+
+
+        // =====================================================
+        // ALL LINKS
+        // =====================================================
+
+        if (filter === "all") {
+
+            renderLinks(
+                linksSearchInput
+                    ? linksSearchInput.value
+                    : ""
+            );
+
+            return;
+        }
+
+
+        // =====================================================
+        // VALID FILTER
+        // =====================================================
+
+        if (
+            filter !== "pinned" &&
+            filter !== "favorites" &&
+            filter !== "unreviewed" &&
+            !collection &&
+            !type
+        ) {
+            return;
+        }
+
+
+        if (!linksGrid) return;
+
+        linksGrid.innerHTML = "";
+
+
+        // =====================================================
+        // FILTER LINKS
+        // =====================================================
+
+        const filteredLinks =
+            linksData.filter(function (link) {
+
+
+                // PINNED
+                if (filter === "pinned") {
+                    return link.pinned === true;
+                }
+
+
+                // FAVORITES
+                if (filter === "favorites") {
+                    return link.favorite === true;
+                }
+
+
+                // UNREVIEWED
+                if (filter === "unreviewed") {
+                    return link.reviewed === false;
+                }
+
+
+                // COLLECTION
+                if (collection) {
+                    return String(link.collection || "").trim() === collection;
+                }
+
+
+                // TYPE
+                if (type) {
+                    return String(link.type || "").trim() === type;
+                }
+
+
+                return false;
+
+            });
+
+
+        // =====================================================
+        // EMPTY STATE
+        // =====================================================
+
+        if (filteredLinks.length === 0) {
+
+            let emptyTitle = "No links found";
+            let emptyText = "There are no links in this section.";
+
+
+            if (filter === "pinned") {
+
+                emptyTitle = "No pinned links";
+                emptyText = "Links you pin will appear here.";
+
+            }
+
+
+            if (filter === "favorites") {
+
+                emptyTitle = "No favorite links";
+                emptyText = "Links you add to favorites will appear here.";
+
+            }
+
+
+            if (filter === "unreviewed") {
+
+                emptyTitle = "No unreviewed links";
+                emptyText = "All your links have been reviewed.";
+
+            }
+
+
+            if (collection) {
+
+                emptyTitle = "No links in " + collection;
+                emptyText =
+                    "Links added to this collection will appear here.";
+
+            }
+
+
+            if (type) {
+
+                emptyTitle =
+                    "No " + type + " links";
+
+                emptyText =
+                    "Links with this type will appear here.";
+
+            }
+
+
+            linksGrid.innerHTML = `
+                <div class="links-empty-state">
+
+                    <div class="links-empty-icon">
+                        🔗
+                    </div>
+
+                    <h3>
+                        ${escapeHTML(emptyTitle)}
+                    </h3>
+
+                    <p>
+                        ${escapeHTML(emptyText)}
+                    </p>
+
+                </div>
+            `;
+
+            return;
+        }
+
+
+        // =====================================================
+        // RENDER FILTERED LINKS
+        // =====================================================
+
+        filteredLinks.forEach(function (link) {
+
+            const realIndex =
+                linksData.indexOf(link);
+
+
+            const card =
+                document.createElement("div");
+
+            card.className =
+                "link-card";
+
+
+            card.innerHTML = `
+                <div class="link-card-body">
+
+                    <h3>
+                        ${escapeHTML(link.title || "")}
+                    </h3>
+
+
+                    ${
+                        link.description
+                            ? `
+                                <p class="link-description">
+                                    ${escapeHTML(link.description)}
+                                </p>
+                            `
+                            : ""
+                    }
+
+
+                    ${
+                        link.domain
+                            ? `
+                                <div class="link-domain">
+
+                                    🔗
+
+                                    <span>
+                                        ${escapeHTML(link.domain)}
+                                    </span>
+
+                                </div>
+                            `
+                            : ""
+                    }
+
+
+                    ${
+                        link.type
+                            ? `
+                                <div class="link-type">
+
+                                    ◇
+
+                                    <span>
+                                        ${escapeHTML(link.type)}
+                                    </span>
+
+                                </div>
+                            `
+                            : ""
+                    }
+
+
+                    ${
+                        link.collection
+                            ? `
+                                <div class="link-collection">
+
+                                    📁
+
+                                    <span>
+                                        ${escapeHTML(link.collection)}
+                                    </span>
+
+                                </div>
+                            `
+                            : ""
+                    }
+
+
+                    <div class="link-card-actions">
+
+                        <button
+                            type="button"
+                            class="link-open-btn"
+                            title="Open Link">
+                            ↗
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="link-edit-btn"
+                            title="Edit Link">
+                            ✎
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="link-delete-btn"
+                            title="Delete Link">
+                            🗑
+                        </button>
+
+                    </div>
+
+                </div>
+            `;
+
+
+            // =================================================
+            // OPEN LINK
+            // =================================================
+
+            const openBtn =
+                card.querySelector(".link-open-btn");
+
+
+            if (openBtn) {
+
+                openBtn.addEventListener(
+                    "click",
+                    function (e) {
+
+                        e.stopPropagation();
+
+                        if (!link.url) return;
+
+
+                        let url =
+                            link.url.trim();
+
+
+                        if (
+                            !url.startsWith("http://") &&
+                            !url.startsWith("https://")
+                        ) {
+
+                            url =
+                                "https://" + url;
+
+                        }
+
+
+                        // Mark as reviewed
+                        link.reviewed = true;
+
+                        saveLinks();
+
+
+                        // Remove from Unreviewed
+                        if (filter === "unreviewed") {
+
+                            card.remove();
+
+                        }
+
+
+                        window.open(
+                            url,
+                            "_blank"
+                        );
+
+                    }
+                );
+
+            }
+
+
+            // =================================================
+            // EDIT LINK
+            // =================================================
+
+            const editBtn =
+                card.querySelector(".link-edit-btn");
+
+
+            if (editBtn) {
+
+                editBtn.addEventListener(
+                    "click",
+                    function (e) {
+
+                        e.stopPropagation();
+
+                        editLink(realIndex);
+
+                    }
+                );
+
+            }
+
+
+            // =================================================
+            // DELETE LINK
+            // =================================================
+
+            const deleteBtn =
+                card.querySelector(".link-delete-btn");
+
+
+            if (deleteBtn) {
+
+                deleteBtn.addEventListener(
+                    "click",
+                    function (e) {
+
+                        e.stopPropagation();
+
+                        deleteLink(realIndex);
+
+                    }
+                );
+
+            }
+
+
+            linksGrid.appendChild(card);
+
+        });
+
+    });
+
+});

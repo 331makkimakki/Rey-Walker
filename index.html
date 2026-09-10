@@ -3220,120 +3220,649 @@ if(localStorage.getItem("isLoggedIn") !== "true"){
     </button>
 
 
-    <!-- =========================
-         LINKS DASHBOARD
-    ========================= -->
+    <!-- =====================================================
+         LINKS APP
+    ====================================================== -->
 
-    <div class="links-dashboard">
-
-        <!-- SEARCH + BUTTONS -->
-        <div class="links-toolbar">
-
-            <div class="links-search">
-                🔍
-                <input
-                    type="text"
-                    id="linksSearch"
-                    placeholder="Search links..."
-                >
-            </div>
-
-            <button class="add-link-btn" type="button">
-                ＋ Add New Link
-            </button>
-
-            <button class="add-collection-btn" type="button">
-                ＋ Add New Collection
-            </button>
-
-        </div>
+    <div class="links-app">
 
 
-        <!-- RECENT LINKS -->
-        <div class="links-section-heading">
+        <!-- =================================================
+             SIDEBAR
+        ================================================== -->
 
-            <div>
-                <h2>◷ Recent Links</h2>
-                <p>Last added links</p>
-            </div>
+        <aside class="links-sidebar">
 
-            <button type="button" class="view-all-links-btn">
-                View All →
-            </button>
+            <!-- BRAND -->
+            <div class="links-sidebar-brand">
 
-        </div>
-
-
-        <!-- LINK CARDS -->
-        <div class="links-grid">
-
-
-            <!-- LINK CARD -->
-            <div class="link-card">
-
-                <div class="link-card-image">
+                <div class="links-sidebar-logo">
                     <img
-                        src="images/links/sample.jpg"
-                        alt="Link Preview"
+                        src="images/icons/RWWWWWWW.svg"
+                        alt="ReyWalker"
                     >
                 </div>
 
-                <div class="link-card-body">
-
-                    <h3>Website Title</h3>
-
-                    <p class="link-description">
-                        Short description of this saved website or resource.
-                    </p>
-
-                    <div class="link-domain">
-                        🔗 example.com
-                    </div>
-
-                    <div class="link-tags">
-                        <span>website</span>
-                        <span>tools</span>
-                    </div>
-
-                    <div class="link-collection">
-                        ◈ Resources
-                    </div>
-
-                    <div class="link-card-actions">
-
-                        <button type="button" title="Open">
-                            ↗
-                        </button>
-
-                        <button type="button" title="Favorite">
-                            ♡
-                        </button>
-
-                        <button type="button" title="Viewed">
-                            ◉
-                        </button>
-
-                        <button type="button" title="Archive">
-                            ▣
-                        </button>
-
-                        <button type="button" title="More">
-                            ⋮
-                        </button>
-
-                    </div>
-
+                <div>
+                    <strong>REYWALKER</strong>
+                    <span>Links</span>
                 </div>
 
             </div>
 
+
+            <!-- MAIN NAVIGATION -->
+
+            <div class="links-sidebar-title">
+                MAIN NAVIGATION
+            </div>
+
+            <button
+                type="button"
+                class="links-nav-item active"
+                data-filter="all">
+
+                <span>🔗</span>
+                <span>Links</span>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="links-nav-item"
+                data-filter="pinned">
+
+                <span>📌</span>
+                <span>Pinned</span>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="links-nav-item"
+                data-filter="favorites">
+
+                <span>♡</span>
+                <span>Favorites</span>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="links-nav-item"
+                data-filter="unreviewed">
+
+                <span>◉</span>
+                <span>Unreviewed</span>
+
+            </button>
+
+
+            <!-- COLLECTIONS -->
+
+            <div class="links-sidebar-title">
+                COLLECTIONS
+            </div>
+
+
+            <div
+                class="links-collections"
+                id="linksCollections">
+
+                <button
+                    type="button"
+                    class="links-nav-item"
+                    data-collection="Personal">
+
+                    <span>◈</span>
+                    <span>Personal</span>
+                    <small>0</small>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="links-nav-item"
+                    data-collection="Work">
+
+                    <span>⚙</span>
+                    <span>Work</span>
+                    <small>0</small>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="links-nav-item"
+                    data-collection="Games">
+
+                    <span>✥</span>
+                    <span>Games</span>
+                    <small>0</small>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="links-nav-item"
+                    data-collection="Videos">
+
+                    <span>✧</span>
+                    <span>Videos</span>
+                    <small>0</small>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="links-nav-item"
+                    data-collection="Accounts">
+
+                    <span>◎</span>
+                    <span>Accounts</span>
+                    <small>0</small>
+
+                </button>
+
+                        </div>
+
+
+            <!-- VIEW BY TYPE -->
+
+            <div class="links-sidebar-title">
+                VIEW BY TYPE
+            </div>
+
+
+            <div class="links-types-sidebar">
+
+                <button
+                    type="button"
+                    class="links-nav-item"
+                    data-type="Spreadsheet">
+
+                    <span>▦</span>
+                    <span>Spreadsheets</span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="links-nav-item"
+                    data-type="Google Drive">
+
+                    <span>▤</span>
+                    <span>Google Drive</span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="links-nav-item"
+                    data-type="Website">
+
+                    <span>◫</span>
+                    <span>Websites</span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="links-nav-item"
+                    data-type="Tool">
+
+                    <span>🎬</span>
+                    <span>Movies</span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="links-nav-item"
+                    data-type="Game">
+
+                    <span>🎮</span>
+                    <span>Games</span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="links-nav-item"
+                    data-type="Video">
+
+                    <span>▶</span>
+                    <span>Videos</span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="links-nav-item"
+                    data-type="Other">
+
+                    <span>◇</span>
+                    <span>Other</span>
+
+                </button>
+
+            </div>
+
+
+        </aside>
+
+
+        </aside>
+
+
+        <!-- =================================================
+             MAIN CONTENT
+        ================================================== -->
+
+        <main class="links-main">
+
+
+            <div class="links-dashboard">
+
+
+                <!-- DASHBOARD HEADER -->
+
+                <div class="links-dashboard-header">
+
+                    <div>
+                        <h1>Your Links Dashboard</h1>
+
+                        <p>
+                            Save and organize your important links.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- SEARCH + BUTTONS -->
+
+                <div class="links-toolbar">
+
+                    <div class="links-search">
+
+                        🔍
+
+                        <input
+                            type="text"
+                            id="linksSearch"
+                            placeholder="Search links..."
+                        >
+
+                    </div>
+
+
+                    <button
+                        class="add-link-btn"
+                        type="button">
+
+                        ＋ Add New Link
+
+                    </button>
+
+
+                    <button
+                        class="add-collection-btn"
+                        type="button">
+
+                        ＋ Add New Collection
+
+                    </button>
+
+                </div>
+
+
+                <!-- RECENT LINKS -->
+
+                <div class="links-section-heading">
+
+                    <div>
+
+                        <h2>
+                            ◷ Recent Links
+                        </h2>
+
+                        <p>
+                            Last added links
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="view-all-links-btn">
+
+                        View All →
+
+                    </button>
+
+                </div>
+
+
+                <!-- LINK CARDS -->
+
+                <div
+                    class="links-grid"
+                    id="linksGrid">
+
+                </div>
+
+
+            </div>
+
+        </main>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     ADD NEW LINK MODAL
+========================================================= -->
+
+<div class="links-modal-overlay" id="addLinkModal">
+
+
+<div class="links-modal">
+
+    <div class="links-modal-header">
+
+        <div>
+            <h2>Add New Link</h2>
+            <p>Save a website or resource to your collection.</p>
+        </div>
+
+        <button
+            type="button"
+            class="links-modal-close"
+            onclick="closeAddLinkModal()">
+
+            ×
+
+        </button>
+
+    </div>
+
+
+    <div class="links-modal-body">
+
+
+        <!-- TITLE -->
+
+        <div class="links-form-group">
+
+            <label for="linkTitle">
+                Title
+            </label>
+
+            <input
+                type="text"
+                id="linkTitle"
+                placeholder="e.g. GitHub"
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <!-- URL -->
+
+        <div class="links-form-group">
+
+            <label for="linkUrl">
+                URL
+            </label>
+
+            <input
+                type="url"
+                id="linkUrl"
+                placeholder="https://example.com"
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <!-- DESCRIPTION -->
+
+        <div class="links-form-group">
+
+            <label for="linkDescription">
+                Description
+                <span>Optional</span>
+            </label>
+
+            <textarea
+                id="linkDescription"
+                placeholder="Add a short description..."
+                rows="3"
+            ></textarea>
+
+        </div>
+
+
+        <!-- COLLECTION -->
+
+        <div class="links-form-group">
+
+            <label for="linkCollection">
+                Collection
+            </label>
+
+            <select id="linkCollection">
+
+                <option value="">
+                    No Collection
+                </option>
+
+                <option value="Personal">
+                    Personal
+                </option>
+
+                <option value="Work">
+                    Work
+                </option>
+
+                <option value="Games">
+                    Games
+                </option>
+
+                <option value="Videos">
+                    Videos
+                </option>
+
+                <option value="Accounts">
+                    Accounts
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- TYPE -->
+
+<div class="links-form-group">
+
+    <label for="linkType">
+        Type
+    </label>
+
+    <select id="linkType">
+        <option value="">Select Type</option>
+        <option value="Spreadsheet">Spreadsheet</option>
+        <option value="Google Drive">Google Drive</option>
+        <option value="Website">Website</option>
+        <option value="Movies">Movies</option>
+        <option value="Game">Game</option>
+        <option value="Video">Video</option>
+        <option value="Other">Other</option>
+    </select>
+
+</div>
+
+
+
+        <!-- OPTIONS -->
+
+        <div class="links-form-options">
+
+            <label class="links-checkbox">
+
+                <input
+                    type="checkbox"
+                    id="linkPinned"
+                >
+
+                <span>📌 Pin this link</span>
+
+            </label>
+
+
+            <label class="links-checkbox">
+
+                <input
+                    type="checkbox"
+                    id="linkFavorite"
+                >
+
+                <span>♡ Add to favorites</span>
+
+            </label>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+        <div class="links-modal-footer"> 
+
+        <button 
+            type="button" 
+            class="links-modal-cancel" 
+            onclick="closeAddLinkModal()"> 
+
+            Cancel 
+
+        </button> 
+
+
+        <button 
+            type="button" 
+            class="links-modal-save" 
+            onclick="saveNewLink()"> 
+
+            Save Link 
+
+        </button> 
+
+    </div> 
+
+</div> 
+
+
+</div> 
+
+
+<!-- =========================================================
+     ADD NEW COLLECTION MODAL
+========================================================= -->
+
+<div class="links-modal-overlay" id="addCollectionModal">
+
+    <div class="links-modal">
+
+        <div class="links-modal-header">
+
+            <div>
+                <h2>Add New Collection</h2>
+
+                <p>
+                    Create a new collection for your links.
+                </p>
+            </div>
+
+            <button
+                type="button"
+                class="links-modal-close"
+                onclick="closeAddCollectionModal()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div class="links-modal-body">
+
+            <div class="links-form-group">
+
+                <label for="newCollectionName">
+                    Collection Name
+                </label>
+
+                <input
+                    type="text"
+                    id="newCollectionName"
+                    placeholder="e.g. Shopping"
+                    autocomplete="off"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="links-modal-footer">
+
+            <button
+                type="button"
+                class="links-modal-cancel"
+                onclick="closeAddCollectionModal()">
+
+                Cancel
+
+            </button>
+
+
+            <button
+                type="button"
+                class="links-modal-save"
+                onclick="saveNewCollection()">
+
+                Save Collection
+
+            </button>
 
         </div>
 
     </div>
 
 </div>
-
 
 
 
@@ -3686,6 +4215,7 @@ if(localStorage.getItem("isLoggedIn") !== "true"){
             </main>
 
         </div>
+        
 
     </div>
 
