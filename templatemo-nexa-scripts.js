@@ -27,7 +27,7 @@ menuItems.forEach(item => {
 
       const sectionId = item.dataset.section;
 
-      if(sectionId === "services" || sectionId === "notes"){
+      if(sectionId === "services"){
 
     console.log("PIN OPEN:", sectionId);
 
