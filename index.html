@@ -3234,12 +3234,22 @@ if(localStorage.getItem("isLoggedIn") !== "true"){
 
  <!-- LAST LINE SA NMAX TRACKER -->
 
- <!-- =========================
+
+<!-- =========================================================
      FUNDS SECTION
-========================= -->
+========================================================= -->
+
 <div class="content-section" id="funds">
 
+    <div class="section-header">
+        <h2 class="section-title">FUNDS</h2>
+        <p class="section-subtitle">
+            Manage your money, savings, debts, and expenses
+        </p>
+    </div>
+
     <div class="section-header-small">
+
         <div class="small-logo">
             <img src="images/icons/RWWWWWWW.svg" alt="ReyWalker Logo">
         </div>
@@ -3248,16 +3258,242 @@ if(localStorage.getItem("isLoggedIn") !== "true"){
             <h3>REYWALKER</h3>
             <p>Funds</p>
         </div>
+
     </div>
 
-    <button class="back-btn" onclick="backToMenu()">← Back to Menu</button>
+    <button class="back-btn" onclick="backToMenu()">
+        ← Back to Menu
+    </button>
 
-    <div class="section-content">
-        <h2>FUNDS</h2>
-        <p>Manage and track your funds here.</p>
+
+
+
+
+
+<!-- =========================================================
+     MONEY TRACKER / DEBT - VERTICAL LAYOUT
+========================================================= -->
+
+<div class="funds-container">
+
+    <div class="funds-card">
+
+        <div class="funds-card-header">
+            <h3>💰 MONEY TRACKER</h3>
+            <p>Saving / Fund / Debt (2026–2027)</p>
+        </div>
+
+        <div class="funds-subheader">
+            <h4>Hanah Utang ₱60,000</h4>
+            <p>₱30,000 per person</p>
+        </div>
+
+        <div class="funds-table-wrapper">
+
+            <table class="funds-table funds-vertical-table">
+
+                <thead>
+                    <tr>
+                        <th rowspan="2" class="funds-month-heading">Month</th>
+
+                        <th colspan="3">Joel</th>
+                        <th colspan="3">Zen</th>
+
+                        <th rowspan="2">Monthly Total</th>
+                    </tr>
+
+                    <tr>
+                        <th>1st Period</th>
+                        <th>2nd Period</th>
+                        <th>Total</th>
+
+                        <th>1st Period</th>
+                        <th>2nd Period</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <!-- JANUARY -->
+<tr data-month-row="0">
+    <th>January</th>
+    <td><input type="number" min="0" data-person="joel" data-period="1" data-month="0"></td>
+    <td><input type="number" min="0" data-person="joel" data-period="2" data-month="0"></td>
+    <td class="person-month-total" data-person-total="joel" data-month="0">₱0</td>
+    <td><input type="number" min="0" data-person="zen" data-period="1" data-month="0"></td>
+    <td><input type="number" min="0" data-person="zen" data-period="2" data-month="0"></td>
+    <td class="person-month-total" data-person-total="zen" data-month="0">₱0</td>
+    <td class="monthly-grand-total" data-month-total="0">₱0</td>
+</tr>
+
+<!-- FEBRUARY -->
+<tr data-month-row="1">
+    <th>February</th>
+    <td><input type="number" min="0" data-person="joel" data-period="1" data-month="1"></td>
+    <td><input type="number" min="0" data-person="joel" data-period="2" data-month="1"></td>
+    <td class="person-month-total" data-person-total="joel" data-month="1">₱0</td>
+    <td><input type="number" min="0" data-person="zen" data-period="1" data-month="1"></td>
+    <td><input type="number" min="0" data-person="zen" data-period="2" data-month="1"></td>
+    <td class="person-month-total" data-person-total="zen" data-month="1">₱0</td>
+    <td class="monthly-grand-total" data-month-total="1">₱0</td>
+</tr>
+
+<!-- MARCH -->
+<tr data-month-row="2">
+    <th>March</th>
+    <td><input type="number" min="0" data-person="joel" data-period="1" data-month="2"></td>
+    <td><input type="number" min="0" data-person="joel" data-period="2" data-month="2"></td>
+    <td class="person-month-total" data-person-total="joel" data-month="2">₱0</td>
+    <td><input type="number" min="0" data-person="zen" data-period="1" data-month="2"></td>
+    <td><input type="number" min="0" data-person="zen" data-period="2" data-month="2"></td>
+    <td class="person-month-total" data-person-total="zen" data-month="2">₱0</td>
+    <td class="monthly-grand-total" data-month-total="2">₱0</td>
+</tr>
+
+<!-- APRIL -->
+<tr data-month-row="3">
+    <th>April</th>
+    <td><input type="number" min="0" data-person="joel" data-period="1" data-month="3"></td>
+    <td><input type="number" min="0" data-person="joel" data-period="2" data-month="3"></td>
+    <td class="person-month-total" data-person-total="joel" data-month="3">₱0</td>
+    <td><input type="number" min="0" data-person="zen" data-period="1" data-month="3"></td>
+    <td><input type="number" min="0" data-person="zen" data-period="2" data-month="3"></td>
+    <td class="person-month-total" data-person-total="zen" data-month="3">₱0</td>
+    <td class="monthly-grand-total" data-month-total="3">₱0</td>
+</tr>
+
+<!-- MAY -->
+<tr data-month-row="4">
+    <th>May</th>
+    <td><input type="number" min="0" data-person="joel" data-period="1" data-month="4"></td>
+    <td><input type="number" min="0" data-person="joel" data-period="2" data-month="4"></td>
+    <td class="person-month-total" data-person-total="joel" data-month="4">₱0</td>
+    <td><input type="number" min="0" data-person="zen" data-period="1" data-month="4"></td>
+    <td><input type="number" min="0" data-person="zen" data-period="2" data-month="4"></td>
+    <td class="person-month-total" data-person-total="zen" data-month="4">₱0</td>
+    <td class="monthly-grand-total" data-month-total="4">₱0</td>
+</tr>
+
+<!-- JUNE -->
+<tr data-month-row="5">
+    <th>June</th>
+    <td><input type="number" min="0" data-person="joel" data-period="1" data-month="5"></td>
+    <td><input type="number" min="0" data-person="joel" data-period="2" data-month="5"></td>
+    <td class="person-month-total" data-person-total="joel" data-month="5">₱0</td>
+    <td><input type="number" min="0" data-person="zen" data-period="1" data-month="5"></td>
+    <td><input type="number" min="0" data-person="zen" data-period="2" data-month="5"></td>
+    <td class="person-month-total" data-person-total="zen" data-month="5">₱0</td>
+    <td class="monthly-grand-total" data-month-total="5">₱0</td>
+</tr>
+
+<!-- JULY -->
+<tr data-month-row="6">
+    <th>July</th>
+    <td><input type="number" min="0" data-person="joel" data-period="1" data-month="6"></td>
+    <td><input type="number" min="0" data-person="joel" data-period="2" data-month="6"></td>
+    <td class="person-month-total" data-person-total="joel" data-month="6">₱0</td>
+    <td><input type="number" min="0" data-person="zen" data-period="1" data-month="6"></td>
+    <td><input type="number" min="0" data-person="zen" data-period="2" data-month="6"></td>
+    <td class="person-month-total" data-person-total="zen" data-month="6">₱0</td>
+    <td class="monthly-grand-total" data-month-total="6">₱0</td>
+</tr>
+
+<!-- AUGUST -->
+<tr data-month-row="7">
+    <th>August</th>
+    <td><input type="number" min="0" data-person="joel" data-period="1" data-month="7"></td>
+    <td><input type="number" min="0" data-person="joel" data-period="2" data-month="7"></td>
+    <td class="person-month-total" data-person-total="joel" data-month="7">₱0</td>
+    <td><input type="number" min="0" data-person="zen" data-period="1" data-month="7"></td>
+    <td><input type="number" min="0" data-person="zen" data-period="2" data-month="7"></td>
+    <td class="person-month-total" data-person-total="zen" data-month="7">₱0</td>
+    <td class="monthly-grand-total" data-month-total="7">₱0</td>
+</tr>
+
+<!-- SEPTEMBER -->
+<tr data-month-row="8">
+    <th>September</th>
+    <td><input type="number" min="0" data-person="joel" data-period="1" data-month="8"></td>
+    <td><input type="number" min="0" data-person="joel" data-period="2" data-month="8"></td>
+    <td class="person-month-total" data-person-total="joel" data-month="8">₱0</td>
+    <td><input type="number" min="0" data-person="zen" data-period="1" data-month="8"></td>
+    <td><input type="number" min="0" data-person="zen" data-period="2" data-month="8"></td>
+    <td class="person-month-total" data-person-total="zen" data-month="8">₱0</td>
+    <td class="monthly-grand-total" data-month-total="8">₱0</td>
+</tr>
+
+<!-- OCTOBER -->
+<tr data-month-row="9">
+    <th>October</th>
+    <td><input type="number" min="0" data-person="joel" data-period="1" data-month="9"></td>
+    <td><input type="number" min="0" data-person="joel" data-period="2" data-month="9"></td>
+    <td class="person-month-total" data-person-total="joel" data-month="9">₱0</td>
+    <td><input type="number" min="0" data-person="zen" data-period="1" data-month="9"></td>
+    <td><input type="number" min="0" data-person="zen" data-period="2" data-month="9"></td>
+    <td class="person-month-total" data-person-total="zen" data-month="9">₱0</td>
+    <td class="monthly-grand-total" data-month-total="9">₱0</td>
+</tr>
+
+<!-- NOVEMBER -->
+<tr data-month-row="10">
+    <th>November</th>
+    <td><input type="number" min="0" data-person="joel" data-period="1" data-month="10"></td>
+    <td><input type="number" min="0" data-person="joel" data-period="2" data-month="10"></td>
+    <td class="person-month-total" data-person-total="joel" data-month="10">₱0</td>
+    <td><input type="number" min="0" data-person="zen" data-period="1" data-month="10"></td>
+    <td><input type="number" min="0" data-person="zen" data-period="2" data-month="10"></td>
+    <td class="person-month-total" data-person-total="zen" data-month="10">₱0</td>
+    <td class="monthly-grand-total" data-month-total="10">₱0</td>
+</tr>
+
+<!-- DECEMBER -->
+<tr data-month-row="11">
+    <th>December</th>
+    <td><input type="number" min="0" data-person="joel" data-period="1" data-month="11"></td>
+    <td><input type="number" min="0" data-person="joel" data-period="2" data-month="11"></td>
+    <td class="person-month-total" data-person-total="joel" data-month="11">₱0</td>
+    <td><input type="number" min="0" data-person="zen" data-period="1" data-month="11"></td>
+    <td><input type="number" min="0" data-person="zen" data-period="2" data-month="11"></td>
+    <td class="person-month-total" data-person-total="zen" data-month="11">₱0</td>
+    <td class="monthly-grand-total" data-month-total="11">₱0</td>
+</tr>
+                    <!-- GRAND TOTAL -->
+                    <tr class="funds-grand-total">
+                        <th colspan="3">JOEL TOTAL</th>
+                        <td id="joelGrandTotal">₱0</td>
+
+                        <th colspan="2">ZEN TOTAL</th>
+                        <td id="zenGrandTotal">₱0</td>
+
+                        <td id="fundsGrandTotal">₱0</td>
+                    </tr>
+
+                    <!-- BALANCE SUMMARY -->
+                    <tr class="funds-balance-row">
+                        <th colspan="7">REMAINING BALANCE</th>
+                        <td id="fundsRemainingBalance">₱60,000</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
     </div>
 
 </div>
+
+<!-- END MONEY TRACKER -->
+
+
+ </div>
+
+
+
+
+
 
 
 <!-- =========================================================
@@ -4623,6 +4859,184 @@ document.addEventListener("touchstart", resetLogoutTimer);
 resetLogoutTimer();
 
 </script>
+<script type="module">
+import {
+    saveFundsData,
+    loadFundsData
+} from "./funds-data.js";
+
+document.addEventListener("DOMContentLoaded", async function () {
+
+    const funds = document.getElementById("funds");
+
+    if (!funds) return;
+
+    const paymentInputs = funds.querySelectorAll(
+        'input[data-person][data-period][data-month]'
+    );
+
+    let isLoading = true;
+    let saveTimer = null;
+
+    function peso(amount) {
+        return "₱" + amount.toLocaleString("en-PH");
+    }
+
+    // =====================================
+    // CALCULATE TOTALS
+    // =====================================
+    function calculateFunds() {
+
+        let joelTotal = 0;
+        let zenTotal = 0;
+        let grandTotal = 0;
+
+        funds.querySelectorAll("[data-month-row]").forEach(function (row) {
+
+            const month = row.dataset.monthRow;
+            let joelMonth = 0;
+            let zenMonth = 0;
+
+            row.querySelectorAll('input[data-person="joel"]').forEach(function (input) {
+                joelMonth += Math.max(0, Number(input.value) || 0);
+            });
+
+            row.querySelectorAll('input[data-person="zen"]').forEach(function (input) {
+                zenMonth += Math.max(0, Number(input.value) || 0);
+            });
+
+            const monthlyTotal = joelMonth + zenMonth;
+
+            row.querySelector('[data-person-total="joel"]').textContent =
+                peso(joelMonth);
+
+            row.querySelector('[data-person-total="zen"]').textContent =
+                peso(zenMonth);
+
+            row.querySelector('[data-month-total="' + month + '"]').textContent =
+                peso(monthlyTotal);
+
+            joelTotal += joelMonth;
+            zenTotal += zenMonth;
+            grandTotal += monthlyTotal;
+        });
+
+        funds.querySelector("#joelGrandTotal").textContent =
+            peso(joelTotal);
+
+        funds.querySelector("#zenGrandTotal").textContent =
+            peso(zenTotal);
+
+        funds.querySelector("#fundsGrandTotal").textContent =
+            peso(grandTotal);
+
+        funds.querySelector("#fundsRemainingBalance").textContent =
+            peso(Math.max(0, 60000 - grandTotal));
+    }
+
+    // =====================================
+    // PREPARE PAYMENT DATA
+    // =====================================
+    function collectFundsData() {
+
+        const payments = {};
+
+        paymentInputs.forEach(function (input) {
+
+            const person = input.dataset.person;
+            const period = input.dataset.period;
+            const month = input.dataset.month;
+
+            const key = `${person}_${month}_${period}`;
+
+            payments[key] = Math.max(0, Number(input.value) || 0);
+        });
+
+        return { payments: payments };
+    }
+
+    // =====================================
+    // SAVE TO FIREBASE
+    // =====================================
+    async function savePayments() {
+
+        try {
+
+            await saveFundsData(collectFundsData());
+
+            console.log("Funds payments saved to Firebase.");
+
+        } catch (error) {
+
+            console.error("Failed to save Funds payments:", error);
+
+        }
+    }
+
+    // =====================================
+    // LOAD FROM FIREBASE
+    // =====================================
+    try {
+
+        const savedData = await loadFundsData();
+
+        if (savedData && savedData.payments) {
+
+            paymentInputs.forEach(function (input) {
+
+                const key =
+                    `${input.dataset.person}_${input.dataset.month}_${input.dataset.period}`;
+
+                if (
+                    Object.prototype.hasOwnProperty.call(
+                        savedData.payments,
+                        key
+                    )
+                ) {
+                    input.value = savedData.payments[key];
+                }
+
+            });
+
+        }
+
+    } catch (error) {
+
+        console.error("Failed to load Funds payments:", error);
+
+    }
+
+    // Finish loading before enabling automatic saves.
+    calculateFunds();
+    isLoading = false;
+
+    // =====================================
+    // AUTO-SAVE WHEN VALUES CHANGE
+    // =====================================
+    funds.addEventListener("input", function (event) {
+
+        if (!event.target.matches(
+            'input[data-person][data-period][data-month]'
+        )) {
+            return;
+        }
+
+        calculateFunds();
+
+        if (isLoading) return;
+
+        clearTimeout(saveTimer);
+
+        saveTimer = setTimeout(function () {
+            savePayments();
+        }, 700);
+
+    });
+
+});
+</script>
+
+
 <!-- BOTTOM BACK BUTTON -->
 <button id="bottomBackBtn" class="bottom-back-btn">
     ← BACK

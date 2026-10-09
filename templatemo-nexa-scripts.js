@@ -3859,3 +3859,41 @@ document.querySelectorAll(".links-nav-item").forEach(function (button) {
     });
 
 });
+
+
+/* =========================================
+   FUNDS — EDITABLE TEXT
+========================================= */
+
+document.querySelectorAll(
+    '#funds h1, #funds h2, #funds h3, #funds h4, ' +
+    '#funds p, #funds span, #funds strong, ' +
+    '#funds th, #funds label, #funds small'
+).forEach((element, index) => {
+
+    // Ayaw hilabti ang computed totals
+    if (
+        element.id === 'fundsGrandTotal' ||
+        element.id === 'fundsRemainingBalance' ||
+        element.classList.contains('monthly-grand-total') ||
+        element.classList.contains('person-month-total')
+    ) {
+        return;
+    }
+
+    // I-enable ang pag-edit
+    element.contentEditable = 'true';
+    element.dataset.editableIndex = index;
+
+    // I-save ang gi-edit nga text
+    const storageKey = 'reywalkerFundsText_' + index;
+    const savedText = localStorage.getItem(storageKey);
+
+    if (savedText !== null) {
+        element.textContent = savedText;
+    }
+
+    element.addEventListener('input', () => {
+        localStorage.setItem(storageKey, element.textContent);
+    });
+});

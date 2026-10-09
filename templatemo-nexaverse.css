@@ -7413,3 +7413,453 @@ transform: translateY(-1px);
 ```
 
 }
+
+
+```css
+/* =====================================
+   MONEY TRACKER — MATCH NMAX DESIGN
+===================================== */
+
+/* MAIN CARD */
+
+#funds .funds-card {
+    width: 100%;
+    padding: 25px;
+    box-sizing: border-box;
+
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+
+    backdrop-filter: blur(12px);
+    transition: 0.3s;
+}
+
+/* HEADER */
+
+#funds .funds-card-header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+#funds .funds-card-header h3 {
+    color: #00f0ff;
+    font-size: 18px;
+    margin: 0 0 8px;
+}
+
+#funds .funds-card-header p {
+    color: white;
+    font-size: 12px;
+    opacity: 0.75;
+    margin: 0;
+}
+
+/* DEBT INFORMATION */
+
+#funds .funds-subheader {
+    padding: 15px;
+    margin-bottom: 20px;
+
+    background: rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+}
+
+#funds .funds-subheader h4 {
+    color: #00f0ff;
+    margin: 0 0 8px;
+    font-size: 15px;
+}
+
+#funds .funds-subheader p {
+    color: white;
+    opacity: 0.8;
+    margin: 0;
+    font-size: 12px;
+}
+
+/* TABLE WRAPPER */
+
+#funds .funds-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* TABLE */
+
+#funds .funds-vertical-table {
+    width: 100%;
+    min-width: 950px;
+
+    border-collapse: separate;
+    border-spacing: 0 8px;
+
+    color: white;
+}
+
+/* TABLE HEADER */
+
+#funds .funds-vertical-table thead th {
+    padding: 14px 12px;
+
+    font-size: 12px;
+    text-align: center;
+    white-space: nowrap;
+
+    color: #00f0ff;
+    background: rgba(255,255,255,0.08);
+
+    border-top: 1px solid rgba(255,255,255,0.20);
+    border-bottom: 1px solid rgba(255,255,255,0.20);
+}
+
+/* TABLE BODY ROWS */
+
+#funds .funds-vertical-table tbody tr {
+    background: rgba(0,0,0,0.60);
+    transition: 0.3s;
+}
+
+#funds .funds-vertical-table tbody tr:hover {
+    background: rgba(255,255,255,0.15);
+}
+
+/* TABLE CELLS */
+
+#funds .funds-vertical-table tbody th,
+#funds .funds-vertical-table tbody td {
+    padding: 15px 10px;
+
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+
+    border-top: 1px solid rgba(255,255,255,0.15);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+/* LEFT EDGE */
+
+#funds .funds-vertical-table tbody tr > th:first-child {
+    color: #00f0ff;
+    text-align: left;
+    white-space: nowrap;
+
+    border-left: 1px solid rgba(255,255,255,0.15);
+    border-radius: 15px 0 0 15px;
+}
+
+/* RIGHT EDGE */
+
+#funds .funds-vertical-table tbody td:last-child {
+    border-right: 1px solid rgba(255,255,255,0.15);
+    border-radius: 0 15px 15px 0;
+}
+
+/* PAYMENT INPUTS */
+
+#funds .funds-vertical-table input[type="number"] {
+    width: 85px;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    padding: 10px 6px;
+
+    color: white;
+    background: rgba(255,255,255,0.08);
+
+    border: 1px solid rgba(255,255,255,0.20);
+    border-radius: 8px;
+
+    font-size: 12px;
+    text-align: center;
+
+    outline: none;
+    transition: 0.3s;
+}
+
+/* INPUT FOCUS */
+
+#funds .funds-vertical-table input[type="number"]:focus {
+    border-color: #4fc3f7;
+    box-shadow: 0 0 12px rgba(79,195,247,0.35);
+}
+
+/* REMOVE NUMBER SPINNERS */
+
+#funds .funds-vertical-table input[type="number"]::-webkit-inner-spin-button,
+#funds .funds-vertical-table input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#funds .funds-vertical-table input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+/* INDIVIDUAL TOTALS */
+
+#funds .funds-vertical-table .person-month-total {
+    color: #00f0ff;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* MONTHLY TOTAL */
+
+#funds .funds-vertical-table .monthly-grand-total {
+    color: #00ff88;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* GRAND TOTAL */
+
+#funds .funds-vertical-table .funds-grand-total {
+    background: rgba(79,195,247,0.15);
+}
+
+#funds .funds-vertical-table .funds-grand-total th,
+#funds .funds-vertical-table .funds-grand-total td {
+    color: #00f0ff;
+    font-weight: bold;
+}
+
+/* REMAINING BALANCE */
+
+#funds .funds-vertical-table .funds-balance-row {
+    background: rgba(0,255,136,0.08);
+}
+
+#funds .funds-vertical-table .funds-balance-row th,
+#funds .funds-vertical-table .funds-balance-row td {
+    color: #00ff88;
+    font-weight: bold;
+}
+
+/* SCROLLBAR */
+
+#funds .funds-table-wrapper::-webkit-scrollbar {
+    height: 7px;
+}
+
+#funds .funds-table-wrapper::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.3);
+}
+
+#funds .funds-table-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(79,195,247,0.5);
+    border-radius: 10px;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+    #funds .funds-card {
+        padding: 15px;
+    }
+
+    #funds .funds-vertical-table {
+        min-width: 950px;
+    }
+}
+
+
+```css
+/* REMOVE ROUNDED CORNERS — MONEY TRACKER */
+
+#funds .funds-card,
+#funds .funds-subheader,
+#funds .funds-table-wrapper,
+#funds .funds-vertical-table thead th,
+#funds .funds-vertical-table tbody th,
+#funds .funds-vertical-table tbody td,
+#funds .funds-vertical-table input[type="number"] {
+    border-radius: 0 !important;
+}
+
+
+/* =====================================================
+   FUNDS TABLE — NMAX STYLE
+   Compact cells, separators only, rounded inputs
+===================================================== */
+
+/* Remove gaps between table cells */
+#funds .funds-vertical-table {
+    width: 100%;
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+}
+
+/* Table headings: separator style only */
+#funds .funds-vertical-table thead th {
+    border-radius: 0 !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+    padding: 12px 8px;
+    text-align: center;
+    background: transparent;
+}
+
+/* Body cells: no individual boxes */
+#funds .funds-vertical-table tbody th,
+#funds .funds-vertical-table tbody td {
+    border-radius: 0 !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+    padding: 8px;
+    background: transparent;
+}
+
+/* Month names */
+#funds .funds-vertical-table tbody th {
+    text-align: left;
+    white-space: nowrap;
+}
+
+/* Rounded boxes ONLY for amount inputs */
+#funds .funds-vertical-table input[type="number"] {
+    border-radius: 8px !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    background: rgba(0, 0, 0, 0.6) !important;
+    padding: 9px 8px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Input focus */
+#funds .funds-vertical-table input[type="number"]:focus {
+    outline: none;
+    border-color: #00f0ff !important;
+    box-shadow: 0 0 8px rgba(0, 240, 255, 0.2);
+}
+
+/* Keep cells compact */
+#funds .funds-vertical-table th,
+#funds .funds-vertical-table td {
+    vertical-align: middle;
+}
+
+/* Remove rounded corners from outer containers */
+#funds .funds-card,
+#funds .funds-subheader,
+#funds .funds-table-wrapper {
+    border-radius: 0 !important;
+}
+
+/* FUNDS — SMALL, SQUARE AMOUNT INPUTS */
+#funds .funds-vertical-table input[type="number"] {
+    width: 75px !important;
+    max-width: 100% !important;
+    height: 32px !important;
+    padding: 4px 6px !important;
+
+    border-radius: 0 !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+
+    background: rgba(0, 0, 0, 0.6) !important;
+    box-sizing: border-box !important;
+    text-align: center;
+}
+
+/* Focus effect */
+#funds .funds-vertical-table input[type="number"]:focus {
+    outline: none;
+    border-color: #00f0ff !important;
+    box-shadow: none !important;
+}
+
+/* =========================================
+   FUNDS TABLE — EXCEL / NMAX STYLE
+========================================= */
+
+#funds .funds-vertical-table {
+    width: 100%;
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+}
+
+/* Table headings */
+#funds .funds-vertical-table thead th {
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 0 !important;
+    padding: 8px 6px !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Table cells */
+#funds .funds-vertical-table tbody th,
+#funds .funds-vertical-table tbody td {
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 0 !important;
+    padding: 3px 5px !important;
+    background: transparent !important;
+}
+
+/* Amount inputs — integrated into cells */
+#funds .funds-vertical-table input[type="number"] {
+    display: block;
+    width: 100% !important;
+    max-width: 75px;
+    height: 28px !important;
+    margin: 0 auto !important;
+    padding: 3px 5px !important;
+
+    border: 1px solid transparent !important;
+    border-radius: 0 !important;
+    outline: none !important;
+    box-shadow: none !important;
+
+    background: transparent !important;
+    color: #ffffff;
+    text-align: center;
+    box-sizing: border-box !important;
+}
+
+/* Show input border when editing */
+#funds .funds-vertical-table input[type="number"]:focus {
+    border: 1px solid #00f0ff !important;
+    background: rgba(0, 240, 255, 0.05) !important;
+}
+
+/* Remove rounded corners from containers */
+#funds .funds-card,
+#funds .funds-subheader,
+#funds .funds-table-wrapper {
+    border-radius: 0 !important;
+}
+
+/* Compact month labels */
+#funds .funds-vertical-table tbody th {
+    white-space: nowrap;
+    text-align: left;
+}
+
+#funds .funds-vertical-table input[type="number"] {
+    width: 42px !important;
+    max-width: 100% !important;
+    height: 20px !important;
+    margin: 0 auto !important;
+    padding: 1px 2px !important;
+
+    border: 1px solid transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+
+    color: #ffffff;
+    font-size: 11px !important;
+    text-align: center;
+    box-sizing: border-box !important;
+}
+
+#funds .funds-vertical-table input[type="number"]:focus {
+    border: 1px solid #00f0ff !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
